@@ -52,7 +52,7 @@ build-backend = "setuptools.build_meta"
 exclude = ["build", "venv"]
 
 [tool.setuptools_scm]
-root = "../"
+root = "./"
 
 [tool.ruff]
 exclude = ["build", "venv", "resources"]
