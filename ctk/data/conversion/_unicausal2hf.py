@@ -10,7 +10,7 @@ from ..constants import Task, ClassLabel, Relation
 from ._converter import FormatConverter
 
 
-def __extract_entities_and_relations(row) -> tuple:
+def _extract_entities_and_relations(row) -> tuple:
     """
     Converts ["<ARG0>Bla</Arg0> bla <ARG1>Bla</ARG1>", "Bla <ARG0>bla</ARG0> <ARG1>Bla</ARG1>"] to
     ["Bla", " ", "bla", " ", "Bla"], [[1], [], [2], [], [3]], {relationship: 1, "first": 0, "second": 1}
@@ -114,7 +114,7 @@ class UniCausal2HF(FormatConverter):
 
     def _convert_causal_candidate_extraction(self, split: str) -> pd.DataFrame:
         def map_list_to_tokens(row):
-            splits, tags, _ = __extract_entities_and_relations(row)
+            splits, tags, _ = _extract_entities_and_relations(row)
             spans: dict[int, tuple[int, int]] = dict()
             offset: int = 0
             for s, ts in zip(splits, tags):
@@ -133,7 +133,7 @@ class UniCausal2HF(FormatConverter):
 
     def _convert_causality_identification(self, split: str) -> pd.DataFrame:
         def map_to_labels(row):
-            splits, tags, relations = __extract_entities_and_relations(row)
+            splits, tags, relations = _extract_entities_and_relations(row)
             text: str = ""
             cur_ents: set[int] = set()
             for s, t in zip(splits, tags):
