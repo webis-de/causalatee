@@ -1,0 +1,23 @@
+site_name: Causalatee
+site_url: https://TheMrSheldon.github.io/causality-toolkit/
+repo_url: https://github.com/TheMrSheldon/causality-toolkit
+repo_name: TheMrSheldon/causality-toolkit
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mike
+
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Home: index.md
+  - Tasks:
+      - Causality Detection: tasks/causality_detection.md
+      - Causality Extraction: tasks/causality_extraction.md
+      - Causality Identification: tasks/causality_identification.md
+      - Causal Event Candidate Detection: tasks/causal_event_candidate_detection.md

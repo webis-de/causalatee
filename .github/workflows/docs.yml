@@ -1,0 +1,66 @@
+name: Docs
+
+on:
+  release:
+    types: [published]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install ".[docs]"
+
+      - name: Build
+        run: mkdocs build --strict
+
+  deploy:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    permissions:
+      contents: write  # push to gh-pages branch
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # mike needs full history
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install ".[docs]"
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy nightly
+        if: github.event.release.prerelease
+        run: mike deploy --push --update-aliases nightly
+
+      - name: Deploy release
+        if: ${{ !github.event.release.prerelease }}
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          VERSION="${TAG#v}"
+          mike deploy --push --update-aliases "$VERSION" latest
+          mike set-default --push latest

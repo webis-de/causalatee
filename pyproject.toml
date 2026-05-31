@@ -1,5 +1,5 @@
 [project]
-name = "causality-toolkit"
+name = "causalatee"
 authors = [
     { name = "Tim Hagen", email = "tim.hagen@uni-kassel.de" },
 ]
@@ -36,8 +36,9 @@ tests = [
     "types-pyyaml~=6.0",
 ]
 docs = [
-    "sphinx~=8.1",
-    "myst-parser>=4,<4",
+    "mkdocs~=1.6",
+    "mkdocs-material~=9.5",
+    "mike~=2.1",
 ]
 
 [project.urls]
