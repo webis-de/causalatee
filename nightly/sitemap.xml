@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/</loc>
+         <lastmod>2026-06-10</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causal_event_candidate_detection/</loc>
+         <lastmod>2026-06-10</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_detection/</loc>
+         <lastmod>2026-06-10</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_extraction/</loc>
+         <lastmod>2026-06-10</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_identification/</loc>
+         <lastmod>2026-06-10</lastmod>
+    </url>
+</urlset>
