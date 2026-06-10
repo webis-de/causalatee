@@ -31,7 +31,7 @@ jobs:
   deploy:
     name: Deploy docs
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.event_name == 'release' || github.event_name == 'push'
 
     permissions:
       contents: write  # push to gh-pages branch
@@ -55,11 +55,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Deploy nightly
-        if: github.event.release.prerelease
+        if: github.event_name == 'push' || github.event.release.prerelease
         run: mike deploy --push --update-aliases nightly
 
       - name: Deploy release
-        if: ${{ !github.event.release.prerelease }}
+        if: github.event_name == 'release' && !github.event.release.prerelease
         env:
           TAG: ${{ github.event.release.tag_name }}
         run: |

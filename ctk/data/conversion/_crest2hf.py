@@ -113,11 +113,13 @@ class CREST2HF(FormatConverter):
             relations: list[dict] = []
             for span1, span2, direction in pairs:
                 cause_span, effect_span = (span2, span1) if direction == 1 else (span1, span2)
-                relations.append({
-                    "relationship": Relation.Procausal,
-                    "first": f"e{span_to_id[cause_span] + 1}",
-                    "second": f"e{span_to_id[effect_span] + 1}",
-                })
+                relations.append(
+                    {
+                        "relationship": Relation.Procausal,
+                        "first": f"e{span_to_id[cause_span] + 1}",
+                        "second": f"e{span_to_id[effect_span] + 1}",
+                    }
+                )
 
             # Insert entity markers right-to-left so earlier offsets stay valid.
             text = context
