@@ -2,7 +2,7 @@
 
 Causality extraction is the **end-to-end** task of extracting structured causal relations from
 natural language text. It is typically decomposed into three sequential subtasks
-[@hagen2025counterclaims]:
+[@hagen:2025a]:
 
 ```mermaid
 %%{init: {"flowchart": {"htmlLabels": true}, "themeVariables": {"fontSize": "18px", "fontFamily": "sans-serif"}}}%%
@@ -74,17 +74,22 @@ A single sentence may yield multiple relation triples when several cause–effec
 
 ## Datasets
 
-| Corpus | Sentences | Domain | Year | Reference |
-|--------|-----------|--------|------|-----------|
-| BECauSE 2.0 | 1,803 | News | 2017 | [@dunietz:2017] |
-| BioCause | 851 | Medical | 2013 | [@mihaila:2013] |
-| CaTeRs | 488 | Fiction | 2016 | [@mostafazadeh:2016] |
-| Causal News Corpus (CNC) | 1,957 | News | 2022 | [@tan:2022a] |
-| Countercausal News Corpus (CCNC) | 3,415 | News | 2025 | [@hagen2025counterclaims] |
-| FinCausal | 2,136 | Finance | 2020 | [@mariko2020financial] |
-| PDTB-2 | 8,042 | News | 2008 | [@prasad2008penn] |
-| PolitiCause | 5,070 | Politics | 2024 | — |
-| UniCausal | 14,903 | Multiple | 2023 | [@tan:2023] |
+| Corpus | Sentences | Domain | Year | Reference | Links |
+|--------|-----------|--------|------|-----------|-------|
+| AltLex | 1,000 | Wikipedia | 2016 | [@hidey:2016] | [:hugging:](https://huggingface.co/datasets/thagen/AltLex) |
+| BECauSE 2.0 | 1,803 | News | 2017 | [@dunietz:2017] | [:hugging:](https://huggingface.co/datasets/thagen/BECauSEv2) |
+| BioCause | 851 | Medical | 2013 | [@mihaila:2013] | |
+| CaTeRs | 488 | Fiction | 2016 | [@mostafazadeh:2016] | |
+| Causal News Corpus (CNC) | 1,957 | News | 2022 | [@tan:2022a] | [:hugging:](https://huggingface.co/datasets/thagen/CausalNewsCorpus) |
+| CausalTimeBank (CTB) | 2,201 | News | 2014 | [@mirza:2014a] | [:hugging:](https://huggingface.co/datasets/thagen/CausalTimeBank) |
+| Countercausal News Corpus (CCNC) | 3,415 | News | 2025 | [@hagen:2025counterclaims] | |
+| EventStoryLine (ESL) | 2,247 | News | 2017 | [@caselli:2017] | [:hugging:](https://huggingface.co/datasets/thagen/EventStoryLine) |
+| FinCausal | 2,136 | Finance | 2020 | [@mariko:2020] | |
+| PDTB 3.0 | — | News/WSJ | 2019 | [@webber:2019] | [:hugging:](https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3) |
+| PolitiCause | 5,070 | Politics | 2024 | — | |
+| SCITE | 5,236 | Science | 2021 | [@li:2021] | [:hugging:](https://huggingface.co/datasets/thagen/SCITE) |
+| SemEval 2010 Task 8 | 10,690 | General | 2010 | [@hendrickx:2010] | [:hugging:](https://huggingface.co/datasets/thagen/SemEval2010T8) |
+| UniCausal | 14,903 | Multiple | 2023 | [@tan:2023] | |
 
 ## Models
 

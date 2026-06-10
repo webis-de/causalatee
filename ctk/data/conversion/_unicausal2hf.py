@@ -92,9 +92,38 @@ def _extract_entities_and_relations(row) -> tuple:
 
 
 class UniCausal2HF(FormatConverter):
-    def __init__(self, splits: dict[str, Path], target: Path):
+    def __init__(self, splits: dict[str, Path], target: Path, grouped: bool = True):
         super().__init__(target)
         self._splits = splits
+        self._grouped = grouped
+
+    def _load_df(self, split: str) -> pd.DataFrame:
+        """Load a split CSV and return it in grouped format.
+
+        Grouped splits (data/grouped/splits/) already have one row per sentence
+        with causal_text_w_pairs as a Python list of annotated strings.
+
+        Regular splits (data/splits/) have one row per entity pair with
+        text_w_pairs as a single annotated string and explicit seq_label /
+        pair_label columns.  This method normalises the latter into the same
+        grouped representation so all downstream converters stay unchanged.
+        """
+        if self._grouped:
+            return pd.read_csv(
+                self._splits[split],
+                converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []},
+            )
+        df = pd.read_csv(self._splits[split])
+        rows = []
+        for (corpus, doc_id, sent_id), group in df.groupby(["corpus", "doc_id", "sent_id"], sort=False):
+            rows.append(
+                {
+                    "index": f"{corpus}_{doc_id}_{sent_id}",
+                    "text": group["text"].iloc[0],
+                    "causal_text_w_pairs": group.loc[group["pair_label"] == 1, "text_w_pairs"].tolist(),
+                }
+            )
+        return pd.DataFrame(rows)
 
     def _convert(self, task: str, split: str) -> pd.DataFrame:
         converter: dict[Task, Callable[[str], pd.DataFrame]] = {
@@ -105,9 +134,7 @@ class UniCausal2HF(FormatConverter):
         return converter.get(task)(split)
 
     def _convert_causality_detection(self, split: str) -> pd.DataFrame:
-        df = pd.read_csv(
-            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
-        )
+        df = self._load_df(split)
         df["label"] = df["causal_text_w_pairs"].apply(
             lambda x: ClassLabel.Uncausal if len(x) == 0 else ClassLabel.Causal
         )
@@ -127,9 +154,7 @@ class UniCausal2HF(FormatConverter):
                 offset += len(s)
             return pd.Series(("".join(splits), list(list(s) for s in spans.values())))
 
-        df = pd.read_csv(
-            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
-        )
+        df = self._load_df(split)
         df[["text", "entity"]] = df[["text", "causal_text_w_pairs"]].apply(map_list_to_tokens, axis=1)
         return df[["index", "text", "entity"]].set_index("index")
 
@@ -150,8 +175,6 @@ class UniCausal2HF(FormatConverter):
                 reldict.append({"relationship": rtype, "first": f"e{rfirst + 1}", "second": f"e{rsecond + 1}"})
             return pd.Series((text, reldict))
 
-        df = pd.read_csv(
-            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
-        )
+        df = self._load_df(split)
         df[["text", "relations"]] = df[["text", "causal_text_w_pairs"]].apply(map_to_labels, axis=1)
         return df[["index", "text", "relations"]].set_index("index")

@@ -4,3 +4,21 @@
 [submodule "resources/datasets/SCITE"]
 	path = resources/datasets/SCITE
 	url = https://huggingface.co/datasets/thagen/SCITE
+[submodule "resources/datasets/AltLex"]
+	path = resources/datasets/AltLex
+	url = https://huggingface.co/datasets/thagen/AltLex
+[submodule "resources/datasets/CTB"]
+	path = resources/datasets/CTB
+	url = https://huggingface.co/datasets/thagen/CausalTimeBank
+[submodule "resources/datasets/ESL"]
+	path = resources/datasets/ESL
+	url = https://huggingface.co/datasets/thagen/EventStoryLine
+[submodule "resources/datasets/SemEval2010T8"]
+	path = resources/datasets/SemEval2010T8
+	url = https://huggingface.co/datasets/thagen/SemEval2010T8
+[submodule "resources/datasets/PDTB3"]
+	path = resources/datasets/PDTB3
+	url = https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3
+[submodule "resources/datasets/CNC"]
+	path = resources/datasets/CNC
+	url = https://huggingface.co/datasets/thagen/CausalNewsCorpus

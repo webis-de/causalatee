@@ -31,15 +31,18 @@ Spans can overlap when a phrase participates in multiple causal pairs within the
 
 ## Datasets
 
-| Corpus | Sentences | Domain | Year | Reference |
-|--------|-----------|--------|------|-----------|
-| BECauSE 2.0 | 1,803 | News | 2017 | [@dunietz:2017] |
-| BioCause | 851 | Medical | 2013 | [@mihaila:2013] |
-| CaTeRs | 488 | Fiction | 2016 | [@mostafazadeh2016caters] |
-| Causal News Corpus (CNC) | 1,957 | News | 2022 | [@tan:2022a] |
-| Countercausal News Corpus (CCNC) | 3,415 | News | 2025 | [@hagen2025counterclaims] |
-| FinCausal | 2,136 | Finance | 2020 | [@mariko2020financial] |
-| UniCausal | 14,903 | Multiple | 2023 | [@tan:2023] |
+| Corpus | Sentences | Domain | Year | Reference | Links |
+|--------|-----------|--------|------|-----------|-------|
+| AltLex | 1,000 | Wikipedia | 2016 | [@hidey:2016] | [:hugging:](https://huggingface.co/datasets/thagen/AltLex) |
+| BECauSE 2.0 | 1,803 | News | 2017 | [@dunietz:2017] | [:hugging:](https://huggingface.co/datasets/thagen/BECauSEv2) |
+| BioCause | 851 | Medical | 2013 | [@mihaila:2013] | |
+| CaTeRs | 488 | Fiction | 2016 | [@mostafazadeh:2016] | |
+| Causal News Corpus (CNC) | 1,957 | News | 2022 | [@tan:2022a] | [:hugging:](https://huggingface.co/datasets/thagen/CausalNewsCorpus) |
+| Countercausal News Corpus (CCNC) | 3,415 | News | 2025 | [@hagen:2025counterclaims] | |
+| FinCausal | 2,136 | Finance | 2020 | [@mariko:2020] | |
+| PDTB 3.0 | — | News/WSJ | 2019 | [@webber:2019] | [:hugging:](https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3) |
+| SCITE | 5,236 | Science | 2021 | [@li:2021] | [:hugging:](https://huggingface.co/datasets/thagen/SCITE) |
+| UniCausal | 14,903 | Multiple | 2023 | [@tan:2023] | |
 
 ## Models
 
