@@ -1,0 +1,86 @@
+# Causality Detection
+
+Causality detection is a **sentence classification** task: given a natural language sentence, does it
+express causal information?
+
+The task can be framed as:
+
+- **Binary classification** — `Causal` (procausal *or* countercausal) vs. `Uncausal`
+- **Ternary classification** — `Procausal` / `Countercausal` / `Uncausal`
+
+The library currently exposes the binary formulation via `ClassLabel`.
+
+### Data Schema
+
+Each split is stored as a Parquet file with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `index` | `str` | Unique sentence identifier |
+| `text` | `str` | The input sentence |
+| `label` | `int` | `ClassLabel.Causal` (1) or `ClassLabel.Uncausal` (0) |
+
+### What counts as causal?
+
+A sentence is considered causal when it expresses a relation between two events A and B satisfying
+three conditions (following Grivaz):
+
+1. **Temporal order** — A precedes B (the effect cannot occur before the cause)
+2. **Counterfactuality** — B is less likely without A
+3. **Ontological asymmetry** — A causing B does not imply B causes A
+
+Sentences that *negate* such a relation are **countercausal** and are still labelled `Causal` in the
+binary scheme. Common countercausal patterns include [@hagen2025counterclaims]:
+
+| Pattern | Example |
+|---------|---------|
+| Direct negation | "A does not cause B" |
+| Lack of effect | "A happened and B did not happen" |
+| Inverse expected cause | "B happened though A did not happen" |
+| Usual inverse effect | "B happened despite A" |
+| Negated context | "It is falsely believed that A causes B" |
+| Violation of counterfactuality | "A and B happened coincidentally" |
+
+### Example
+
+```
+Input:  "The storm caused significant flooding."
+Output: ClassLabel.Causal (1)
+
+Input:  "She went to the store and bought milk."
+Output: ClassLabel.Uncausal (0)
+
+Input:  "Sugar does not cause hyperactivity."
+Output: ClassLabel.Causal (1)   # countercausal
+```
+
+## Datasets
+
+| Corpus | Sentences | Domain | Year | Reference |
+|--------|-----------|--------|------|-----------|
+| BECauSE 2.0 | 1,803 | News | 2017 | [@dunietz2017because] |
+| BioCause | 851 | Medical | 2013 | [@mihaila2013biocause] |
+| CaTeRs | 488 | Fiction | 2016 | [@mostafazadeh2016caters] |
+| Causal News Corpus (CNC) | 1,957 | News | 2022 | [@tan2022causal] |
+| Countercausal News Corpus (CCNC) | 3,415 | News | 2025 | [@hagen2025counterclaims] |
+| FinCausal | 2,136 | Finance | 2020 | [@mariko2020financial] |
+| PDTB-2 | 8,042 | News | 2008 | [@prasad2008penn] |
+| PolitiCause | 5,070 | Politics | 2024 | — |
+| UniCausal | 14,903 | Multiple | 2023 | [@tan2023unicausal] |
+
+**CCNC** [@hagen2025counterclaims] is the first dataset to explicitly distinguish procausal,
+countercausal, and uncausal sentences (inter-annotator agreement: Cohen's κ = 0.74).
+
+## Models
+
+Models are evaluated using **macro-averaged F₁**.
+
+| Model | F₁ | Reference |
+|-------|-----|-----------|
+| DistilBERT | 80.0% | [@sanh2019distilbert] |
+| RoBERTa | 87.4% | [@liu2019roberta] |
+| Mistral-7B-Instruct | 66.2% | [@jiang2023mistral] |
+
+!!! note
+    Models trained without countercausal examples misclassify countercausal sentences as causal
+    more than **10× as often** as models trained on CCNC [@hagen2025counterclaims].

@@ -5,14 +5,42 @@ repo_name: TheMrSheldon/causality-toolkit
 
 theme:
   name: material
+  logo: assets/logo.png
 
 plugins:
   - search
   - mike
+  - bibtex:
+      bib_dir: docs/references
+      csl_file: docs/chicago-author-date.csl
+      cite_inline: true
+
+markdown_extensions:
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+copyright: Copyright &copy; 2026 Webis
 
 extra:
+  generator: true
   version:
     provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/webis-de
+      name: Webis on GitHub
+    - icon: fontawesome/brands/x-twitter
+      link: https://twitter.com/webis_de
+      name: Webis on X
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/webis
+      name: Webis on YouTube
 
 nav:
   - Home: index.md

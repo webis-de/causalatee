@@ -1,0 +1,6 @@
+[submodule "resources/datasets/BECauSEv2"]
+	path = resources/datasets/BECauSEv2
+	url = https://huggingface.co/datasets/thagen/BECauSEv2
+[submodule "resources/datasets/SCITE"]
+	path = resources/datasets/SCITE
+	url = https://huggingface.co/datasets/thagen/SCITE

@@ -6,7 +6,7 @@ from typing import Callable, Union
 
 import pandas as pd
 
-from ..constants import Task, ClassLabel, Relation
+from ..constants import ClassLabel, Relation, Task
 from ._converter import FormatConverter
 
 
@@ -34,10 +34,10 @@ def _extract_entities_and_relations(row) -> tuple:
                     return i
                 else:  # Need to split
                     # Concurrent editing an iterating the list; OK here since we return right after
-                    splits.insert(i+1, s[idx:])
+                    splits.insert(i + 1, s[idx:])
                     splits[i] = s[:idx]
-                    tags.insert(i+1, tags[i].copy())
-                    return i+1
+                    tags.insert(i + 1, tags[i].copy())
+                    return i + 1
             idx -= len(s)
         return len(splits)
 
@@ -61,6 +61,7 @@ def _extract_entities_and_relations(row) -> tuple:
             for p in pos:
                 newtags[p].append(i)
         return newtags, tagmap
+
     nexttag: int = 0
     for t in withpairs:
         curtags: set[int] = set()
@@ -86,13 +87,11 @@ def _extract_entities_and_relations(row) -> tuple:
         relations.append((Relation.Procausal, tagmap[0], tagmap[1]))
     tags, tagmap = minify(tags)
     for i in range(len(relations)):
-        relations[i] = (relations[i][0], tagmap[relations[i][1]],
-                        tagmap[relations[i][2]])
+        relations[i] = (relations[i][0], tagmap[relations[i][1]], tagmap[relations[i][2]])
     return (splits, tags, relations)
 
 
 class UniCausal2HF(FormatConverter):
-
     def __init__(self, splits: dict[str, Path], target: Path):
         super().__init__(target)
         self._splits = splits
@@ -106,10 +105,12 @@ class UniCausal2HF(FormatConverter):
         return converter.get(task)(split)
 
     def _convert_causality_detection(self, split: str) -> pd.DataFrame:
-        df = pd.read_csv(self._splits[split], converters={
-                         "causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []})
+        df = pd.read_csv(
+            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
+        )
         df["label"] = df["causal_text_w_pairs"].apply(
-            lambda x: ClassLabel.Uncausal if len(x) == 0 else ClassLabel.Causal)
+            lambda x: ClassLabel.Uncausal if len(x) == 0 else ClassLabel.Causal
+        )
         return df[["label", "text", "index"]].set_index("index")
 
     def _convert_causal_candidate_extraction(self, split: str) -> pd.DataFrame:
@@ -125,10 +126,11 @@ class UniCausal2HF(FormatConverter):
                         spans[t] = (spans[t][0], offset + len(s))
                 offset += len(s)
             return pd.Series(("".join(splits), list(list(s) for s in spans.values())))
-        df = pd.read_csv(self._splits[split], converters={
-                         "causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []})
-        df[["text", "entity"]] = df[["text", "causal_text_w_pairs"]].apply(
-            map_list_to_tokens, axis=1)
+
+        df = pd.read_csv(
+            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
+        )
+        df[["text", "entity"]] = df[["text", "causal_text_w_pairs"]].apply(map_list_to_tokens, axis=1)
         return df[["index", "text", "entity"]].set_index("index")
 
     def _convert_causality_identification(self, split: str) -> pd.DataFrame:
@@ -137,19 +139,19 @@ class UniCausal2HF(FormatConverter):
             text: str = ""
             cur_ents: set[int] = set()
             for s, t in zip(splits, tags):
-                for newent in (set(t)-cur_ents):
-                    text += f"<e{newent+1}>"
-                for oldent in (cur_ents-set(t)):
-                    text += f"</e{oldent+1}>"
+                for newent in set(t) - cur_ents:
+                    text += f"<e{newent + 1}>"
+                for oldent in cur_ents - set(t):
+                    text += f"</e{oldent + 1}>"
                 cur_ents = set(t)
                 text += s
-            reldict: list[dict[str, Union[int,  str]]] = []
+            reldict: list[dict[str, Union[int, str]]] = []
             for rtype, rfirst, rsecond in relations:
-                reldict.append(
-                    {"relationship": rtype, "first": f"e{rfirst+1}", "second": f"e{rsecond+1}"})
+                reldict.append({"relationship": rtype, "first": f"e{rfirst + 1}", "second": f"e{rsecond + 1}"})
             return pd.Series((text, reldict))
-        df = pd.read_csv(self._splits[split], converters={
-                         "causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []})
-        df[["text", "relations"]] = df[["text", "causal_text_w_pairs"]].apply(
-            map_to_labels, axis=1)
+
+        df = pd.read_csv(
+            self._splits[split], converters={"causal_text_w_pairs": lambda x: ast.literal_eval(x) if x else []}
+        )
+        df[["text", "relations"]] = df[["text", "causal_text_w_pairs"]].apply(map_to_labels, axis=1)
         return df[["index", "text", "relations"]].set_index("index")

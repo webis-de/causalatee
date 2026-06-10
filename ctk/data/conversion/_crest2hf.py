@@ -1,13 +1,13 @@
 # Convert CREST (https://github.com/phosseini/CREST) to HF format
 
-from pathlib import Path
-from typing import Callable, Any
-from enum import IntEnum
 import math
+from enum import IntEnum
+from pathlib import Path
+from typing import Any, Callable
 
 import pandas as pd
 
-from ..constants import Task, ClassLabel, Relation
+from ..constants import ClassLabel, Relation, Task
 from ._converter import FormatConverter
 
 
@@ -18,15 +18,10 @@ class _CRESTSplit(IntEnum):
 
 
 def _str2SplitId(name: str) -> _CRESTSplit:
-    return {
-        "train": _CRESTSplit.Train,
-        "dev": _CRESTSplit.Dev,
-        "test": _CRESTSplit.Test
-    }[name]
+    return {"train": _CRESTSplit.Train, "dev": _CRESTSplit.Dev, "test": _CRESTSplit.Test}[name]
 
 
 class CREST2HF(FormatConverter):
-
     def __init__(self, source: Path, target: Path, prefix: str, filters: dict[str, Any] = {}):
         super().__init__(target)
         self._prefix = prefix
