@@ -11,6 +11,22 @@ from ..constants import ClassLabel, Relation, Task
 from ._converter import FormatConverter
 
 
+class CRESTSource(IntEnum):
+    SemEval2007Task4 = 1
+    SemEval2010Task8 = 2
+    EventCausality = 3
+    CausalTimeBank = 4
+    EventStoryLine = 5
+    CaTeRS = 6
+    BECauSE = 7
+    COPA = 8
+    PDTB3 = 9
+    BioCause = 10
+    TCR = 11
+    ADE = 12
+    SemEval2020Task5 = 13
+
+
 class _CRESTSplit(IntEnum):
     Train = 0
     Dev = 1

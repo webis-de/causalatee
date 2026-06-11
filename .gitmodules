@@ -22,3 +22,18 @@
 [submodule "resources/datasets/CNC"]
 	path = resources/datasets/CNC
 	url = https://huggingface.co/datasets/thagen/CausalNewsCorpus
+[submodule "resources/datasets/BioCause"]
+	path = resources/datasets/BioCause
+	url = https://huggingface.co/datasets/thagen/BioCause
+[submodule "resources/datasets/CaTeRS"]
+	path = resources/datasets/CaTeRS
+	url = https://huggingface.co/datasets/thagen/CaTeRS
+[submodule "resources/datasets/COPA"]
+	path = resources/datasets/COPA
+	url = https://huggingface.co/datasets/thagen/COPA
+[submodule "resources/datasets/EventCausality"]
+	path = resources/datasets/EventCausality
+	url = https://huggingface.co/datasets/thagen/EventCausality
+[submodule "resources/datasets/TCR"]
+	path = resources/datasets/TCR
+	url = https://huggingface.co/datasets/thagen/TCR
