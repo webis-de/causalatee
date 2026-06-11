@@ -2,10 +2,14 @@ site_name: Causalatee
 site_url: https://TheMrSheldon.github.io/causality-toolkit/
 repo_url: https://github.com/TheMrSheldon/causality-toolkit
 repo_name: TheMrSheldon/causality-toolkit
+edit_uri: edit/main/docs/
 
 theme:
   name: material
   logo: assets/logo.png
+  features:
+    - content.action.edit
+    - content.action.view
 
 plugins:
   - search

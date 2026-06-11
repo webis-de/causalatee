@@ -3,7 +3,7 @@
 import math
 from enum import IntEnum
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 import pandas as pd
 
@@ -53,11 +53,11 @@ def _parse_idx(idx_str: str) -> tuple[tuple[int, int] | None, tuple[int, int] | 
 
 
 class CREST2HF(FormatConverter):
-    def __init__(self, source: Path, target: Path, prefix: str, filters: dict[str, Any] = {}):
+    def __init__(self, source: Path, target: Path, prefix: str, filters: Optional[dict[str, Any]] = None):
         super().__init__(target)
         self._prefix = prefix
         self._source = source
-        self._filters = filters
+        self._filters = filters or {}
 
     def _load_base_df(self, split: str) -> pd.DataFrame:
         """Load, filter, and return the CREST DataFrame for the given split.
@@ -87,7 +87,7 @@ class CREST2HF(FormatConverter):
         df = df.agg({"context": "first", "split": "first", "ann_file": "first", "label": "max"})
         df["text"] = df["context"]
         df["index"] = df.apply(lambda row: f"{self._prefix}_{row['ann_file']}", axis=1)
-        df["label"] = df["label"].apply(lambda l: ClassLabel.Causal if l == 1 else ClassLabel.Uncausal)
+        df["label"] = df["label"].apply(lambda lbl: ClassLabel.Causal if lbl == 1 else ClassLabel.Uncausal)
         return df[["index", "text", "label"]].set_index("index", verify_integrity=True)
 
     def _convert_causal_candidate_extraction(self, split: str) -> pd.DataFrame:
