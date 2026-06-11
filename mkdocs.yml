@@ -9,7 +9,10 @@ theme:
 
 plugins:
   - search
+  - awesome-pages
   - mike
+  - macros:
+      module_name: docs/hooks
   - bibtex:
       bib_dir: docs/references
       csl_file: docs/chicago-author-date.csl
@@ -42,6 +45,9 @@ extra:
       link: https://www.youtube.com/webis
       name: Webis on YouTube
 
+extra_javascript:
+  - js/dataset-page.js
+
 nav:
   - Home: index.md
   - Tasks:
@@ -49,3 +55,4 @@ nav:
       - Causality Extraction: tasks/causality_extraction.md
       - Causality Identification: tasks/causality_identification.md
       - Causal Event Candidate Detection: tasks/causal_event_candidate_detection.md
+  - ...

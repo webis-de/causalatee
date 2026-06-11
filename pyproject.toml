@@ -35,10 +35,15 @@ tests = [
     "ruff>=0.9,<0.15",
     "types-pyyaml~=6.0",
 ]
+huggingface = [
+    "transformers>=4.40",
+]
 docs = [
     "mkdocs~=1.6",
     "mkdocs-material~=9.5",
     "mkdocs-bibtex~=2.16",
+    "mkdocs-macros-plugin>=1.0",
+    "mkdocs-awesome-pages-plugin>=2.9",
     "mike~=2.1",
     "pypandoc_binary~=1.13",
 ]

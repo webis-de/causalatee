@@ -46,24 +46,7 @@ A sentence may contain multiple entity pairs and therefore multiple relation ent
 
 ## Datasets
 
-| Corpus                           | Sentences | Domain    | Citation  | Links |
-|:---------------------------------|----------:|:----------|-----------|-------|
-| AltLex                           |     1,000 | Wikipedia | [@hidey:2016] | [:hugging:](https://huggingface.co/datasets/thagen/AltLex) |
-| BECauSE 2.0                      |     1,803 | News      | [@dunietz:2017] | [:hugging:](https://huggingface.co/datasets/thagen/BECauSEv2) |
-| BioCause                         |       851 | Medical   | [@mihaila:2013] | [:hugging:](https://huggingface.co/datasets/thagen/BioCause) |
-| CaTeRs                           |       488 | Fiction   | [@mostafazadeh:2016] | [:hugging:](https://huggingface.co/datasets/thagen/CaTeRS) |
-| Causal News Corpus (CNC)         |     1,957 | News      | [@tan:2022a] | [:hugging:](https://huggingface.co/datasets/thagen/CausalNewsCorpus) |
-| CausalTimeBank (CTB)             |     2,201 | News      | [@mirza:2014a] | [:hugging:](https://huggingface.co/datasets/thagen/CausalTimeBank) |
-| COPA                             |     2,000 | General   | [@roemmele:2011a] | [:hugging:](https://huggingface.co/datasets/thagen/COPA) |
-| Countercausal News Corpus (CCNC) |     3,415 | News      | [@hagen:2025a] | |
-| EventCausality                   |       583 | Web       | [@do:2011] | [:hugging:](https://huggingface.co/datasets/thagen/EventCausality) |
-| EventStoryLine (ESL)             |     2,247 | News      | [@caselli:2017] | [:hugging:](https://huggingface.co/datasets/thagen/EventStoryLine) |
-| FinCausal                        |     2,136 | Finance   | [@mariko:2020] | |
-| PDTB 3.0                         |        —  | News/WSJ  | [@webber:2019] | [:hugging:](https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3) |
-| SCITE                            |     5,236 | Science   | [@li:2021] | [:hugging:](https://huggingface.co/datasets/thagen/SCITE) |
-| SemEval 2010 Task 8              |    10,690 | General   | [@hendrickx:2010] | [:hugging:](https://huggingface.co/datasets/thagen/SemEval2010T8) |
-| TCR                              |       172 | News      | [@ning:2018] | [:hugging:](https://huggingface.co/datasets/thagen/TCR) |
-| UniCausal                        |    14,903 | Multiple  | [@tan:2023] | |
+{{ task_datasets("causality-identification") }}
 
 ## Models
 
