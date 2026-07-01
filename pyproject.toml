@@ -38,12 +38,17 @@ tests = [
 huggingface = [
     "transformers>=4.40",
 ]
+baselines = [
+    "spacy>=3.7",
+    "networkx>=3.0",
+]
 docs = [
     "mkdocs~=1.6",
     "mkdocs-material~=9.5",
     "mkdocs-bibtex~=2.16",
     "mkdocs-macros-plugin>=1.0",
     "mkdocs-awesome-pages-plugin>=2.9",
+    "mkdocs-jupyter>=0.24",
     "mike~=2.1",
     "pypandoc_binary~=1.13",
 ]

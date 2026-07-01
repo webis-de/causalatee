@@ -1,20 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,windows,linux,macos,vim,visualstudiocode,git
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,windows,linux,macos,vim,visualstudiocode,git
+scite-flair*
+scite-output
 
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
+# Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,pycharm,macos,windows,linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,pycharm,macos,windows,linux
 
 ### Linux ###
 *~
@@ -317,7 +305,6 @@ venv.bak/
 
 # mkdocs documentation
 /site
-/docs/examples
 
 # mypy
 .mypy_cache/
@@ -349,26 +336,6 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
-
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-Sessionx.vim
-
-# Temporary
-.netrwhist
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
 
 ### VisualStudioCode ###
 .vscode/*
@@ -415,4 +382,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/python,pycharm,windows,linux,macos,vim,visualstudiocode,git
+# End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,pycharm,macos,windows,linux

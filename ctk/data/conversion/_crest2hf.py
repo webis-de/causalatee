@@ -104,6 +104,7 @@ class CREST2HF(FormatConverter):
                         seen.add(span)
                         entity_spans.append(list(span))
             rows.append({"index": f"{self._prefix}_{ann_file}", "text": context, "entity": entity_spans})
+        assert bool(rows)
         return pd.DataFrame(rows).set_index("index")
 
     def _convert_causality_identification(self, split: str) -> pd.DataFrame:
@@ -145,4 +146,6 @@ class CREST2HF(FormatConverter):
                 text = text[:start] + f"<{tag}>" + text[start:end] + f"</{tag}>" + text[end:]
 
             rows.append({"index": f"{self._prefix}_{ann_file}", "text": text, "relations": relations})
+        if not rows:
+            return pd.DataFrame(columns=["text", "relations"]).rename_axis("index")
         return pd.DataFrame(rows).set_index("index")

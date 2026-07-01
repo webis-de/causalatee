@@ -37,3 +37,6 @@
 [submodule "resources/datasets/TCR"]
 	path = resources/datasets/TCR
 	url = https://huggingface.co/datasets/thagen/TCR
+[submodule "resources/datasets/PubMedCausal"]
+	path = resources/datasets/PubMedCausal
+	url = https://huggingface.co/datasets/thagen/PubMedCausal

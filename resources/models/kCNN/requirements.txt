@@ -1,0 +1,12 @@
+torch>=2.0
+transformers>=4.40
+datasets>=2.14
+scikit-learn>=1.3
+numpy>=1.24
+
+# Optional: for WordNet features and FrameNet filter building
+# nltk>=3.8
+# After installing: nltk.download('wordnet'); nltk.download('framenet_v17')
+
+# Wiki-extvec embeddings (Komninos & Manandhar 2016) must be downloaded separately.
+# Pass the path via --word-embeddings. Without it, random embeddings are used.

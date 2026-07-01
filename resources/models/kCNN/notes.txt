@@ -1,0 +1,223 @@
+k-CNN Reproduction Notes
+========================
+Paper: Li, P. & Mao, K. (2019). "Knowledge-oriented convolutional neural network for
+causal relation extraction from natural language texts."
+Expert Systems With Applications, 115, 512–523.
+DOI: 10.1016/j.eswa.2018.08.009
+
+==============================================================
+PERFORMANCE TARGETS (from paper, macro-averaged F1, %)
+==============================================================
+
+Table 2 (best model: K-CNN_FS+Cmax, no semantic features):
+  SemEval-2010 T8:   P=93.37  R=91.40  F1=92.34
+  Causal-TimeBank:   P=76.94  R=75.70  F1=76.21
+  Event StoryLine:   P=82.78  R=81.03  F1=81.84
+
+Table 3 (K-CNN_FS+Cmax + semantic features — best overall):
+  SemEval-2010 T8:   P=94.61  R=90.87  F1=92.64
+  Causal-TimeBank:   P=78.71  R=77.26  F1=77.86
+  Event StoryLine:   P=84.57  R=82.15  F1=83.31
+
+Evaluation: macro-averaged F1, 10-fold CV, run 10 times with different random seeds,
+report average over the 10 runs.
+
+==============================================================
+REPRODUCED RESULTS (SemEval-2010 T8, Levy-Goldberg embeddings, seed=42)
+==============================================================
+
+  10-fold CV (validation sets), 1 run:
+    F1:        94.38 ± 1.51%
+    Precision: 94.57 ± 2.41%
+    Recall:    94.11 ± 2.67%
+
+  vs paper Table 3 (with semantic features): P=94.61  R=90.87  F1=92.64
+  vs paper Table 2 (no semantic features):  P=93.37  R=91.40  F1=92.34
+
+  Our F1 (94.38%) slightly exceeds the paper's best (92.64%). The higher
+  recall vs. paper (94.11 vs 90.87) may reflect that we skip ANOVA filter
+  selection and K-means clustering (keeping all 819 filters instead), and
+  that seed 42 happened to be a strong single-run result.  The paper averages
+  over 10 seeds, which would lower variance.
+
+  Config used: K-channel=819, D-channel=50, WordNet=82, FrameNet=4,
+               classifier_in=955 (full model with semantic features)
+  Filter counts: unigrams=720, bigrams=91, trigrams=8 (no ANOVA/clustering)
+  Embeddings: 5830/6301 vocab words found in Levy-Goldberg deps.words
+
+==============================================================
+DATASETS (causalatee HuggingFace IDs)
+==============================================================
+
+  Paper dataset              HF dataset ID                   Config
+  SemEval-2010 Task 8        thagen/SemEval2010T8             causality-identification
+  Causal-TimeBank            thagen/CausalTimeBank            causality-identification
+  Event StoryLine            thagen/EventStoryLine            causality-identification
+
+NOT BioCause, BECAUSE, or ESL (those are not in this paper).
+
+Dataset sizes (from paper):
+  SemEval: 478 Cause-Effect(e1,e2) + 853 Cause-Effect(e2,e1) + 9386 Other = 10,717 total
+  Causal-TB: 137 + 161 causal + 300 non-causal = 598 total
+  Event-SL: 67 + 45 causal + 220 non-causal = 332 total
+
+All examples have exactly two marked entities (e1, e2). The task is binary
+classification: causal (e1 causes e2, or e2 causes e1) vs non-causal.
+
+In the causalatee format, examples with relations=[] are the non-causal (Other) class.
+The direction of causality (e1→e2 vs e2→e1) is NOT used for binary classification.
+
+==============================================================
+ARCHITECTURE — WHAT THE PAPER SPECIFIES
+==============================================================
+
+Word embeddings
+  - Levy & Goldberg (2014) Dependency-Based Word Embeddings (NOT wiki-extvec!)
+  - Available at: https://levyomer.wordpress.com/2014/04/25/dependency-based-word-embeddings/
+  - 300-dimensional; pre-normalised to unit vectors; kept static (frozen)
+  - OOV words: random unit vectors (same dimensionality)
+
+K-channel (knowledge-oriented)
+  - Input: WORDS BETWEEN e1 AND e2 ONLY (not the whole sentence!)
+  - Lemmatized to base form using WordNet lemmatizer
+  - Window sizes: [1, 2, 3] (unigram, bigram, trigram)
+  - Initially ~650 unigram, ~140 bigram, ~10 trigram filters (~800 total)
+  - Convolution: cosine similarity (Eq. 1 in paper), unit-vector dot product / k
+    mi = (1/k) * sum_{j=1}^{k} (f_j^T * w_{i+j-1})
+    where both f_j and w_{i+j-1} are unit vectors (L2-normalised)
+  - Max-pooling over feature map → one scalar per filter
+  - Filter selection: ANOVA F-ratio (α=5%, critical F=2.9957 assuming df_d=+∞)
+    Keep filters where F > 2.9957; remove rest
+  - Clustering: K-means, separately for unigrams and bigrams (tri-grams kept as-is)
+    Number of clusters = floor(n_selected_filters / 2)
+    Within each cluster: max-pooling (outperforms avg-pooling)
+  - Final K-channel output dimension: h1 + h2 + 10 (where h1/h2 are cluster counts)
+
+D-channel (data-oriented)
+  - Input: full sentence (all words including e1, e2 and surrounding context)
+  - Window sizes: [3, 4]
+  - Filters per window: r = 25 (found by grid search; default 50 in repro.py was WRONG)
+  - Position embeddings: relative distance from each word to e1 head AND e2 head
+    Dimension d = 20; trainable
+  - Input per word: [word_emb (300) | pos_to_e1 (20) | pos_to_e2 (20)] = 340-dim
+  - Convolution: tanh activation (Eq. 5), standard dot-product (not cosine)
+  - Max-pooling → one vector of size r per window size
+  - D-channel output: 2 * r = 50 dimensions
+
+Semantic features
+  - WordNet categorical features: one-hot for top-level noun/verb categories of e1 AND e2
+    26 noun + 15 verb = 41 per entity × 2 entities = 82 dimensions total
+  - FrameNet causal scores: 4 real-valued scores per sentence
+    s_total = sum of p(causal|wi) over all words
+    s_before_e1 = sum for words before e1 (including e1)
+    s_between = sum for words between e1 and e2
+    s_after_e2 = sum for words after e2 (including e2)
+
+Classifier
+  - Fully connected layer: input = h+r+a, hidden = (h+r+a)/2, output = 2
+  - Softmax
+  - Dropout ρ=0.4 on the combined feature vector
+
+Training
+  - Optimizer: Adadelta (Zeiler 2012) — NOT Adam, NOT Nadam
+  - Mini-batch size: 20
+  - No explicit number of epochs stated; early stopping implied by learning curves
+  - Free parameters: position embeddings + D-channel filters + classifier weights
+    = (2*200-1)*20 + (340*3*25 + 340*4*25) + classifier weights
+    ≈ 7980 + 59,500 + small = ~67,500 total (vs 163,200 for CNN_Single)
+
+==============================================================
+GAPS IN THESIS CODE vs. PAPER
+==============================================================
+
+1. generate_filter_weights() NEVER DEFINED
+   The thesis code calls this function but never implements it.
+   Implementation derived from Algorithm 1 in the paper: for each LU [c1,...,ck],
+   the filter weight is the stack of word embeddings [emb(c1),...,emb(ck)].
+
+2. K-CHANNEL INPUT IS THE FULL SENTENCE in thesis code
+   Paper: only words BETWEEN e1 and e2. This is a critical difference.
+
+3. WRONG EMBEDDING TYPE
+   Thesis uses wiki-extvec. Paper uses Levy-Goldberg dependency-based embeddings.
+
+4. NO ANOVA FILTER SELECTION
+   Not implemented in thesis code at all.
+
+5. NO K-MEANS CLUSTERING
+   Referenced in comments/code structure but never implemented.
+
+6. WRONG OPTIMIZER
+   Thesis uses learning_rate=2e-5 with Adam/default. Paper uses Adadelta.
+
+7. WRONG D-CHANNEL FILTER COUNT
+   Thesis default is 50 per window. Paper found 25 per window optimal.
+
+8. COSINE vs. DOT-PRODUCT inconsistency
+   Thesis implements _cosine_similarity_convolution() but never uses it.
+   Paper specifies cosine similarity (unit-vector dot product / k).
+
+9. WORDNET DIMENSION BUG
+   Thesis expected 41 dims but collator sent 82 (silently zero-filled).
+   Fixed in our clean implementation (correctly uses 82).
+
+10. EVALUATION PROTOCOL
+    Paper: macro-averaged F1, 10-fold CV run 10 times with different seeds.
+    Thesis: standard 10-fold CV with single run.
+
+==============================================================
+OPEN DECISIONS FOR REPRODUCTION
+==============================================================
+
+A. Levy-Goldberg embeddings availability — RESOLVED via Wayback Machine
+   The original BIU server (u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2) is
+   no longer accessible (connection timeout as of 2026-06). Previously tried mirrors:
+     - levyomer.files.wordpress.com/2014/04/deps.words.bz2 → 404
+     - downloads.cs.stanford.edu/nlp/data/levy-goldberg-deps.bz2 → 404
+     - Zenodo record 3234152 does not contain the embeddings
+   Wayback Machine has a complete capture (archived 2022-10-12):
+     https://web.archive.org/web/20221012052827if_/
+       https://u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2
+   The `if_` suffix is required to bypass the Wayback Machine HTML interstitial
+   and receive the raw binary content directly.
+   Note: the 2021-04-20 snapshot is truncated at ~102 MB and must not be used.
+   repro.py auto-downloads from this URL into --aux-cache on first run (pass
+   --no-auto-download to disable). File is ~320 MB compressed / ~1.1 GB decompressed.
+   The note that the original distribution site is gone is preserved in the code
+   at _DEPS_WORDS_WAYBACK_URL in repro.py.
+
+B. Position reference point (e1 head)
+   Paper says "relative distances to e1 and e2". We approximate head = first word
+   in entity span. Paper does not specify exactly.
+
+C. Text between entities when e2 appears before e1
+   Paper assumes e1 is always before e2 (based on sentence examples). When the
+   causal pair has e2 before e1 in text, extract words between e2 and e1 for K-channel.
+
+D. ANOVA with small datasets (Causal-TB, Event-SL)
+   With only ~300-400 training examples per fold, ANOVA may select very few filters.
+   The critical F value (2.9957 for df_d=+∞) may reject most filters on small datasets.
+
+11. NON-CAUSAL EXAMPLES LACK ENTITY MARKERS IN CAUSALATEE FORMAT — TRAINING BLOCKED
+    The causalatee causality-identification format stores non-causal examples as plain
+    sentences WITHOUT entity markers (<e1>, <e2>). k-CNN requires entity markers on ALL
+    examples (causal AND non-causal) to compute:
+      - D-channel position embeddings (relative distance to e1 head and e2 head)
+      - K-channel input (words strictly between the two entity spans)
+    The paper worked at the ENTITY-PAIR level: each example (positive or negative) is
+    one sentence with exactly two marked entities. In the original SemEval-2010 T8
+    dataset ALL sentences — including "Other" class — have two entities marked. For
+    Causal-TimeBank and Event StoryLine the paper also worked with annotated event pairs.
+    The causalatee format re-casts these as sentence-level datasets, where non-causal
+    "examples" are bare sentences without any entity annotation.
+    Impact: repro.py correctly produces 0 negative examples for all three datasets and
+    aborts training. The k-CNN cannot be reproduced with causalatee datasets as-is.
+    Required fix: build a pair-level dataset variant where both causal and non-causal
+    examples include two marked entities. For SemEval this means preserving the original
+    entity markers on "Other"-class sentences (available in the raw SemEval-2010 T8
+    release). For CTB/ESL this means recovering the non-causal event pairs from the
+    original TimeML/ESL annotation files.
+
+SCOPE NOTE: k-CNN only supports Causality Identification (task 3). It requires
+    pre-marked entity pairs and cannot be applied to Causality Detection (task 1)
+    or Causal Candidate Extraction (task 2) without an upstream entity tagger.

@@ -74,3 +74,8 @@ Models are evaluated using **macro-averaged F₁**.
 !!! note
     Models trained without countercausal examples misclassify countercausal sentences as causal
     more than **10× as often** as models trained on CCNC [@hagen:2025a].
+
+## Example
+
+See the [Fine-tuning for Causality Detection](../examples/detection.ipynb) notebook for a
+step-by-step walkthrough of fine-tuning RoBERTa on this task using the HuggingFace `Trainer`.

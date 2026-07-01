@@ -45,3 +45,9 @@ Models are evaluated using **macro-averaged F₁** over extracted spans.
 !!! note
     Span extraction is substantially harder than sentence classification. The relatively low F₁
     scores reflect the difficulty of localising exact event boundaries in free text.
+
+## Example
+
+See the [Fine-tuning for Causal Candidate Extraction](../examples/candidate_extraction.ipynb) notebook
+for a step-by-step walkthrough of fine-tuning RoBERTa as a token classifier with BIO labels and
+span-overlap evaluation metrics.

@@ -10,10 +10,13 @@ from ..constants import ClassLabel, Relation, Task
 from ._converter import FormatConverter
 
 
-def _extract_entities_and_relations(row) -> tuple:
+def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -> tuple:
     """
     Converts ["<ARG0>Bla</Arg0> bla <ARG1>Bla</ARG1>", "Bla <ARG0>bla</ARG0> <ARG1>Bla</ARG1>"] to
     ["Bla", " ", "bla", " ", "Bla"], [[1], [], [2], [], [3]], {relationship: 1, "first": 0, "second": 1}
+
+    pair_labels: optional list of int (one per entry in causal_text_w_pairs) that sets the
+    relationship type for each pair.  Defaults to Relation.Procausal for every pair.
     """
     text, withpairs = row["text"], row["causal_text_w_pairs"]
     # Step 1: Remove all <SIG> tags
@@ -63,7 +66,7 @@ def _extract_entities_and_relations(row) -> tuple:
         return newtags, tagmap
 
     nexttag: int = 0
-    for t in withpairs:
+    for pair_idx, t in enumerate(withpairs):
         curtags: set[int] = set()
         offset: int = 0
         tagmap: dict[int, int] = dict()
@@ -84,11 +87,17 @@ def _extract_entities_and_relations(row) -> tuple:
                 curtags.remove(tagmap[int(match[3])])
             offset += len(match[1])
         # Each entry in withpairs contains exactly one cause (ARG0) and effect (ARG1)
-        relations.append((Relation.Procausal, tagmap[0], tagmap[1]))
+        label = pair_labels[pair_idx] if pair_labels is not None else Relation.Procausal
+        rtype = Relation.Procausal if label == Relation.Procausal else Relation.NoRelation
+        relations.append((rtype, tagmap[0], tagmap[1]))
     tags, tagmap = minify(tags)
-    for i in range(len(relations)):
-        relations[i] = (relations[i][0], tagmap[relations[i][1]], tagmap[relations[i][2]])
-    return (splits, tags, relations)
+    # Relations whose entities have zero-length spans won't be in tagmap (zero-span entities are
+    # invisible to minify); drop them rather than raising KeyError on malformed source data.
+    remapped = []
+    for rtype, e1, e2 in relations:
+        if e1 in tagmap and e2 in tagmap:
+            remapped.append((rtype, tagmap[e1], tagmap[e2]))
+    return (splits, tags, remapped)
 
 
 class UniCausal2HF(FormatConverter):
@@ -116,11 +125,27 @@ class UniCausal2HF(FormatConverter):
         df = pd.read_csv(self._splits[split])
         rows = []
         for (corpus, doc_id, sent_id), group in df.groupby(["corpus", "doc_id", "sent_id"], sort=False):
+            text = group["text"].iloc[0]
+            # Drop malformed text_w_pairs rows where tag removal doesn't reproduce the original
+            # text (e.g. nested/overlapping ARG tags in some ESL source rows).
+            def _is_valid(twp: str) -> bool:
+                cleaned = re.sub(r"<(/?)SIG(\d+)>", "", twp)
+                cleaned = re.sub(r"<(/?)ARG(\d+)>", "", cleaned)
+                return cleaned == text
+
+            valid_mask = group["text_w_pairs"].apply(_is_valid)
+            valid_group = group[valid_mask]
             rows.append(
                 {
                     "index": f"{corpus}_{doc_id}_{sent_id}",
-                    "text": group["text"].iloc[0],
-                    "causal_text_w_pairs": group.loc[group["pair_label"] == 1, "text_w_pairs"].tolist(),
+                    "text": text,
+                    "causal_text_w_pairs": valid_group.loc[valid_group["pair_label"] == 1, "text_w_pairs"].tolist(),
+                    # All pairs (causal and non-causal) with their labels, for
+                    # causality-identification which needs entity markers on every pair.
+                    "all_text_w_pairs": list(zip(
+                        valid_group["text_w_pairs"].tolist(),
+                        valid_group["pair_label"].tolist(),
+                    )),
                 }
             )
         return pd.DataFrame(rows)
@@ -160,7 +185,17 @@ class UniCausal2HF(FormatConverter):
 
     def _convert_causality_identification(self, split: str) -> pd.DataFrame:
         def map_to_labels(row):
-            splits, tags, relations = _extract_entities_and_relations(row)
+            # Use all_text_w_pairs (non-causal pairs included) when available,
+            # falling back to causal_text_w_pairs for grouped splits that only
+            # store causal pairs.
+            if "all_text_w_pairs" in row.index and isinstance(row["all_text_w_pairs"], list):
+                all_pairs = row["all_text_w_pairs"]
+                work_row = row.copy()
+                work_row["causal_text_w_pairs"] = [t for t, _ in all_pairs]
+                pair_labels = [lbl for _, lbl in all_pairs]
+                splits, tags, relations = _extract_entities_and_relations(work_row, pair_labels=pair_labels)
+            else:
+                splits, tags, relations = _extract_entities_and_relations(row)
             text: str = ""
             cur_ents: set[int] = set()
             for s, t in zip(splits, tags):
@@ -170,11 +205,13 @@ class UniCausal2HF(FormatConverter):
                     text += f"</e{oldent + 1}>"
                 cur_ents = set(t)
                 text += s
+            for openent in cur_ents:
+                text += f"</e{openent + 1}>"
             reldict: list[dict[str, Union[int, str]]] = []
             for rtype, rfirst, rsecond in relations:
                 reldict.append({"relationship": rtype, "first": f"e{rfirst + 1}", "second": f"e{rsecond + 1}"})
             return pd.Series((text, reldict))
 
         df = self._load_df(split)
-        df[["text", "relations"]] = df[["text", "causal_text_w_pairs"]].apply(map_to_labels, axis=1)
+        df[["text", "relations"]] = df[["text", "causal_text_w_pairs", "all_text_w_pairs"] if "all_text_w_pairs" in df.columns else ["text", "causal_text_w_pairs"]].apply(map_to_labels, axis=1)
         return df[["index", "text", "relations"]].set_index("index")

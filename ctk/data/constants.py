@@ -1,4 +1,11 @@
-from enum import IntEnum, StrEnum
+from enum import IntEnum
+try:
+    from enum import StrEnum
+except ImportError:  # Python < 3.11
+    from enum import Enum
+
+    class StrEnum(str, Enum):
+        pass
 
 
 class Task(StrEnum):

@@ -57,3 +57,9 @@ Models are evaluated using **macro-averaged F₁**.
 | DistilBERT | 90.1% | [@sanh2019distilbert] |
 | RoBERTa | 92.1% | [@liu2019roberta] |
 | Mistral-7B-Instruct | 56.0% | [@jiang2023mistral] |
+
+## Example
+
+See the [Fine-tuning for Causality Identification](../examples/identification.ipynb) notebook for a
+step-by-step walkthrough of fine-tuning RoBERTa with entity-marker special tokens using the
+HuggingFace `Trainer`.

@@ -11,10 +11,17 @@ theme:
     - content.action.edit
     - content.action.view
 
+hooks:
+  - docs/hooks.py
+
 plugins:
   - search
   - awesome-pages
   - mike
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      include: ["examples/*.ipynb"]
   - macros:
       module_name: docs/hooks
   - bibtex:
@@ -59,4 +66,9 @@ nav:
       - Causality Extraction: tasks/causality_extraction.md
       - Causality Identification: tasks/causality_identification.md
       - Causal Event Candidate Detection: tasks/causal_event_candidate_detection.md
+  - Examples:
+      - Causality Detection: examples/detection.ipynb
+      - Causal Candidate Extraction: examples/candidate_extraction.ipynb
+      - Causality Identification: examples/identification.ipynb
+      - SDP Causality Extraction: examples/sdp_causality_extraction.ipynb
   - ...
