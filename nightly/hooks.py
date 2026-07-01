@@ -1,5 +1,17 @@
 """mkdocs-macros hooks — generate repetitive dataset page sections from YAML frontmatter."""
 
+import shutil
+from pathlib import Path
+
+
+def on_pre_build(config):
+    """Copy examples/ notebooks into docs/examples/ before MkDocs resolves nav paths."""
+    src = Path("examples")
+    dst = Path(config["docs_dir"]) / "examples"
+    dst.mkdir(exist_ok=True)
+    for nb in src.glob("*.ipynb"):
+        shutil.copy(nb, dst / nb.name)
+
 _TASK_NAMES = {
     "causality-detection": "Causality Detection",
     "causal-candidate-extraction": "Causal Event Candidate Extraction",
