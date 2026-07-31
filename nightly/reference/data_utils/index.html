@@ -1,0 +1,2970 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://TheMrSheldon.github.io/causality-toolkit/nightly/reference/data_utils/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>causalatee.data.utils - Causalatee</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../css/pills.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#causalateedatautils" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Causalatee" class="md-header__button md-logo" aria-label="Causalatee" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Causalatee
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              causalatee.data.utils
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TheMrSheldon/causality-toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TheMrSheldon/causality-toolkit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Causalatee" class="md-nav__button md-logo" aria-label="Causalatee" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Causalatee
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TheMrSheldon/causality-toolkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TheMrSheldon/causality-toolkit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/causality_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causality Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/causality_extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causality Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/causality_identification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causality Identification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/causal_event_candidate_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causal Event Candidate Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning for Causality Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/candidate_extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning for Causal Candidate Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/identification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning for Causality Identification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/sdp_causality_extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDP Causality Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Datasets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/AltLex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AltLex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/BECauSEv1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BECauSE 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/BECauSEv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BECauSE 2.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/BioCause/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BioCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/CCNC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Countercausal News Corpus (CCNC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/CNC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causal News Corpus (CNC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/CNCv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Causal News Corpus V2 / RECESS (CNCv2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/COPA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/CTB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CausalTimeBank (CTB)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/CaTeRS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CaTeRS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/ESL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EventStoryLine (ESL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/EventCausality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EventCausality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/FinCausal20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FinCausal 2020 (FinCausal-20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/FinCausal23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FinCausal 2023 (FinCausal-23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PDTB3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Penn Discourse Treebank 3.0 (PDTB 3.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PDTBv2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Penn Discourse Treebank 2.0 (PDTB-2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PolitiCause/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PolitiCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/SCITE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/SemEval2007T4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SemEval-2007 Task 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/SemEval2010T8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SemEval-2010 Task 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/SemEval2020T5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SemEval-2020 Task 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/SemEval2023T8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SemEval-2023 Task 8 (RedHOT)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/TCR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/UniCausal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UniCausal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Models
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/biaffine_span_extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/sdp_causality_extraction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDP Causality Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    causalatee.data.utils
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    causalatee.data.utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#causalatee.data.utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        utils
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="utils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.extraction_batch_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        extraction_batch_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_detection_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_detection_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.insert_entity_markers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insert_entity_markers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.parse_entity_markers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parse_entity_markers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_document_by_sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_document_by_sentence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_extraction_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_extraction_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_identification_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_identification_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.verify_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verify_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#causalatee.data.utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        utils
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="utils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.extraction_batch_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        extraction_batch_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_detection_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_detection_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.identification_batch_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identification_batch_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.insert_entity_markers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insert_entity_markers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.parse_entity_markers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parse_entity_markers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_document_by_sentence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_document_by_sentence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_extraction_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_extraction_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.split_identification_to_sentences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        split_identification_to_sentences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#causalatee.data.utils.verify_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verify_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/TheMrSheldon/causality-toolkit/edit/main/docs/reference/data_utils.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/TheMrSheldon/causality-toolkit/raw/main/docs/reference/data_utils.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="causalateedatautils">causalatee.data.utils</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="causalatee.data.utils" class="doc doc-heading">
+            <code>utils</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Shared helpers for causalatee's HF-datasets-native schema: entity-marker
+parsing, whole-document -&gt; per-sentence re-splitting, and same-granularity
+schema derivations -- everything a dataset <code>conversion_script.py</code> or a
+downstream evaluation harness needs that isn't specific to any one corpus.</p>
+<p>Split into submodules by concern (all re-exported here, so
+<code>from causalatee.data.utils import X</code> keeps working unchanged):</p>
+<ul>
+<li>:mod:<code>.markers</code> -- :func:<code>parse_entity_markers</code> / :func:<code>insert_entity_markers</code>,
+  the <code>&lt;eN&gt;...&lt;/eN&gt;</code> marker &lt;-&gt; <code>(clean_text, segments_by_eid)</code> roundtrip
+  used by causalatee's identification schema.</li>
+<li>:mod:<code>.splitting</code> -- :func:<code>split_document_by_sentence</code> (the generic core:
+  given sentence ranges, entity segments, and "groups" of entity ids that
+  must stay together, keep every group wholly inside one sentence, drop and
+  COUNT the rest) plus :func:<code>split_identification_to_sentences</code> /
+  :func:<code>split_extraction_to_sentences</code>, single-example wrappers over it.</li>
+</ul>
+<p>Several source corpora (BioCause, CaTeRS's brat annotations, CREST's own
+  aggregation) annotate causal relations over a whole document or section,
+  not a single sentence. A per-sentence schema cannot represent a relation
+  whose participants straddle a sentence boundary (discourse-level
+  causality really does occur, e.g. BioCause: "X requires Y ... [new
+  sentence] This substitution decreases Z") -- silently re-basing such a
+  span onto the wrong sentence's text is a real bug, not a hypothetical one
+  (previously observed: a marker landing mid-word, "h<e1>istidine", in an
+  early BioCause converter draft). :mod:<code>.splitting</code>'s job is to make the
+  correct behaviour a single, tested, reusable piece of code instead of a
+  duplicated ad-hoc guard in every converter.
+* :mod:<code>.batch</code> -- <code>Dataset.map(fn, batched=True, remove_columns=[...])</code>-
+  ready adapters over the above: :func:<code>identification_batch_to_sentences</code>,
+  :func:<code>extraction_batch_to_sentences</code>, :func:<code>identification_batch_to_detection_sentences</code>
+  (re-splitting to sentence level), and :func:<code>identification_batch_to_detection</code>
+  / :func:<code>identification_batch_to_extraction</code> (same-granularity detection/
+  extraction tables derived from an identification table, for datasets like
+  CTB/ESL that only ship identification).
+* :mod:<code>.validation</code> -- :func:<code>verify_dataset</code>, structural sanity checks
+  (conflicting/duplicate relation pairs, entity ids with no parseable
+  marker span) run over a converted split. Every <code>conversion_script.py</code>
+  should call this right before writing a split's parquet file and print
+  any returned errors as warnings.</p>
+<p>IMPORTANT (see :mod:<code>.markers</code> for the full explanation): the <code>&lt;eN&gt;...&lt;/eN&gt;</code>
+markers only <em>look</em> like XML/HTML tags -- they are not, and do not need to
+be well-nested. Do not "fix" a non-nested marker sequence, and do not add
+crossing-span detection/dropping logic on the assumption that it's needed
+here -- it isn't.</p>
+<p>Typical usage, re-splitting an already-loaded whole-document identification
+split to sentence level (a detection or extraction split works the same
+way with the matching batch function)::</p>
+<pre><code>import spacy
+from causalatee.data.utils import identification_batch_to_sentences
+
+nlp = spacy.load("en_core_web_sm", disable=["ner", "lemmatizer", "tagger"])
+
+def sentence_ranges(text):
+    return [(s.start_char, s.end_char) for s in nlp(text).sents]
+
+per_sentence = whole_document_ds.map(
+    lambda batch: identification_batch_to_sentences(batch, sentence_ranges),
+    batched=True,
+    remove_columns=whole_document_ds.column_names,
+)
+</code></pre>
+<p>Or, deriving a detection/extraction table at the SAME granularity for a
+dataset that only ships identification (no sentence splitting involved)::</p>
+<pre><code>from causalatee.data.utils import identification_batch_to_detection
+
+detection_ds = identification_ds.map(
+    identification_batch_to_detection,
+    batched=True,
+    remove_columns=identification_ds.column_names,
+)
+</code></pre>
+<p>See <code>conf-causality-repro/evaluation/data.py</code> for a complete example
+that dispatches all three sub-tasks this way.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.extraction_batch_to_sentences" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extraction_batch_to_sentences</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">sentence_ranges_fn</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Batched wrapper around :func:<code>~.splitting.split_extraction_to_sentences</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/batch.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extraction_batch_to_sentences</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">],</span>
+    <span class="n">sentence_ranges_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Batched wrapper around :func:`~.splitting.split_extraction_to_sentences`.&quot;&quot;&quot;</span>
+    <span class="n">out_text</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_entity</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">entities</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]):</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">split_extraction_to_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">sentence_ranges_fn</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+        <span class="n">out_text</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+        <span class="n">out_entity</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">out_text</span><span class="p">,</span> <span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="n">out_entity</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.identification_batch_to_detection" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">identification_batch_to_detection</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Derive a causality-DETECTION batch (text + 0/1 label) from an IDENTIFICATION batch, at the SAME granularity (no
+sentence splitting).</p>
+<p>A row is causal iff it has at least one ACTUALLY CAUSAL relation (see :func:<code>_filter_causal_relations</code> -- a
+merely non-empty <code>relations</code> list is NOT enough, since some converters explicitly list NoRelation entries for
+non-causal pairs rather than omitting them). This matches how every converter in this project derives a
+detection label from relation presence (e.g. CCNC's countercausal sentences, which still count as causal for
+detection since they're about a causal relationship, just negating it). <code>&lt;eN&gt;...&lt;/eN&gt;</code> markers are stripped
+from <code>text</code>.</p>
+<p>NOT the right choice for BioCause: its own detection convention counts a document as causal if it has ANY marked
+entity, even an unpaired Effect-only one with no Cause and hence no relation -- see
+:func:<code>identification_batch_to_detection_sentences</code> for that case.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/batch.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">identification_batch_to_detection</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derive a causality-DETECTION batch (text + 0/1 label) from an IDENTIFICATION batch, at the SAME granularity (no</span>
+<span class="sd">    sentence splitting).</span>
+
+<span class="sd">    A row is causal iff it has at least one ACTUALLY CAUSAL relation (see :func:`_filter_causal_relations` -- a</span>
+<span class="sd">    merely non-empty ``relations`` list is NOT enough, since some converters explicitly list NoRelation entries for</span>
+<span class="sd">    non-causal pairs rather than omitting them). This matches how every converter in this project derives a</span>
+<span class="sd">    detection label from relation presence (e.g. CCNC&#39;s countercausal sentences, which still count as causal for</span>
+<span class="sd">    detection since they&#39;re about a causal relationship, just negating it). ``&lt;eN&gt;...&lt;/eN&gt;`` markers are stripped</span>
+<span class="sd">    from ``text``.</span>
+
+<span class="sd">    NOT the right choice for BioCause: its own detection convention counts a document as causal if it has ANY marked</span>
+<span class="sd">    entity, even an unpaired Effect-only one with no Cause and hence no relation -- see</span>
+<span class="sd">    :func:`identification_batch_to_detection_sentences` for that case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_text</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_label</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">relations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]):</span>
+        <span class="n">clean_text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">out_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clean_text</span><span class="p">)</span>
+        <span class="n">out_label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">_filter_causal_relations</span><span class="p">(</span><span class="n">relations</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">out_text</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">out_label</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.identification_batch_to_detection_sentences" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">identification_batch_to_detection_sentences</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">sentence_ranges_fn</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Derive per-sentence causality-DETECTION rows (text + 0/1 label) from a whole-document IDENTIFICATION batch.</p>
+<p>Some corpora's own detection table is whole-document/section only (e.g. BioCause) even though their
+identification table marks every entity -- cause+effect pairs AND unpaired effect-only ones alike. This reuses
+that richer information to still produce a per-sentence label: a sentence is causal if it contains ANY marked
+entity at all, matching the common "a document is causal if it contains any causal event, span or no span"
+convention.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/batch.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">identification_batch_to_detection_sentences</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">],</span>
+    <span class="n">sentence_ranges_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derive per-sentence causality-DETECTION rows (text + 0/1 label) from a whole-document IDENTIFICATION batch.</span>
+
+<span class="sd">    Some corpora&#39;s own detection table is whole-document/section only (e.g. BioCause) even though their</span>
+<span class="sd">    identification table marks every entity -- cause+effect pairs AND unpaired effect-only ones alike. This reuses</span>
+<span class="sd">    that richer information to still produce a per-sentence label: a sentence is causal if it contains ANY marked</span>
+<span class="sd">    entity at all, matching the common &quot;a document is causal if it contains any causal event, span or no span&quot;</span>
+<span class="sd">    convention.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_text</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_label</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]:</span>
+        <span class="n">clean_text</span><span class="p">,</span> <span class="n">entity_segments</span> <span class="o">=</span> <span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">sent_ranges</span> <span class="o">=</span> <span class="n">sentence_ranges_fn</span><span class="p">(</span><span class="n">clean_text</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">[(</span><span class="n">eid</span><span class="p">,)</span> <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">entity_segments</span><span class="p">]</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">split_document_by_sentence</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">entity_segments</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+            <span class="n">out_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clean_text</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">])</span>
+            <span class="n">out_label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;entities&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">out_text</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">out_label</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.identification_batch_to_extraction" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">identification_batch_to_extraction</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Derive a causal-candidate-EXTRACTION batch (text + entity spans) from an IDENTIFICATION batch, at the SAME
+granularity (no sentence splitting).</p>
+<p>Only entities that participate in at least one ACTUALLY CAUSAL relation are kept (see
+:func:<code>_filter_causal_relations</code>) -- matching this project's "only causal_eids" convention used by other
+converters throughout. Rows with no causal relation at all are dropped from the output entirely (nothing to
+extract), so the output can have fewer rows than the input, same as this module's sentence-splitting adapters.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/batch.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">identification_batch_to_extraction</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Derive a causal-candidate-EXTRACTION batch (text + entity spans) from an IDENTIFICATION batch, at the SAME</span>
+<span class="sd">    granularity (no sentence splitting).</span>
+
+<span class="sd">    Only entities that participate in at least one ACTUALLY CAUSAL relation are kept (see</span>
+<span class="sd">    :func:`_filter_causal_relations`) -- matching this project&#39;s &quot;only causal_eids&quot; convention used by other</span>
+<span class="sd">    converters throughout. Rows with no causal relation at all are dropped from the output entirely (nothing to</span>
+<span class="sd">    extract), so the output can have fewer rows than the input, same as this module&#39;s sentence-splitting adapters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_text</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_entity</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">relations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]):</span>
+        <span class="n">causal</span> <span class="o">=</span> <span class="n">_filter_causal_relations</span><span class="p">(</span><span class="n">relations</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">causal</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">clean_text</span><span class="p">,</span> <span class="n">segments</span> <span class="o">=</span> <span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">involved</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">eid</span> <span class="k">for</span> <span class="n">rel</span> <span class="ow">in</span> <span class="n">causal</span> <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="p">(</span><span class="n">rel</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">],</span> <span class="n">rel</span><span class="p">[</span><span class="s2">&quot;second&quot;</span><span class="p">])})</span>
+        <span class="n">entity</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">]</span> <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">involved</span><span class="p">]</span>
+        <span class="n">out_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clean_text</span><span class="p">)</span>
+        <span class="n">out_entity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entity</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">out_text</span><span class="p">,</span> <span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="n">out_entity</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.identification_batch_to_sentences" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">identification_batch_to_sentences</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">sentence_ranges_fn</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Batched wrapper around :func:<code>~.splitting.split_identification_to_sentences</code>.</p>
+<p><code>sentence_ranges_fn(clean_text) -&gt; [(start, end), ...]</code> supplies sentence boundaries for the marker-stripped
+text (any segmenter -- spaCy, nltk, a regex splitter).</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/batch.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">identification_batch_to_sentences</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">],</span>
+    <span class="n">sentence_ranges_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Batched wrapper around :func:`~.splitting.split_identification_to_sentences`.</span>
+
+<span class="sd">    ``sentence_ranges_fn(clean_text) -&gt; [(start, end), ...]`` supplies sentence boundaries for the marker-stripped</span>
+<span class="sd">    text (any segmenter -- spaCy, nltk, a regex splitter).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out_text</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_relations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">relations</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]):</span>
+        <span class="n">clean_text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">split_identification_to_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">relations</span><span class="p">,</span> <span class="n">sentence_ranges_fn</span><span class="p">(</span><span class="n">clean_text</span><span class="p">))</span>
+        <span class="n">out_text</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+        <span class="n">out_relations</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">out_text</span><span class="p">,</span> <span class="s2">&quot;relations&quot;</span><span class="p">:</span> <span class="n">out_relations</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.insert_entity_markers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">insert_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">segments_by_eid</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Insert <code>&lt;eN&gt;...&lt;/eN&gt;</code> tags around each id's segment(s).</p>
+<p>Left-to-right, stack-based: closes innermost-first and opens outermost (longest span) first at each boundary, so
+nested and disjoint spans come out correctly nested. Output need not be nested when spans cross -- see the
+module docstring. Inverse of :func:<code>parse_entity_markers</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/markers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">insert_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segments_by_eid</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert ``&lt;eN&gt;...&lt;/eN&gt;`` tags around each id&#39;s segment(s).</span>
+
+<span class="sd">    Left-to-right, stack-based: closes innermost-first and opens outermost (longest span) first at each boundary, so</span>
+<span class="sd">    nested and disjoint spans come out correctly nested. Output need not be nested when spans cross -- see the</span>
+<span class="sd">    module docstring. Inverse of :func:`parse_entity_markers`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">opens</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">closes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">eid</span><span class="p">,</span> <span class="n">segments</span> <span class="ow">in</span> <span class="n">segments_by_eid</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">segments</span><span class="p">:</span>
+            <span class="n">opens</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid</span><span class="p">)</span>
+            <span class="n">closes</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid</span><span class="p">)</span>
+
+    <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">stack</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">boundary</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">opens</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">closes</span><span class="p">)):</span>
+        <span class="n">pieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">boundary</span><span class="p">])</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">boundary</span>
+        <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">stack</span><span class="o">.</span><span class="n">copy</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">closes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="n">pieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;/</span><span class="si">{</span><span class="n">eid</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">eid</span><span class="p">)</span>
+        <span class="c1"># Open outer (longer) spans first among spans starting here, so</span>
+        <span class="c1"># nesting stays valid when several ids open at the same boundary.</span>
+        <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">opens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="p">[]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="o">-</span><span class="n">_span_length</span><span class="p">(</span><span class="n">segments_by_eid</span><span class="p">[</span><span class="n">e</span><span class="p">])):</span>
+            <span class="n">pieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">eid</span><span class="si">}</span><span class="s2">&gt;&quot;</span><span class="p">)</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eid</span><span class="p">)</span>
+    <span class="n">pieces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">pos</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.parse_entity_markers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Strip <code>&lt;eN&gt;</code>/<code>&lt;/eN&gt;</code> tags; return (clean_text, segments_by_eid).</p>
+<p>An id may open/close more than once -- a discontinuous mention, rendered as repeated <code>&lt;eN&gt;...&lt;/eN&gt;</code> occurrences
+sharing the same id -- every occurrence accumulates onto that id's segment list, in left-to-right order. Inverse
+of :func:<code>insert_entity_markers</code>.</p>
+<p>NOT an XML parser: matching is per entity id (module docstring has the details), so <code>text</code> does not need to be
+well-nested -- markers for two genuinely crossing spans parse correctly.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/markers.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Span</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strip ``&lt;eN&gt;``/``&lt;/eN&gt;`` tags; return (clean_text, segments_by_eid).</span>
+
+<span class="sd">    An id may open/close more than once -- a discontinuous mention, rendered as repeated ``&lt;eN&gt;...&lt;/eN&gt;`` occurrences</span>
+<span class="sd">    sharing the same id -- every occurrence accumulates onto that id&#39;s segment list, in left-to-right order. Inverse</span>
+<span class="sd">    of :func:`insert_entity_markers`.</span>
+
+<span class="sd">    NOT an XML parser: matching is per entity id (module docstring has the details), so ``text`` does not need to be</span>
+<span class="sd">    well-nested -- markers for two genuinely crossing spans parse correctly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spans</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Span</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">open_positions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">clean</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">_MARKER_RE</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">pos</span> <span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()])</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clean</span><span class="p">)</span>
+        <span class="n">closing</span><span class="p">,</span> <span class="n">eid</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">closing</span><span class="p">:</span>
+            <span class="n">spans</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">eid</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">open_positions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">eid</span><span class="p">,</span> <span class="n">offset</span><span class="p">),</span> <span class="n">offset</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">open_positions</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+    <span class="n">clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">pos</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clean</span><span class="p">),</span> <span class="n">spans</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.split_document_by_sentence" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split_document_by_sentence</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">entity_segments</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Assign each entity group to the one sentence it fits wholly inside.</p>
+<p>A <code>group</code> is a list of entity ids that must be kept together (e.g. the two participants of a relation, or a
+single unpaired entity). A group survives only if every entity id it references has ALL of its segments wholly
+inside the SAME sentence's character range; groups that straddle a sentence boundary, or whose entities don't
+overlap any known sentence at all, are dropped and counted rather than silently corrupted or discarded without a
+trace.</p>
+<p>Returns <code>(rows, num_dropped)</code>: <code>rows</code> has one dict per input sentence range, in order, <code>{"entities": {eid:
+[(local_start, local_end), ...]}, "group_indices": [i, ...]}</code> -- entity offsets already re-based to be local to
+that sentence, and <code>group_indices</code> the indices into the input <code>groups</code> list that landed in this sentence
+(empty for sentences with no surviving group, so callers can always align rows 1:1 with <code>sent_ranges</code>).</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/splitting.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split_document_by_sentence</span><span class="p">(</span>
+    <span class="n">sent_ranges</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">],</span>
+    <span class="n">entity_segments</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]],</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Assign each entity group to the one sentence it fits wholly inside.</span>
+
+<span class="sd">    A ``group`` is a list of entity ids that must be kept together (e.g. the two participants of a relation, or a</span>
+<span class="sd">    single unpaired entity). A group survives only if every entity id it references has ALL of its segments wholly</span>
+<span class="sd">    inside the SAME sentence&#39;s character range; groups that straddle a sentence boundary, or whose entities don&#39;t</span>
+<span class="sd">    overlap any known sentence at all, are dropped and counted rather than silently corrupted or discarded without a</span>
+<span class="sd">    trace.</span>
+
+<span class="sd">    Returns ``(rows, num_dropped)``: ``rows`` has one dict per input sentence range, in order, ``{&quot;entities&quot;: {eid:</span>
+<span class="sd">    [(local_start, local_end), ...]}, &quot;group_indices&quot;: [i, ...]}`` -- entity offsets already re-based to be local to</span>
+<span class="sd">    that sentence, and ``group_indices`` the indices into the input ``groups`` list that landed in this sentence</span>
+<span class="sd">    (empty for sentences with no surviving group, so callers can always align rows 1:1 with ``sent_ranges``).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;entities&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;group_indices&quot;</span><span class="p">:</span> <span class="p">[]}</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">sent_ranges</span><span class="p">]</span>
+    <span class="n">num_dropped</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">group_index</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>
+        <span class="n">all_segments</span> <span class="o">=</span> <span class="p">[</span><span class="n">seg</span> <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">group</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">entity_segments</span><span class="p">[</span><span class="n">eid</span><span class="p">]]</span>
+        <span class="n">anchor</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">all_segments</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">si</span> <span class="o">=</span> <span class="n">_sentence_index</span><span class="p">(</span><span class="n">anchor</span><span class="p">,</span> <span class="n">sent_ranges</span><span class="p">)</span> <span class="k">if</span> <span class="n">anchor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">si</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">num_dropped</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">sent_ranges</span><span class="p">[</span><span class="n">si</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">_wholly_inside</span><span class="p">(</span><span class="n">entity_segments</span><span class="p">[</span><span class="n">eid</span><span class="p">],</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">group</span><span class="p">):</span>
+            <span class="n">num_dropped</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">eid</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="s2">&quot;entities&quot;</span><span class="p">]:</span>
+                <span class="n">rows</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="s2">&quot;entities&quot;</span><span class="p">][</span><span class="n">eid</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span> <span class="o">-</span> <span class="n">s</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">entity_segments</span><span class="p">[</span><span class="n">eid</span><span class="p">]]</span>
+        <span class="n">rows</span><span class="p">[</span><span class="n">si</span><span class="p">][</span><span class="s2">&quot;group_indices&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">num_dropped</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.split_extraction_to_sentences" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split_extraction_to_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">entities</span><span class="p">,</span> <span class="n">sent_ranges</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Whole-document causal-candidate-EXTRACTION example -&gt; per-sentence rows.</p>
+<p><code>entities</code> is causalatee's <code>entity</code> field: a list of flat, even-length document-level offset lists (<code>[s,
+e]</code> contiguous, <code>[s1, e1, s2, e2, ...]</code> discontinuous). Returns <code>(rows, num_dropped)</code> where each row is
+<code>{"text": ..., "entity": [[...], ...]}</code>, one per sentence, and <code>num_dropped</code> counts entities that don't fit
+wholly inside a single sentence.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/splitting.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split_extraction_to_sentences</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">entities</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+    <span class="n">sent_ranges</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whole-document causal-candidate-EXTRACTION example -&gt; per-sentence rows.</span>
+
+<span class="sd">    ``entities`` is causalatee&#39;s ``entity`` field: a list of flat, even-length document-level offset lists (``[s,</span>
+<span class="sd">    e]`` contiguous, ``[s1, e1, s2, e2, ...]`` discontinuous). Returns ``(rows, num_dropped)`` where each row is</span>
+<span class="sd">    ``{&quot;text&quot;: ..., &quot;entity&quot;: [[...], ...]}``, one per sentence, and ``num_dropped`` counts entities that don&#39;t fit</span>
+<span class="sd">    wholly inside a single sentence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">entity_segments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="p">[(</span><span class="n">flat</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">flat</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">flat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entities</span><span class="p">))]</span>
+    <span class="n">split_rows</span><span class="p">,</span> <span class="n">num_dropped</span> <span class="o">=</span> <span class="n">split_document_by_sentence</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">entity_segments</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">split_row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">split_rows</span><span class="p">):</span>
+        <span class="n">local_entities</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="n">split_row</span><span class="p">[</span><span class="s2">&quot;entities&quot;</span><span class="p">][</span><span class="n">group_id</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seg</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">split_row</span><span class="p">[</span><span class="s2">&quot;group_indices&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">group_id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">groups</span><span class="p">[</span><span class="n">gi</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="p">]</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="n">local_entities</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">num_dropped</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.split_identification_to_sentences" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split_identification_to_sentences</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">relations</span><span class="p">,</span> <span class="n">sent_ranges</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Whole-document causality-IDENTIFICATION example -&gt; per-sentence rows.</p>
+<p><code>text</code> carries <code>&lt;eN&gt;...&lt;/eN&gt;</code> entity markers (causalatee's identification schema); <code>relations</code> is the
+matching list of <code>{"relationship", "first": eid, "second": eid}</code> dicts. <code>sent_ranges</code> are character offsets
+into the MARKER-STRIPPED text (i.e. what :func:<code>parse_entity_markers</code> returns as <code>clean_text</code>), not the raw
+<code>text</code> -- markers shift offsets, so a sentence segmenter should run on the clean text first. Returns <code>(rows,
+num_dropped)</code> where each row is <code>{"text": ..., "relations": [...]}</code>, one per sentence, and <code>num_dropped</code>
+counts relations whose two entities don't both fit inside a single sentence.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/splitting.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split_identification_to_sentences</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">relations</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Mapping</span><span class="p">],</span>
+    <span class="n">sent_ranges</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whole-document causality-IDENTIFICATION example -&gt; per-sentence rows.</span>
+
+<span class="sd">    ``text`` carries ``&lt;eN&gt;...&lt;/eN&gt;`` entity markers (causalatee&#39;s identification schema); ``relations`` is the</span>
+<span class="sd">    matching list of ``{&quot;relationship&quot;, &quot;first&quot;: eid, &quot;second&quot;: eid}`` dicts. ``sent_ranges`` are character offsets</span>
+<span class="sd">    into the MARKER-STRIPPED text (i.e. what :func:`parse_entity_markers` returns as ``clean_text``), not the raw</span>
+<span class="sd">    ``text`` -- markers shift offsets, so a sentence segmenter should run on the clean text first. Returns ``(rows,</span>
+<span class="sd">    num_dropped)`` where each row is ``{&quot;text&quot;: ..., &quot;relations&quot;: [...]}``, one per sentence, and ``num_dropped``</span>
+<span class="sd">    counts relations whose two entities don&#39;t both fit inside a single sentence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">clean_text</span><span class="p">,</span> <span class="n">entity_segments</span> <span class="o">=</span> <span class="n">parse_entity_markers</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[(</span><span class="n">rel</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">],</span> <span class="n">rel</span><span class="p">[</span><span class="s2">&quot;second&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">rel</span> <span class="ow">in</span> <span class="n">relations</span><span class="p">]</span>
+    <span class="n">split_rows</span><span class="p">,</span> <span class="n">num_dropped</span> <span class="o">=</span> <span class="n">split_document_by_sentence</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">entity_segments</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">split_row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sent_ranges</span><span class="p">,</span> <span class="n">split_rows</span><span class="p">):</span>
+        <span class="n">local_relations</span> <span class="o">=</span> <span class="p">[</span><span class="n">relations</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span> <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">split_row</span><span class="p">[</span><span class="s2">&quot;group_indices&quot;</span><span class="p">]]</span>
+        <span class="n">local_text</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">insert_entity_markers</span><span class="p">(</span><span class="n">clean_text</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">],</span> <span class="n">split_row</span><span class="p">[</span><span class="s2">&quot;entities&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">split_row</span><span class="p">[</span><span class="s2">&quot;entities&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="n">clean_text</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">local_text</span><span class="p">,</span> <span class="s2">&quot;relations&quot;</span><span class="p">:</span> <span class="n">local_relations</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">num_dropped</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="causalatee.data.utils.verify_dataset" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">verify_dataset</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run every applicable structural check over one converted split.</p>
+<p><code>batch</code> is column-oriented (<code>batch["text"]</code>, <code>batch["relations"]</code>, ...) -- same convention as
+:mod:<code>.batch</code>'s <code>Dataset.map</code>-ready functions, so a <code>pandas.DataFrame</code> works directly by column name right
+before <code>.to_parquet()</code>, with no conversion needed. Returns a flat list of human-readable error descriptions
+(one entry per issue found), or <code>[]</code> if the split is clean.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>causalatee/data/utils/validation.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verify_dataset</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">],</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run every applicable structural check over one converted split.</span>
+
+<span class="sd">    ``batch`` is column-oriented (``batch[&quot;text&quot;]``, ``batch[&quot;relations&quot;]``, ...) -- same convention as</span>
+<span class="sd">    :mod:`.batch`&#39;s ``Dataset.map``-ready functions, so a ``pandas.DataFrame`` works directly by column name right</span>
+<span class="sd">    before ``.to_parquet()``, with no conversion needed. Returns a flat list of human-readable error descriptions</span>
+<span class="sd">    (one entry per issue found), or ``[]`` if the split is clean.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">task</span> <span class="o">!=</span> <span class="n">Task</span><span class="o">.</span><span class="n">CausalityIdentification</span> <span class="ow">or</span> <span class="s2">&quot;relations&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">errors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">_check_relation_pairs</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]))</span>
+    <span class="n">errors</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">_check_entity_markup</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;relations&quot;</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">errors</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Webis
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/webis-de" target="_blank" rel="noopener" title="Webis on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/webis_de" target="_blank" rel="noopener" title="Webis on X" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/webis" target="_blank" rel="noopener" title="Webis on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/dataset-page.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

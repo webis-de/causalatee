@@ -1,0 +1,30 @@
+.pill {
+  display: inline-block;
+  padding: 0.15em 0.7em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 1em;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.pill-intra-sentence {
+  background-color: var(--md-code-bg-color, #e0f2e9);
+  color: #2e7d32;
+}
+
+.pill-inter-sentence {
+  background-color: #fff3cd;
+  color: #8a6100;
+}
+
+[data-md-color-scheme="slate"] .pill-intra-sentence {
+  background-color: #1b3a2b;
+  color: #7cd992;
+}
+
+[data-md-color-scheme="slate"] .pill-inter-sentence {
+  background-color: #4a3b0a;
+  color: #f0c060;
+}
