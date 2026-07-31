@@ -16,6 +16,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 CaTeRS (Causal and Temporal Relation Scheme) annotates five-sentence ROC Stories narratives with both causal and temporal event relations, enabling joint causality and timeline reasoning.
 

@@ -40,3 +40,21 @@
 [submodule "resources/datasets/PubMedCausal"]
 	path = resources/datasets/PubMedCausal
 	url = https://huggingface.co/datasets/thagen/PubMedCausal
+[submodule "resources/datasets/PolitiCause"]
+	path = resources/datasets/PolitiCause
+	url = https://huggingface.co/datasets/thagen/PolitiCause
+[submodule "resources/datasets/CNCv2"]
+	path = resources/datasets/CNCv2
+	url = https://huggingface.co/datasets/thagen/CNCv2
+[submodule "resources/datasets/FinCausal20"]
+	path = resources/datasets/FinCausal20
+	url = https://huggingface.co/datasets/thagen/FinCausal20
+[submodule "resources/datasets/FinCausal23"]
+	path = resources/datasets/FinCausal23
+	url = https://huggingface.co/datasets/thagen/FinCausal23
+[submodule "resources/datasets/SemEval2007T4"]
+	path = resources/datasets/SemEval2007T4
+	url = https://huggingface.co/datasets/thagen/SemEval2007T4
+[submodule "resources/datasets/SemEval2020T5"]
+	path = resources/datasets/SemEval2020T5
+	url = https://huggingface.co/datasets/thagen/SemEval2020T5

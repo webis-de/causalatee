@@ -15,6 +15,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 The Choice of Plausible Alternatives corpus evaluates commonsense causal reasoning by asking models to select the most plausible cause or effect for a short premise from two candidate sentences.
 

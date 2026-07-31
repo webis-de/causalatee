@@ -25,6 +25,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 SCITE annotates causal relations in scientific texts at the token level, providing BIO-tagged cause and effect spans for training sequence labelling models in the scientific domain.
 

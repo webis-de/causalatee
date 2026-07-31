@@ -51,46 +51,52 @@ VERB_SUPERSENSES: list[str] = [
 ]
 
 CAUSAL_FRAMES: set[str] = {
+    # Paper (Li & Mao 2019, Algorithm 1 / Section 3.1.2): "40 causal frames
+    # from FrameNet including 'Causation', 'Causation Scenario',
+    # 'Triggering', 'Reason', 'Explaining the facts', 'Response' as well as
+    # 34 frames start with 'Cause'." The installed FrameNet corpus (nltk)
+    # has 33 frames matching ^Cause (verified via fn.frames(r'^Cause')) —
+    # one fewer than the paper's 34, likely a FrameNet-version difference;
+    # using all 33 real ones rather than guessing the missing name.
     "Causation",
+    "Causation_scenario",
+    "Triggering",
+    "Reason",
+    "Explaining_the_facts",
+    "Response",
+    "Cause_bodily_experience",
     "Cause_change",
+    "Cause_change_of_consistency",
+    "Cause_change_of_phase",
     "Cause_change_of_position_on_a_scale",
-    "Cause_change_of_scalar_position",
     "Cause_change_of_strength",
+    "Cause_emotion",
+    "Cause_expansion",
+    "Cause_fluidic_motion",
     "Cause_harm",
     "Cause_impact",
     "Cause_motion",
+    "Cause_proliferation_in_number",
+    "Cause_temperature_change",
     "Cause_to_amalgamate",
     "Cause_to_be_dry",
+    "Cause_to_be_included",
     "Cause_to_be_sharp",
     "Cause_to_be_wet",
+    "Cause_to_burn",
     "Cause_to_continue",
     "Cause_to_end",
     "Cause_to_experience",
     "Cause_to_fragment",
+    "Cause_to_land",
     "Cause_to_make_noise",
-    "Cause_to_move",
+    "Cause_to_make_progress",
+    "Cause_to_move_in_place",
+    "Cause_to_perceive",
     "Cause_to_resume",
     "Cause_to_rot",
     "Cause_to_start",
     "Cause_to_wake",
-    "Causation_scenario",
-    "Creating",
-    "Death",
-    "Destroy",
-    "Destroying",
-    "Emanating",
-    "Evading",
-    "Have_as_requirement",
-    "Inhibit_movement",
-    "Killing",
-    "Making",
-    "Preventing",
-    "Prohibiting_or_licensing",
-    "Protecting",
-    "Removing",
-    "Resurrection",
-    "Stopping",
-    "Triggering",
 }
 
 ARG0_OPEN = "<ARG0>"
@@ -184,7 +190,7 @@ class KCNNTokenizer:
 
         # K-channel: words between entities, lemmatized
         between_words = self._extract_between_words(tokens)
-        between_lemmatized = [self._lemmatize(w) for w in between_words]
+        between_lemmatized = self._lemmatize_tokens(between_words)
         k_channel_ids = [
             self.word2index.get(w, 1) if self.word2index else 1
             for w in between_lemmatized
@@ -266,6 +272,37 @@ class KCNNTokenizer:
             return self._lemmatizer.lemmatize(word)
         except (ImportError, LookupError):
             return word
+
+    def _lemmatize_tokens(self, words: list[str]) -> list[str]:
+        """POS-aware WordNet lemmatization of a token sequence.
+
+        ``WordNetLemmatizer.lemmatize`` defaults to noun POS, which leaves
+        verbs inflected ("caused" → "caused").  The paper lemmatizes the
+        K-channel input "to base form", which requires POS information; we
+        POS-tag the sequence and map Treebank tags to WordNet POS.  Falls
+        back to noun-only lemmatization if the tagger is unavailable.
+        """
+        if not words:
+            return []
+        try:
+            import nltk
+            from nltk.stem import WordNetLemmatizer
+
+            if not hasattr(self, "_lemmatizer"):
+                self._lemmatizer = WordNetLemmatizer()
+            try:
+                tagged = nltk.pos_tag(words)
+            except LookupError:
+                nltk.download("averaged_perceptron_tagger_eng", quiet=True)
+                nltk.download("averaged_perceptron_tagger", quiet=True)
+                tagged = nltk.pos_tag(words)
+            pos_map = {"J": "a", "V": "v", "N": "n", "R": "r"}
+            return [
+                self._lemmatizer.lemmatize(w, pos_map.get(tag[:1], "n"))
+                for w, tag in tagged
+            ]
+        except (ImportError, LookupError):
+            return [self._lemmatize(w) for w in words]
 
     def _compute_positions(
         self,

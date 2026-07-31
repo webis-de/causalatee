@@ -14,6 +14,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 UniCausal is a unified benchmark that harmonises twelve existing causal NLP datasets into a single repository with consistent annotation schema, enabling cross-dataset training and fair multi-corpus evaluation.
 

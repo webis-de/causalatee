@@ -28,7 +28,10 @@ jobs:
         run: ruff format --check .
 
       - name: mypy
-        run: mypy ctk/
+        # -p (package mode), not a bare directory path: the package directory is now named the same as the repo root
+        # ("causalatee"), which makes a bare `mypy causalatee/` ambiguous between "scan this directory" and "resolve
+        # this package" (manifests as spurious "source file found twice" / unresolved relative-import errors).
+        run: mypy -p causalatee
 
       - name: bandit
-        run: bandit -c pyproject.toml -r ctk/
+        run: bandit -c pyproject.toml -r causalatee/

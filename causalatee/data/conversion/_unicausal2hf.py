@@ -7,6 +7,7 @@ from typing import Callable, Union
 import pandas as pd
 
 from ..constants import ClassLabel, Relation, Task
+from ..utils import insert_entity_markers
 from ._converter import FormatConverter
 
 
@@ -100,6 +101,34 @@ def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -
     return (splits, tags, remapped)
 
 
+def _splits_to_segments(splits: list[str], tags: list[list[int]]) -> tuple[str, dict[str, list[tuple[int, int]]]]:
+    """Turn (splits, tags) from :func:`_extract_entities_and_relations` into
+    (clean_text, segments_by_eid) for :func:`causalatee.data.utils.insert_entity_markers`.
+
+    ``tags[i]`` lists every entity id active during chunk ``splits[i]``;
+    this walks the chunks once, opening/closing each id's span at the
+    boundary where it turns on/off, and accumulating a NEW segment each
+    time an id re-activates after a gap (a discontinuous mention).
+    """
+    clean_parts: list[str] = []
+    pos = 0
+    open_start: dict[int, int] = {}
+    segments: dict[int, list[tuple[int, int]]] = {}
+    prev_tags: set[int] = set()
+    for s, t in zip(splits, tags):
+        cur_tags = set(t)
+        for closed in prev_tags - cur_tags:
+            segments.setdefault(closed, []).append((open_start.pop(closed), pos))
+        for opened in cur_tags - prev_tags:
+            open_start[opened] = pos
+        pos += len(s)
+        clean_parts.append(s)
+        prev_tags = cur_tags
+    for still_open in prev_tags:
+        segments.setdefault(still_open, []).append((open_start.pop(still_open), pos))
+    return "".join(clean_parts), {f"e{k + 1}": v for k, v in segments.items()}
+
+
 class UniCausal2HF(FormatConverter):
     def __init__(self, splits: dict[str, Path], target: Path, grouped: bool = True):
         super().__init__(target)
@@ -126,9 +155,10 @@ class UniCausal2HF(FormatConverter):
         rows = []
         for (corpus, doc_id, sent_id), group in df.groupby(["corpus", "doc_id", "sent_id"], sort=False):
             text = group["text"].iloc[0]
+
             # Drop malformed text_w_pairs rows where tag removal doesn't reproduce the original
             # text (e.g. nested/overlapping ARG tags in some ESL source rows).
-            def _is_valid(twp: str) -> bool:
+            def _is_valid(twp: str, text: str = text) -> bool:
                 cleaned = re.sub(r"<(/?)SIG(\d+)>", "", twp)
                 cleaned = re.sub(r"<(/?)ARG(\d+)>", "", cleaned)
                 return cleaned == text
@@ -142,21 +172,23 @@ class UniCausal2HF(FormatConverter):
                     "causal_text_w_pairs": valid_group.loc[valid_group["pair_label"] == 1, "text_w_pairs"].tolist(),
                     # All pairs (causal and non-causal) with their labels, for
                     # causality-identification which needs entity markers on every pair.
-                    "all_text_w_pairs": list(zip(
-                        valid_group["text_w_pairs"].tolist(),
-                        valid_group["pair_label"].tolist(),
-                    )),
+                    "all_text_w_pairs": list(
+                        zip(
+                            valid_group["text_w_pairs"].tolist(),
+                            valid_group["pair_label"].tolist(),
+                        )
+                    ),
                 }
             )
         return pd.DataFrame(rows)
 
-    def _convert(self, task: str, split: str) -> pd.DataFrame:
+    def _convert(self, task: Task, split: str) -> pd.DataFrame:
         converter: dict[Task, Callable[[str], pd.DataFrame]] = {
             Task.CausalityDetection: self._convert_causality_detection,
             Task.CausalCandidateExtraction: self._convert_causal_candidate_extraction,
             Task.CausalityIdentification: self._convert_causality_identification,
         }
-        return converter.get(task)(split)
+        return converter[task](split)
 
     def _convert_causality_detection(self, split: str) -> pd.DataFrame:
         df = self._load_df(split)
@@ -196,22 +228,17 @@ class UniCausal2HF(FormatConverter):
                 splits, tags, relations = _extract_entities_and_relations(work_row, pair_labels=pair_labels)
             else:
                 splits, tags, relations = _extract_entities_and_relations(row)
-            text: str = ""
-            cur_ents: set[int] = set()
-            for s, t in zip(splits, tags):
-                for newent in set(t) - cur_ents:
-                    text += f"<e{newent + 1}>"
-                for oldent in cur_ents - set(t):
-                    text += f"</e{oldent + 1}>"
-                cur_ents = set(t)
-                text += s
-            for openent in cur_ents:
-                text += f"</e{openent + 1}>"
+            clean_text, segments = _splits_to_segments(splits, tags)
+            text = insert_entity_markers(clean_text, segments) if segments else clean_text
             reldict: list[dict[str, Union[int, str]]] = []
             for rtype, rfirst, rsecond in relations:
                 reldict.append({"relationship": rtype, "first": f"e{rfirst + 1}", "second": f"e{rsecond + 1}"})
             return pd.Series((text, reldict))
 
         df = self._load_df(split)
-        df[["text", "relations"]] = df[["text", "causal_text_w_pairs", "all_text_w_pairs"] if "all_text_w_pairs" in df.columns else ["text", "causal_text_w_pairs"]].apply(map_to_labels, axis=1)
+        df[["text", "relations"]] = df[
+            ["text", "causal_text_w_pairs", "all_text_w_pairs"]
+            if "all_text_w_pairs" in df.columns
+            else ["text", "causal_text_w_pairs"]
+        ].apply(map_to_labels, axis=1)
         return df[["index", "text", "relations"]].set_index("index")

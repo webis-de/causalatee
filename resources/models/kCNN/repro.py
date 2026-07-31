@@ -179,9 +179,11 @@ def _extract_causal_lus() -> tuple[list[list[str]], list[list[str]], list[list[s
             elif len(words) == 3:
                 lu3.append(words)
 
-    # Extend unigrams with WordNet synonyms/hyponyms whose definitions mention causality
+    # Extend unigrams with WordNet synonyms/hyponyms whose definitions mention causality.
+    # Exact keyword set from the paper's Algorithm 1, Step 2 (previously had
+    # 3 extra keywords here — "trigger", "produce", "lead" — not in the paper).
     _CAUSAL_KEYWORDS = {"cause", "effect", "causal", "causation", "result", "reason",
-                        "because", "responsible", "trigger", "produce", "lead"}
+                        "because", "responsible"}
 
     extended_lu1: set[tuple] = set(tuple(w) for w in lu1)
     extended_lu2: set[tuple] = set(tuple(w) for w in lu2)
@@ -283,6 +285,104 @@ def build_knowledge_filters(
 
 
 # ---------------------------------------------------------------------------
+# ANOVA filter selection + K-means clustering (paper §3.2)
+# ---------------------------------------------------------------------------
+
+def compute_k_channel_activations(
+    filters_dict: dict[str, torch.Tensor],
+    word_embedding_matrix: torch.Tensor,
+    encoded_examples: list[dict],
+    batch_size: int = 512,
+) -> dict[str, np.ndarray]:
+    """Max-pooled cosine-similarity activation of every filter on every example.
+
+    Mirrors the model's K-channel forward pass (unit-normalised embeddings,
+    conv / window size, max over positions).  Returns
+    ``{window_size_str: [n_examples, n_filters] array}``.
+    """
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    emb = word_embedding_matrix.float().to(device)
+
+    activations: dict[str, np.ndarray] = {}
+    for ws_str, filt in filters_dict.items():
+        ws = int(ws_str)
+        f = filt.float().to(device)
+        f = F.normalize(f.reshape(f.size(0), -1), dim=1).reshape_as(f)
+        rows = []
+        for start in range(0, len(encoded_examples), batch_size):
+            chunk = encoded_examples[start:start + batch_size]
+            max_len = max(max((len(ex["k_channel_ids"]) for ex in chunk), default=1), ws)
+            ids = torch.zeros(len(chunk), max_len, dtype=torch.long)
+            for i, ex in enumerate(chunk):
+                k = ex["k_channel_ids"][:max_len]
+                ids[i, : len(k)] = torch.tensor(k, dtype=torch.long)
+            x = F.normalize(emb[ids.to(device)], p=2, dim=-1).permute(0, 2, 1)
+            out = F.conv1d(x, f) / ws
+            rows.append(out.max(dim=2).values.cpu().numpy())
+        activations[ws_str] = np.concatenate(rows, axis=0)
+    return activations
+
+
+def refine_knowledge_filters(
+    filters_dict: dict[str, torch.Tensor],
+    word_embedding_matrix: torch.Tensor,
+    encoded_examples: list[dict],
+    labels: list[int],
+    f_critical: float = 2.9957,
+    cluster: bool = True,
+    seed: int = 42,
+) -> tuple[dict[str, torch.Tensor], list[int], dict[str, list[int]]]:
+    """ANOVA F-ratio filter selection followed by K-means filter clustering.
+
+    Paper: keep filters whose one-way ANOVA F-ratio between the class groups
+    of their max-pooled activations exceeds the critical value (2.9957,
+    α=5%); cluster the surviving unigram and bigram filters separately into
+    floor(n/2) K-means clusters (trigrams are kept as-is) and max-pool the
+    activations within each cluster.
+
+    Returns (selected_filters, filters_per_size aligned to window sizes
+    [1, 2, 3], cluster_ids usable as ``KCNNConfig.k_cluster_ids``).
+    """
+    from scipy.stats import f_oneway
+    from sklearn.cluster import KMeans
+
+    y = np.asarray(labels)
+    activations = compute_k_channel_activations(filters_dict, word_embedding_matrix, encoded_examples)
+
+    selected: dict[str, torch.Tensor] = {}
+    per_size: list[int] = []
+    cluster_ids: dict[str, list[int]] = {}
+
+    for ws in (1, 2, 3):
+        ws_str = str(ws)
+        if ws_str not in filters_dict:
+            per_size.append(0)
+            continue
+        acts = activations[ws_str]
+        groups = [acts[y == cls] for cls in np.unique(y)]
+        f_stats = f_oneway(*groups).statistic
+        keep = np.flatnonzero(np.nan_to_num(f_stats, nan=0.0) > f_critical)
+        print(f"  ws={ws}: ANOVA keeps {len(keep)}/{acts.shape[1]} filters (F > {f_critical})")
+        if len(keep) == 0:
+            per_size.append(0)
+            continue
+        kept_filters = filters_dict[ws_str][keep]
+        selected[ws_str] = kept_filters
+        per_size.append(len(keep))
+
+        if cluster and ws in (1, 2) and len(keep) > 1:
+            n_clusters = max(len(keep) // 2, 1)
+            flat = kept_filters.reshape(len(keep), -1).numpy()
+            km = KMeans(n_clusters=n_clusters, random_state=seed, n_init=10).fit(flat)
+            cluster_ids[ws_str] = km.labels_.tolist()
+            print(f"    K-means: {len(keep)} filters → {n_clusters} clusters")
+        else:
+            cluster_ids[ws_str] = list(range(len(keep)))  # trigrams kept as-is
+
+    return selected, per_size, cluster_ids
+
+
+# ---------------------------------------------------------------------------
 # Dataset flattening: causality-identification → pair-level examples
 # ---------------------------------------------------------------------------
 
@@ -299,15 +399,21 @@ def _get_entity_ids_in_order(text: str) -> list[str]:
     return seen
 
 
-def flatten_to_pairs(dataset) -> list[dict]:
+def flatten_to_pairs(dataset, directed: bool = True) -> list[dict]:
     """Convert causality-identification examples to pair-level examples.
 
-    For each sentence, enumerate all ordered entity pairs:
-    - Pairs annotated as causal → label=1
-    - All other ordered pairs present in the same sentence → label=0
-      (includes the reverse direction of a causal pair and any non-causal pairs)
-    - Sentences with no entity markers are skipped (k-CNN requires marked pairs).
-    See notes.txt gap #11 for why non-causal sentences are dropped.
+    ``directed=True`` (default): enumerate all ordered entity pairs —
+    causal pairs → label=1, every other ordered pair (including the reverse
+    direction of a causal pair) → label=0.
+
+    ``directed=False`` (paper protocol): one example per unordered entity
+    pair, entities assigned to ARG0/ARG1 in textual order, label=1 if EITHER
+    direction is annotated causal.  This matches the k-CNN paper's binary
+    setup, where "the direction of causality is not used" and SemEval's
+    Cause-Effect(e1,e2) and Cause-Effect(e2,e1) both count as causal.
+
+    Sentences with no entity markers are skipped (k-CNN requires marked
+    pairs).  See notes.txt gap #11 for why non-causal sentences are dropped.
     """
     examples = []
     for ex in dataset:
@@ -326,11 +432,18 @@ def flatten_to_pairs(dataset) -> list[dict]:
             if r.get("relationship", 0) == 1
         }
 
-        # Enumerate all ordered pairs from the marked entities
+        # Enumerate entity pairs from the marked entities
         for i, a in enumerate(entity_order):
             for b in entity_order[i + 1:]:
-                for src, tgt in [(a, b), (b, a)]:
-                    label = 1 if (src, tgt) in causal_set else 0
+                if directed:
+                    directions = [(a, b), (b, a)]
+                else:
+                    directions = [(a, b)]  # textual order
+                for src, tgt in directions:
+                    if directed:
+                        label = 1 if (src, tgt) in causal_set else 0
+                    else:
+                        label = 1 if ((src, tgt) in causal_set or (tgt, src) in causal_set) else 0
                     paired_text = text
                     paired_text = paired_text.replace(f"<{src}>", "<ARG0>").replace(f"</{src}>", "</ARG0>")
                     paired_text = paired_text.replace(f"<{tgt}>", "<ARG1>").replace(f"</{tgt}>", "</ARG1>")
@@ -563,10 +676,11 @@ def main():
         aux_cache_dir.mkdir(parents=True, exist_ok=True)
         vocab = set(tokenizer.word2index.keys())
         rng = np.random.RandomState(args.seed)
-        scale = math.sqrt(3.0 / emb_dim)
-        word_embedding_matrix = torch.tensor(
-            rng.uniform(-scale, scale, (tokenizer.vocab_size, emb_dim)).astype("float32")
-        )
+        # Paper: OOV words get random UNIT vectors (embeddings are unit-normalised).
+        random_init = rng.randn(tokenizer.vocab_size, emb_dim).astype("float32")
+        random_init /= np.linalg.norm(random_init, axis=1, keepdims=True) + 1e-9
+        random_init[0] = 0.0  # PAD
+        word_embedding_matrix = torch.tensor(random_init)
         if word_emb_path is not None:
             print(f"Loading word embeddings for vocabulary from {word_emb_path} …")
             loaded = _load_word2vec_text(word_emb_path, vocab)

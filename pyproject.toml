@@ -34,6 +34,7 @@ tests = [
     "runnb~=1.0",
     "ruff>=0.9,<0.15",
     "types-pyyaml~=6.0",
+    "types-networkx~=3.0",
 ]
 huggingface = [
     "transformers>=4.40",
@@ -49,6 +50,7 @@ docs = [
     "mkdocs-macros-plugin>=1.0",
     "mkdocs-awesome-pages-plugin>=2.9",
     "mkdocs-jupyter>=0.24",
+    "mkdocstrings[python]>=0.27,<1.0",
     "mike~=2.1",
     "pypandoc_binary~=1.13",
 ]
@@ -79,9 +81,9 @@ exclude = ["build", "venv", "resources"]
 
 [tool.bandit]
 exclude_dirs = ["build", "venv", "resources"]
-
-[tool.bandit.assert_used]
-skips = ["**/test_*.py"]
+# B101 (assert_used): asserts are fine here, including outside tests -- not a
+# security concern for this project, so don't flag them.
+skips = ["B101"]
 
 [tool.pytest.ini_options]
 log_cli = true

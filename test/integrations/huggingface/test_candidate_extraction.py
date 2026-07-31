@@ -73,7 +73,7 @@ def stub_transformers():
 
     with patch.dict(sys.modules, {"transformers": transformers}):
         for key in list(sys.modules):
-            if key.startswith("ctk.integrations"):
+            if key.startswith("causalatee.integrations"):
                 del sys.modules[key]
         yield transformers
 
@@ -82,7 +82,7 @@ class TestCausalCandidateExtractionPipeline:
     _id2label = {0: "O", 1: "B-CAUSE", 2: "I-CAUSE", 3: "B-EFFECT", 4: "I-EFFECT"}
 
     def _make_pipeline(self):
-        from ctk.integrations.huggingface._candidate_extraction import CausalCandidateExtractionPipeline
+        from causalatee.integrations.huggingface._candidate_extraction import CausalCandidateExtractionPipeline
 
         pipe = CausalCandidateExtractionPipeline.__new__(CausalCandidateExtractionPipeline)
         pipe.tokenizer = MagicMock()
@@ -145,7 +145,7 @@ class TestCausalCandidateExtractionPipeline:
         assert result["offset_mapping"] is offset
 
     def test_sanitize_parameters_returns_three_empty_dicts(self):
-        from ctk.integrations.huggingface._candidate_extraction import CausalCandidateExtractionPipeline
+        from causalatee.integrations.huggingface._candidate_extraction import CausalCandidateExtractionPipeline
 
         pipe = CausalCandidateExtractionPipeline.__new__(CausalCandidateExtractionPipeline)
         assert pipe._sanitize_parameters() == ({}, {}, {})

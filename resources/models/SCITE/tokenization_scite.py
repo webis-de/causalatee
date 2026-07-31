@@ -34,6 +34,7 @@ _TOKEN_RE = re.compile(
     rf"(<e{_NUM_PAT}>|</e{_NUM_PAT}>)|([\w'-]+)|([,;:])|([^ \r\f\v])"
 )
 _STRIP_CHARS = frozenset("!#$&*+/<=>?@[\\]^_`{|}~\t\n.%")
+_PAREN_RE = re.compile(r"\((.*?)\)")
 
 # BIO label schema (integer ids)
 LABEL_MAP: dict[str, int] = {
@@ -45,6 +46,33 @@ LABEL_MAP: dict[str, int] = {
     "B-Emb": 5,
     "I-Emb": 6,
 }
+
+
+def token_char_offsets(text: str, tokens: list[str]) -> list[tuple[int, int]]:
+    """Best-effort original-text character span for each token.
+
+    ``tokens`` is the cleaned output of :meth:`SciteTokenizer.tokenize` (or
+    the ``"tokens"`` field of :meth:`SciteTokenizer.encode`) — entity
+    markers already removed, parenthesised content already removed, and
+    per-token punctuation already stripped. Neither removal step is
+    reversible in general, so offsets are reconstructed by searching for
+    each token as a substring of ``text``, scanning forward from the end
+    of the previous match (tokens are, by construction, disjoint
+    substrings of ``text`` in left-to-right order, since parenthesised
+    spans are only ever skipped over, never reordered). Used to score
+    SCITE's span predictions with the same character-span metrics as
+    every other extraction approach (see ``evaluation.metrics.span_metrics``
+    in conf-causality-repro) instead of only SCITE's own token-level ones.
+    """
+    offsets: list[tuple[int, int]] = []
+    pos = 0
+    for tok in tokens:
+        idx = text.find(tok, pos)
+        if idx == -1:
+            idx = pos
+        offsets.append((idx, idx + len(tok)))
+        pos = idx + len(tok)
+    return offsets
 
 
 class SciteTokenizer:
@@ -156,10 +184,14 @@ class SciteTokenizer:
     def tokenize(self, text: str) -> list[str]:
         """Tokenise ``text`` into word tokens, preserving ``<eN>``/``</eN>`` markers.
 
+        Parenthesized content is removed first, as in the official SCITE
+        preprocessing (data_prep.ipynb: ``re.sub('\\((.*?)\\)', '', s)``);
+        entity markers never appear inside parentheses in the corpus.
         Punctuation characters in :data:`_STRIP_CHARS` are removed from non-marker tokens.
         Markers are returned verbatim so that :meth:`encode` can use them for label
         alignment before stripping them from the final output.
         """
+        text = _PAREN_RE.sub("", text)
         raw = [item for group in _TOKEN_RE.findall(text) for item in group if item]
         tokens: list[str] = []
         for tok in raw:
@@ -213,6 +245,9 @@ class SciteTokenizer:
             1 for every real token.
         ``causal_relation_token_spans`` (list)
             ``[[cause_token_indices, effect_token_indices], …]`` for each relation.
+        ``offsets`` (list[tuple[int, int]])
+            Best-effort original-``text`` character span per token, same
+            length and order as ``tokens`` — see :func:`token_char_offsets`.
 
         If a BERT tokeniser is attached (via :meth:`set_bert_tokenizer`), also:
 
@@ -291,6 +326,20 @@ class SciteTokenizer:
         tokens = tokens[: self.max_wlen]
         labels = labels[: self.max_wlen]
 
+        # Drop any relation whose cause/effect span extends past the
+        # truncation point — its indices are no longer valid positions in
+        # the truncated sequence, and it is no longer a gold relation this
+        # example can be evaluated against.  Sentences longer than
+        # max_wlen=58 (SCITE's own paper-specified limit, comfortably
+        # covering its own dataset) are common on other, longer-sentence
+        # corpora, so this must be filtered rather than left to crash the
+        # first time an out-of-range index is looked up during evaluation.
+        causal_relation_token_spans = [
+            [c_span, e_span]
+            for c_span, e_span in causal_relation_token_spans
+            if max(c_span) < len(tokens) and max(e_span) < len(tokens)
+        ]
+
         # --- Convert to ids ---
         word_ids = [self.word2index.get(t, self.UNK_WORD_ID) for t in tokens]
         char_ids = [self._chars_to_ids(t) for t in tokens]
@@ -303,6 +352,7 @@ class SciteTokenizer:
             "labels": labels,
             "attention_mask": attention_mask,
             "causal_relation_token_spans": causal_relation_token_spans,
+            "offsets": token_char_offsets(text, tokens),
         }
 
         # --- Optional BERT sub-word tokenisation ---

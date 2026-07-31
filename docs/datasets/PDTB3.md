@@ -15,8 +15,18 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 PDTB 3.0 annotates discourse relations — including causal, temporal, and contingency senses — across the full Penn Treebank WSJ corpus using both explicit connectives and implicit relation spans.
+
+!!! note "Requires your own paid LDC license — not redistributed by causalatee"
+    PDTB 3.0 is a paid Linguistic Data Consortium resource
+    ([LDC2019T05](https://catalog.ldc.upenn.edu/LDC2019T05)) — distinct from PDTB 2.0's
+    ([LDC2008T05](https://catalog.ldc.upenn.edu/LDC2008T05), see [PDTB-2](PDTBv2.md)); owning one
+    does not grant access to the other. causalatee does not fetch or host the underlying text —
+    obtain your own license, follow [UniCausal](UniCausal.md)'s preprocessing recipe to produce
+    `pdtb_train.csv`/`pdtb_test.csv`, then run `resources/datasets/PDTB3/conversion_script.py`
+    yourself.
 
 {{ dataset_overview() }}
 {{ dataset_viewer() }}

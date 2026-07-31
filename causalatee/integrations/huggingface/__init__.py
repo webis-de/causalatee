@@ -1,5 +1,9 @@
 try:
-    from transformers import PIPELINE_REGISTRY, AutoModelForSequenceClassification, AutoModelForTokenClassification
+    from transformers import AutoModelForSequenceClassification, AutoModelForTokenClassification
+
+    # PIPELINE_REGISTRY is not re-exported from the transformers top level anymore
+    # as of transformers 4.57; transformers.pipelines works for old versions too.
+    from transformers.pipelines import PIPELINE_REGISTRY
 except ImportError:
     raise ImportError(
         "The HuggingFace integration requires transformers.\nInstall it with: pip install 'causalatee[huggingface]'"

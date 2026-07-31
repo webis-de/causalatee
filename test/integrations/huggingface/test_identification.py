@@ -68,14 +68,14 @@ def stub_transformers():
 
     with patch.dict(sys.modules, {"transformers": transformers}):
         for key in list(sys.modules):
-            if key.startswith("ctk.integrations"):
+            if key.startswith("causalatee.integrations"):
                 del sys.modules[key]
         yield transformers
 
 
 class TestCausalityIdentificationPipeline:
     def _make_pipeline(self, id2label: dict[int, str] | None = None):
-        from ctk.integrations.huggingface._identification import CausalityIdentificationPipeline
+        from causalatee.integrations.huggingface._identification import CausalityIdentificationPipeline
 
         if id2label is None:
             id2label = {0: "CAUSAL", 1: "NO-REL"}
@@ -114,7 +114,7 @@ class TestCausalityIdentificationPipeline:
         )
 
     def test_sanitize_parameters_returns_three_empty_dicts(self):
-        from ctk.integrations.huggingface._identification import CausalityIdentificationPipeline
+        from causalatee.integrations.huggingface._identification import CausalityIdentificationPipeline
 
         pipe = CausalityIdentificationPipeline.__new__(CausalityIdentificationPipeline)
         assert pipe._sanitize_parameters() == ({}, {}, {})

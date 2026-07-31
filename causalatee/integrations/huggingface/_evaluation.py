@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING
 
-from ctk.evaluation._spans import bio_to_spans, dataset_span_scores
+from causalatee.evaluation._spans import bio_to_spans, dataset_span_scores
 
 if TYPE_CHECKING:
     from transformers import EvalPrediction

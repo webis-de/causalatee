@@ -25,6 +25,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 AltLex is a Wikipedia-based corpus of 1,000 sentences annotated for causal relations identified through *alternative lexicalizations* — causal markers beyond the canonical connectives *because*, *so*, and *since*.
 

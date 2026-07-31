@@ -1,0 +1,30 @@
+---
+title: BECauSE 1.0
+domain: News / Government
+year: 2015
+sentences: "—"
+supported_tasks: {}
+---
+
+<!-- TODO(user): add the BECauSE v1 bibtex entry to docs/references/datasets.bib
+     (Dunietz et al., LAW IX 2015, "Annotating Causal Language Using Corpus
+     Lexicography of Constructions", https://aclanthology.org/W15-1622/),
+     then set bib_key: in the frontmatter above and add
+     {{ dataset_citation() }} to the bottom of this page. -->
+
+# {{ page.meta.title }}
+
+{{ dataset_badges() }}
+{{ dataset_pills() }}
+
+BECauSE 1.0 is the original release of the BECauSE corpus, annotating causal constructions across three source corpora. It predates [BECauSE 2.0](BECauSEv2.md), the actively-maintained ~20%-larger release this project already has.
+
+!!! warning "Blocked — mostly LDC-gated, remaining portion too small"
+    Of v1.0's three source corpora, only CongressionalHearings (3 documents) ships its raw text directly in the
+    release. The other two — NYT (59 documents, New York Times Annotated Corpus) and PTB (47 documents, Penn
+    Treebank sections 2–23) — require separate LDC subscriptions this project does not have; only their
+    annotations, not the underlying text, are in the repo. A conversion limited to the 3 free documents would be
+    far too small to be a meaningful dataset and would not be representative of this corpus's cited size. Not
+    attempted — see `resources/datasets/BECauSEv1/conversion_script.py` for the full trail.
+
+{{ dataset_overview() }}

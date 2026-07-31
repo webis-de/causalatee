@@ -40,8 +40,11 @@ class KCNNForSequenceClassification(PreTrainedModel):
             2 * config.max_seq_length - 1, config.pos_embedding_dim
         )
 
-        # K-channel: frozen knowledge-oriented filters.
-        # Weights are L2-normalised once at init so that dot-product = cosine similarity.
+        # K-channel: frozen knowledge-oriented filters, TRAINABLE per-filter bias.
+        # Weights are L2-normalised once at init so that dot-product = cosine
+        # similarity. Paper Eq. 1: m_i = (sum_j f_j^T w_{i+j-1} + b) / k — the
+        # bias b is part of the specified formula (previously omitted here via
+        # bias=False, which was a deviation from the paper, not a design choice).
         self.k_filters = nn.ModuleDict()
         if config.k_channel_output_dim > 0:
             for ws, n_filters in zip(config.k_filter_sizes, config.k_filters_per_size):
@@ -51,7 +54,7 @@ class KCNNForSequenceClassification(PreTrainedModel):
                     in_channels=config.embedding_dim,
                     out_channels=n_filters,
                     kernel_size=ws,
-                    bias=False,
+                    bias=True,
                 )
                 if knowledge_filters is not None and str(ws) in knowledge_filters:
                     w = knowledge_filters[str(ws)].float()
@@ -60,8 +63,16 @@ class KCNNForSequenceClassification(PreTrainedModel):
                     w = F.normalize(w.reshape(n_filters, -1), dim=1).reshape_as(w)
                     with torch.no_grad():
                         conv.weight.copy_(w)
-                conv.weight.requires_grad_(False)
+                        conv.bias.zero_()
+                conv.weight.requires_grad_(False)  # filters frozen; bias stays trainable
                 self.k_filters[f"ws_{ws}"] = conv
+
+        # K-means cluster assignments (within-cluster max-pooling, paper §3.2).
+        if config.k_cluster_ids:
+            for ws_str, ids in config.k_cluster_ids.items():
+                self.register_buffer(
+                    f"k_cluster_index_{ws_str}", torch.tensor(ids, dtype=torch.long)
+                )
 
         # D-channel: trainable data-oriented filters.
         d_in_channels = config.embedding_dim + 2 * config.pos_embedding_dim
@@ -75,7 +86,13 @@ class KCNNForSequenceClassification(PreTrainedModel):
         ])
 
         self.dropout = nn.Dropout(config.dropout_rate)
-        self.classifier = nn.Linear(config.classifier_input_dim, config.num_labels)
+        # Paper: FC input → (input/2) → 2 with softmax.  The hidden activation
+        # is unspecified in the paper; tanh matches the D-channel convention.
+        self.classifier = nn.Sequential(
+            nn.Linear(config.classifier_input_dim, config.classifier_hidden_dim),
+            nn.Tanh(),
+            nn.Linear(config.classifier_hidden_dim, config.num_labels),
+        )
 
         self.post_init()
 
@@ -96,11 +113,12 @@ class KCNNForSequenceClassification(PreTrainedModel):
 
         # -------------------------------------------------------------------
         # K-channel: words between the two entities
-        # Cosine similarity convolution: L2-normalise word embeddings so that
-        # the standard dot-product inside Conv1d equals cosine similarity / k.
-        # The /k division is equivalent to sharing the scale uniformly across
-        # the window; since filters are also unit-normalised, the output is
-        # the average cosine similarity over the window (Eq. 1 of paper).
+        # L2-normalise word embeddings so the dot-product inside Conv1d is
+        # cosine similarity; conv's bias is included automatically, matching
+        # Eq. 1 of the paper: m_i = (sum_j f_j^T w_{i+j-1} + b) / k. (With
+        # b != 0 this is cosine similarity plus a learned per-filter offset,
+        # not pure cosine similarity — that's what the paper's formula says,
+        # despite its text describing the result as "cosine similarity".)
         # -------------------------------------------------------------------
         if self.config.k_channel_output_dim > 0 and self.k_filters:
             k_emb = self.word_embedding(k_channel_ids)          # [B, k_seq, emb]
@@ -110,10 +128,22 @@ class KCNNForSequenceClassification(PreTrainedModel):
                 ws = int(ws_str.split("_")[1])
                 if x_k.size(-1) < ws:
                     # Between-entity sequence shorter than filter window
-                    parts.append(torch.zeros(B, conv.out_channels, device=device))
+                    pooled = torch.zeros(B, conv.out_channels, device=device)
                 else:
                     out = conv(x_k) / ws                         # [B, n_filt, k_seq - ws + 1]
-                    parts.append(out.max(dim=2).values)          # [B, n_filt]
+                    pooled = out.max(dim=2).values               # [B, n_filt]
+                cluster_index = getattr(self, f"k_cluster_index_{ws}", None)
+                if cluster_index is not None:
+                    # Within-cluster max-pooling (paper §3.2): reduce the
+                    # per-filter activations to one value per K-means cluster.
+                    n_clusters = int(cluster_index.max().item()) + 1
+                    grouped = pooled.new_full((B, n_clusters), float("-inf"))
+                    grouped = grouped.scatter_reduce(
+                        1, cluster_index.expand(B, -1), pooled,
+                        reduce="amax", include_self=False,
+                    )
+                    pooled = grouped
+                parts.append(pooled)
 
         # -------------------------------------------------------------------
         # D-channel: full sentence with position embeddings
@@ -149,6 +179,11 @@ class KCNNForSequenceClassification(PreTrainedModel):
 
         loss = None
         if labels is not None:
-            loss = nn.CrossEntropyLoss()(logits, labels)
+            class_weight = None
+            if self.config.pos_class_weight != 1.0:
+                class_weight = torch.tensor(
+                    [1.0, self.config.pos_class_weight], device=logits.device, dtype=logits.dtype
+                )
+            loss = nn.CrossEntropyLoss(weight=class_weight)(logits, labels)
 
         return SequenceClassifierOutput(loss=loss, logits=logits)

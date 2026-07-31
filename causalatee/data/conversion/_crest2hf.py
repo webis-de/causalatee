@@ -8,6 +8,7 @@ from typing import Any, Callable, Optional
 import pandas as pd
 
 from ..constants import ClassLabel, Relation, Task
+from ..utils import insert_entity_markers
 from ._converter import FormatConverter
 
 
@@ -73,13 +74,13 @@ class CREST2HF(FormatConverter):
             df = df[df[col] == val]
         return df[df["ann_file"].notna()]
 
-    def _convert(self, task: str, split: str) -> pd.DataFrame:
+    def _convert(self, task: Task, split: str) -> pd.DataFrame:
         converter: dict[Task, Callable[[str], pd.DataFrame]] = {
             Task.CausalityDetection: self._convert_causality_detection,
             Task.CausalCandidateExtraction: self._convert_causal_candidate_extraction,
             Task.CausalityIdentification: self._convert_causality_identification,
         }
-        return converter.get(task)(split)
+        return converter[task](split)
 
     def _convert_causality_detection(self, split: str) -> pd.DataFrame:
         df = self._load_base_df(split)
@@ -126,24 +127,39 @@ class CREST2HF(FormatConverter):
                         span_to_id[span] = len(span_to_id)
                 pairs.append((span1, span2, int(row["direction"])))
 
+            # Drop spans with garbled/out-of-bounds offsets (seen in practice on
+            # CaTeRS: some CREST idx entries reference positions past the end of
+            # `context`, or start>=end) before attempting to tag anything.
+            # Spans that merely CROSS another span (partial overlap, neither
+            # containing the other) do NOT need to be dropped: the <eN>/</eN>
+            # markers below are matched by entity id when parsed back
+            # (causalatee.data.utils), not by XML-style nesting depth, so
+            # crossing spans round-trip correctly regardless (see
+            # causalatee/data/utils/markers.py's module docstring).
+            usable_spans = {span: eid for span, eid in span_to_id.items() if 0 <= span[0] < span[1] <= len(context)}
+            dropped_invalid = set(span_to_id) - set(usable_spans)
+
+            if dropped_invalid:
+                print(
+                    f"WARNING: {self._prefix}_{ann_file}: dropped {len(dropped_invalid)} out-of-bounds/invalid span(s)."
+                )
+
             # Build relations list (direction 0: span1=cause; direction 1: span1=effect).
             relations: list[dict] = []
             for span1, span2, direction in pairs:
+                if span1 not in usable_spans or span2 not in usable_spans:
+                    continue
                 cause_span, effect_span = (span2, span1) if direction == 1 else (span1, span2)
                 relations.append(
                     {
                         "relationship": Relation.Procausal,
-                        "first": f"e{span_to_id[cause_span] + 1}",
-                        "second": f"e{span_to_id[effect_span] + 1}",
+                        "first": f"e{usable_spans[cause_span] + 1}",
+                        "second": f"e{usable_spans[effect_span] + 1}",
                     }
                 )
 
-            # Insert entity markers right-to-left so earlier offsets stay valid.
-            text = context
-            for span, eid in sorted(span_to_id.items(), key=lambda x: x[0][0], reverse=True):
-                start, end = span
-                tag = f"e{eid + 1}"
-                text = text[:start] + f"<{tag}>" + text[start:end] + f"</{tag}>" + text[end:]
+            segments_by_eid = {f"e{eid + 1}": [span] for span, eid in usable_spans.items()}
+            text = insert_entity_markers(context, segments_by_eid) if segments_by_eid else context
 
             rows.append({"index": f"{self._prefix}_{ann_file}", "text": text, "relations": relations})
         if not rows:

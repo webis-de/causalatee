@@ -9,14 +9,14 @@ except ImportError:
         "Install them with: pip install 'causalatee[lightning]'"
     ) from None
 
-from ctk.evaluation._spans import bio_to_spans, span_scores
+from causalatee.evaluation._spans import bio_to_spans, span_scores
 
 
 class SpanMetric(torchmetrics.Metric):
     """Macro-averaged character-span metric for token-classification models.
 
     Primary interface (:meth:`update`) takes character spans directly — the
-    same format that :class:`~ctk.integrations.huggingface.CausalCandidateExtractionPipeline`
+    same format that :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline`
     returns in production.  :meth:`update_from_bio` is a convenience wrapper
     for training loops where BIO token-label ids are more readily available.
 
@@ -78,7 +78,8 @@ class SpanMetric(torchmetrics.Metric):
     ) -> None:
         """Accumulate one batch of character-span predictions.
 
-        Both arguments use the same format that :class:`~ctk.integrations.huggingface.CausalCandidateExtractionPipeline`
+        Both arguments use the same format that
+        :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline`
         returns at inference time, so evaluation and production use the same
         representation.
 

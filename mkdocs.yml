@@ -28,9 +28,22 @@ plugins:
       bib_dir: docs/references
       csl_file: docs/chicago-author-date.csl
       cite_inline: true
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            docstring_style: google
+            merge_init_into_class: true
 
 markdown_extensions:
   - footnotes
+  - admonition
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.superfences:
@@ -56,8 +69,13 @@ extra:
       link: https://www.youtube.com/webis
       name: Webis on YouTube
 
+extra_css:
+  - css/pills.css
+
 extra_javascript:
   - js/dataset-page.js
+  - js/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - Home: index.md

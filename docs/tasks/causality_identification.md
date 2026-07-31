@@ -18,7 +18,7 @@ Each split is stored as a Parquet file with the following columns:
 | `text`      | `str`        | Sentence with entity markers `<e1>...</e1>`, `<e2>...</e2>`, ...                             |
 | `relations` | `list[dict]` | Each dict has `relationship` (`Relation` int), `first` (e.g. `"e1"`), `second` (e.g. `"e2"`) |
 
-Relation values come from `ctk.data.constants.Relation`:
+Relation values come from `causalatee.data.constants.Relation`:
 
 | Value | Constant | Meaning |
 |-------|----------|---------|

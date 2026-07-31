@@ -67,9 +67,13 @@ class SCITEConfig(PretrainedConfig):
         flair_embedding_dim: int = 4096,
         bert_embedding_dim: int = 768,
         bert_model_name: str = "google-bert/bert-base-uncased",
-        # Regularisation
-        dropout_cnn: float = 0.5,
+        # Regularisation.  Official-code defaults: the char CNN is a linear
+        # convolution with no dropout (char_cnn_relu=False, dropout_cnn=0.0);
+        # the LSTM input gets variational dropout 0.5 (Keras LSTM dropout=0.5).
+        dropout_cnn: float = 0.0,
+        char_cnn_relu: bool = False,
         dropout_lstm: float = 0.5,
+        dropout_lstm_input: float = 0.5,
         # Flags
         use_word_embeddings: bool = True,
         precompute_contextual_embeddings: bool = False,
@@ -99,6 +103,8 @@ class SCITEConfig(PretrainedConfig):
         self.bert_embedding_dim = bert_embedding_dim
         self.bert_model_name = bert_model_name
         self.dropout_cnn = dropout_cnn
+        self.char_cnn_relu = char_cnn_relu
         self.dropout_lstm = dropout_lstm
+        self.dropout_lstm_input = dropout_lstm_input
         self.use_word_embeddings = use_word_embeddings
         self.precompute_contextual_embeddings = precompute_contextual_embeddings

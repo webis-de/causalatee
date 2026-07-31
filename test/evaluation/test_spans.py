@@ -1,11 +1,11 @@
-"""Tests for ctk.evaluation._spans — pure span metric functions."""
+"""Tests for causalatee.evaluation._spans — pure span metric functions."""
 from __future__ import annotations
 
 import math
 
 import pytest
 
-from ctk.evaluation._spans import (
+from causalatee.evaluation._spans import (
     bio_to_spans,
     dataset_span_scores,
     overlap,

@@ -68,16 +68,16 @@ def stub_transformers():
     transformers.AutoModelForTokenClassification = MagicMock()
 
     with patch.dict(sys.modules, {"transformers": transformers}):
-        # Remove any cached ctk.integrations modules so they re-import cleanly.
+        # Remove any cached causalatee.integrations modules so they re-import cleanly.
         for key in list(sys.modules):
-            if key.startswith("ctk.integrations"):
+            if key.startswith("causalatee.integrations"):
                 del sys.modules[key]
         yield transformers
 
 
 class TestCausalityDetectionPipeline:
     def _make_pipeline(self, label: str, score: float = 0.9):
-        from ctk.integrations.huggingface._detection import CausalityDetectionPipeline
+        from causalatee.integrations.huggingface._detection import CausalityDetectionPipeline
 
         pipe = CausalityDetectionPipeline.__new__(CausalityDetectionPipeline)
         pipe.tokenizer = MagicMock(return_value={"input_ids": MagicMock()})
@@ -117,7 +117,7 @@ class TestCausalityDetectionPipeline:
         assert result["label"] == "UNCAUSAL"
 
     def test_sanitize_parameters_returns_three_empty_dicts(self):
-        from ctk.integrations.huggingface._detection import CausalityDetectionPipeline
+        from causalatee.integrations.huggingface._detection import CausalityDetectionPipeline
 
         pipe = CausalityDetectionPipeline.__new__(CausalityDetectionPipeline)
         assert pipe._sanitize_parameters() == ({}, {}, {})

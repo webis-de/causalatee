@@ -54,7 +54,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from transformers import AutoTokenizer, EarlyStoppingCallback, Trainer, TrainerCallback, TrainerControl, TrainerState, TrainingArguments
 
 from configuration_scite import SCITEConfig
-from modeling_scite import SCITEForTokenClassification
+from modeling_scite import SCITEForBiaffineSpanClassification, SCITEForTokenClassification
 from tokenization_scite import SciteTokenizer
 
 # ---------------------------------------------------------------------------
@@ -292,7 +292,11 @@ def compute_bio_f1(pred_seqs: List[List[int]], label_seqs: List[List[int]]) -> D
 
     cls_metrics = {}
     for name, ids in [("C", (1, 2)), ("E", (3, 4)), ("Emb", (5, 6))]:
-        tp = sum(p in ids and l in ids for p, l in zip(flat_pred, flat_true))
+        # Official evaluation_ctl: token-level per-tag counts summed over the
+        # group's B-/I- tags — a true positive requires the EXACT tag to match
+        # (B-C predicted where gold is I-C is not a tp), unlike group
+        # membership matching.
+        tp = sum(p == l and l in ids for p, l in zip(flat_pred, flat_true))
         ap = sum(l in ids for l in flat_true)
         pp = sum(p in ids for p in flat_pred)
         pre, rec, f1 = _f1(tp, ap, pp)
@@ -311,13 +315,33 @@ def compute_bio_f1(pred_seqs: List[List[int]], label_seqs: List[List[int]]) -> D
 
 
 def encode_dataset(raw_dataset, tokenizer: SciteTokenizer) -> List[Dict]:
-    """Apply ``tokenizer.encode`` to every example; returns plain list of dicts."""
+    """Apply ``tokenizer.encode`` to every example; returns plain list of dicts.
+
+    Skips (with a printed count) any example that encodes to zero tokens --
+    ``tokenizer.tokenize`` removes parenthesised content wholesale, matching
+    the official SCITE preprocessing (data_prep.ipynb), so a "sentence"
+    that is wholly a parenthetical aside (e.g. ``"(Fig. 3)"``,
+    ``"(data not shown).\\n"``) encodes to an empty token list. SCITE's own
+    corpus doesn't have these (its sentences come pre-segmented by the
+    original annotators), but a caller re-splitting a whole document into
+    sentences with a general-purpose segmenter can produce them (seen on
+    BioCause). An empty ``tokens`` list would otherwise reach the CRF layer
+    as a sequence with no real timestep at all, crashing deep inside
+    torchcrf with an opaque "mask of the first timestep must all be on" --
+    filtering here, once, is far clearer than that error.
+    """
     encoded = []
+    skipped_empty = 0
     for ex in raw_dataset:
         rels = list(ex.get("relations") or [])
         enc = tokenizer.encode(ex["text"], relations=rels)
+        if not enc["tokens"]:
+            skipped_empty += 1
+            continue
         enc["index"] = len(encoded)
         encoded.append(enc)
+    if skipped_empty:
+        print(f"[encode_dataset] skipped {skipped_empty} example(s) that encoded to zero tokens")
     return encoded
 
 
@@ -490,7 +514,12 @@ def main():
 
         # Optimiser + scheduler
         optimizer = NAdam(model.parameters(), lr=args.lr)
-        scheduler = ReduceLROnPlateau(optimizer, mode="max", factor=0.5, patience=10)
+        # Official: Keras ReduceLROnPlateau(monitor='loss' [min mode],
+        # factor=0.5, patience=10, cooldown=5, min_lr=5e-5).  mode MUST be
+        # "min" — the callback below steps this with the training loss.
+        scheduler = ReduceLROnPlateau(
+            optimizer, mode="min", factor=0.5, patience=10, cooldown=5, min_lr=5e-5
+        )
 
         fold_output = Path(args.output_dir) / f"fold_{fold + 1}"
         training_args = TrainingArguments(

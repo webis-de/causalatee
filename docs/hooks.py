@@ -30,8 +30,29 @@ _HF_CONFIGS = {
     "causality-identification": "causality%20identification",
 }
 
+# A dataset page's frontmatter may set ``granularity: inter-sentence`` to
+# flag that its rows are whole documents/sections rather than individual
+# sentences (e.g. BioCause -- see its .md page for why). Defaults to
+# "intra-sentence" (the common case) when unset, so existing dataset pages
+# don't all need updating.
+_GRANULARITY_LABELS = {
+    "intra-sentence": "Intra-sentence",
+    "inter-sentence": "Inter-sentence (whole document/section)",
+}
+_DEFAULT_GRANULARITY = "intra-sentence"
+
 
 def define_env(env):
+    @env.macro
+    def dataset_pills():
+        """Small colored ``<span class="pill pill-...">`` tags summarising
+        at-a-glance dataset properties (currently just granularity — see
+        ``_GRANULARITY_LABELS`` — but built to take more fields later)."""
+        meta = env.page.meta
+        granularity_key = meta.get("granularity", _DEFAULT_GRANULARITY)
+        label = _GRANULARITY_LABELS.get(granularity_key, granularity_key)
+        return f'<span class="pill pill-{granularity_key}">{label}</span>\n\n'
+
     @env.macro
     def dataset_badges():
         meta = env.page.meta
@@ -50,6 +71,10 @@ def define_env(env):
         domain = meta.get("domain", "—")
         year = meta.get("year", "—")
         sentences = meta.get("sentences", "—")
+        granularity = _GRANULARITY_LABELS.get(
+            meta.get("granularity", _DEFAULT_GRANULARITY),
+            meta.get("granularity"),
+        )
         tasks = meta.get("supported_tasks") or {}
 
         lines = [
@@ -58,6 +83,7 @@ def define_env(env):
             f"| **Domain** | {domain} |\n",
             f"| **Year** | {year} |\n",
             f"| **Sentences** | {sentences} |\n",
+            f"| **Granularity** | {granularity} |\n",
             "\n## Tasks & Splits\n\n",
             "| Task | Train | Test |\n|------|------:|-----:|\n",
         ]
@@ -124,13 +150,13 @@ def define_env(env):
         return "".join(lines)
 
     @env.macro
-    def dataset_citation():
+    def bibtex_entry(key):
+        """Look up ``key`` in docs/references/*.bib and render its raw entry in a ```bibtex fence.
+
+        Falls back to a plain ``[@key]`` inline citation if no matching entry is found.
+        """
         import re
         from pathlib import Path
-
-        bib_key = env.page.meta.get("bib_key")
-        if not bib_key:
-            return ""
 
         refs_dir = Path(env.conf["docs_dir"]) / "references"
         entry = None
@@ -139,22 +165,31 @@ def define_env(env):
             # Split on entry boundaries and find the one matching our key
             for candidate in re.split(r"\n(?=@)", text.strip()):
                 m = re.match(r"@\w+\{([^,\s]+)", candidate)
-                if m and m.group(1) == bib_key:
+                if m and m.group(1) == key:
                     entry = candidate.strip()
                     break
             if entry:
                 break
 
         if not entry:
-            return f"## Citation\n\n[@{bib_key}]\n"
+            return f"[@{key}]\n"
 
-        return f"## Citation\n\n```bibtex\n{entry}\n```\n"
+        return f"```bibtex\n{entry}\n```\n"
+
+    @env.macro
+    def dataset_citation():
+        bib_key = env.page.meta.get("bib_key")
+        if not bib_key:
+            return ""
+
+        return f"## Citation\n\n{bibtex_entry(bib_key)}"
 
     @env.macro
     def task_datasets(task_id):
         """Build the dataset reference table for a task page from dataset frontmatter."""
-        import yaml
         from pathlib import Path, PurePosixPath
+
+        import yaml
 
         datasets_dir = Path(env.conf["docs_dir"]) / "datasets"
 
@@ -180,6 +215,10 @@ def define_env(env):
             doi = fm.get("doi")
             hf_page = fm.get("hf_page")
             bib_key = fm.get("bib_key")
+            granularity = _GRANULARITY_LABELS.get(
+                fm.get("granularity", _DEFAULT_GRANULARITY),
+                fm.get("granularity"),
+            )
 
             link = f"[{title}]({link_base}/{md_file.stem}.md)"
             ref = f"[@{bib_key}]" if bib_key else "—"
@@ -195,6 +234,7 @@ def define_env(env):
                 fm.get("sentences", "—"),
                 fm.get("domain", "—"),
                 str(fm.get("year", "—")),
+                granularity,
                 ref,
                 badges,
             ))
@@ -203,9 +243,9 @@ def define_env(env):
             return ""
 
         lines = [
-            "| Corpus | Sentences | Domain | Year | Reference | Links |\n",
-            "|--------|----------:|--------|-----:|-----------|-------|\n",
+            "| Corpus | Sentences | Domain | Year | Granularity | Reference | Links |\n",
+            "|--------|----------:|--------|-----:|-------------|-----------|-------|\n",
         ]
-        for corpus, sents, domain, year, ref, badges in rows:
-            lines.append(f"| {corpus} | {sents} | {domain} | {year} | {ref} | {badges} |\n")
+        for corpus, sents, domain, year, granularity, ref, badges in rows:
+            lines.append(f"| {corpus} | {sents} | {domain} | {year} | {granularity} | {ref} | {badges} |\n")
         return "".join(lines)

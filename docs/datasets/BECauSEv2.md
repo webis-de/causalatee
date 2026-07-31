@@ -25,6 +25,7 @@ supported_tasks:
 # {{ page.meta.title }}
 
 {{ dataset_badges() }}
+{{ dataset_pills() }}
 
 BECauSE 2.0 annotates causal and five overlapping semantic relations (e.g. *motivation*, *purpose*) in English news text, making it one of the most relation-dense corpora for causal NLP.
 

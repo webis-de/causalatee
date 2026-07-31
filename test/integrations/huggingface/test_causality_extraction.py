@@ -22,7 +22,7 @@ def stub_transformers():
 
     with patch.dict(sys.modules, {"transformers": transformers}):
         for key in list(sys.modules):
-            if key.startswith("ctk.integrations"):
+            if key.startswith("causalatee.integrations"):
                 del sys.modules[key]
         yield transformers
 
@@ -32,7 +32,7 @@ def _make_extraction_pipeline(
     candidate_spans: list[dict] | None = None,
     identification_result: dict | None = None,
 ):
-    from ctk.integrations.huggingface._causality_extraction import CausalityExtractionPipeline
+    from causalatee.integrations.huggingface._causality_extraction import CausalityExtractionPipeline
 
     if candidate_spans is None:
         candidate_spans = [
@@ -124,7 +124,7 @@ class TestCausalityExtractionPipeline:
 
 class TestInsertMarkers:
     def test_markers_inserted_correctly(self):
-        from ctk.integrations.huggingface._causality_extraction import _insert_markers
+        from causalatee.integrations.huggingface._causality_extraction import _insert_markers
 
         text = "Fire caused smoke."
         # F(0)i(1)r(2)e(3) (4)c(5)a(6)u(7)s(8)e(9)d(10) (11)s(12)m(13)o(14)k(15)e(16).(17)
@@ -134,7 +134,7 @@ class TestInsertMarkers:
         assert result == "<e1>Fire</e1> caused <e2>smoke</e2>."
 
     def test_markers_with_reversed_span_order(self):
-        from ctk.integrations.huggingface._causality_extraction import _insert_markers
+        from causalatee.integrations.huggingface._causality_extraction import _insert_markers
 
         text = "Flooding followed the storm."
         # Flooding=0:8, storm=22:27
