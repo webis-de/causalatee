@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/detection/">
+        <link rel="canonical" href="https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/causenet_cgf/">
       
       
-        <link rel="prev" href="../../tasks/causal_event_candidate_detection/">
+        <link rel="prev" href="../sdp_causality_extraction/">
       
       
-        <link rel="next" href="../candidate_extraction/">
+        <link rel="next" href="../../datasets/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Fine-tuning for Causality Detection - Causalatee</title>
+        <title>CauseNet and CGF: Saving and Loading a Causal Graph - Causalatee</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fine-tuning-for-causality-detection" class="md-skip">
+        <a href="#causenet-and-cgf-saving-and-loading-a-causal-graph" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fine-tuning for Causality Detection
+              CauseNet and CGF: Saving and Loading a Causal Graph
             
           </span>
         </div>
@@ -467,37 +467,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Fine-tuning for Causality Detection
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../detection/" class="md-nav__link">
         
   
   
@@ -513,114 +486,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#load-the-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Load the dataset
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tokenize" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tokenize
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#define-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Define the model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluation-metric" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluation metric
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#train" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Train
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use the model
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -714,10 +579,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../causenet_cgf/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CauseNet and CGF: Saving and Loading a Causal Graph
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -733,6 +625,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-a-causenet-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load a CauseNet sample
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-as-cgf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save as CGF
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-the-cgf-file-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load the CGF file back
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shrinking-the-file-with-a-custom-metadata-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shrinking the file with a custom metadata schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1923,10 +1890,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#load-the-dataset" class="md-nav__link">
+  <a href="#load-a-causenet-sample" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Load the dataset
+        Load a CauseNet sample
       
     </span>
   </a>
@@ -1934,10 +1901,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tokenize" class="md-nav__link">
+  <a href="#save-as-cgf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tokenize
+        Save as CGF
       
     </span>
   </a>
@@ -1945,10 +1912,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#define-the-model" class="md-nav__link">
+  <a href="#load-the-cgf-file-back" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Define the model
+        Load the CGF file back
       
     </span>
   </a>
@@ -1956,43 +1923,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#evaluation-metric" class="md-nav__link">
+  <a href="#shrinking-the-file-with-a-custom-metadata-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Evaluation metric
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#train" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Train
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#evaluate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluate
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-the-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Use the model
+        Shrinking the file with a custom metadata schema
       
     </span>
   </a>
@@ -2016,7 +1950,7 @@
 
 
   
-    <a href="https://github.com/webis-de/causalatee/edit/main/docs/examples/detection.ipynb" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/webis-de/causalatee/edit/main/docs/examples/causenet_cgf.ipynb" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2025,7 +1959,7 @@
     
       
     
-    <a href="https://github.com/webis-de/causalatee/raw/main/docs/examples/detection.ipynb" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/webis-de/causalatee/raw/main/docs/examples/causenet_cgf.ipynb" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -2753,53 +2687,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7fb27b941602401d91542211134fc71a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0530ae43785240e1a00ae36b16740f43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="fine-tuning-for-causality-detection">Fine-tuning for Causality Detection<a class="anchor-link" href="#fine-tuning-for-causality-detection">¶</a></h1><p><strong>Causality Detection</strong> is a binary sentence classification task: given a sentence, predict
-whether it expresses a causal relation (<code>causal</code>) or not (<code>uncausal</code>).</p>
-<p>The dataset column schema for this task is:</p>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>text</code></td>
-<td><code>string</code></td>
-<td>Input sentence</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td><code>ClassLabel</code> {0: uncausal, 1: causal}</td>
-<td>Ground-truth label</td>
-</tr>
-</tbody>
-</table>
-<p>We fine-tune <code>roberta-base</code> as a sequence classifier using the HuggingFace <code>Trainer</code>.</p>
+<h1 id="causenet-and-cgf-saving-and-loading-a-causal-graph">CauseNet and CGF: Saving and Loading a Causal Graph<a class="anchor-link" href="#causenet-and-cgf-saving-and-loading-a-causal-graph">¶</a></h1><p><a href="https://groups.uni-paderborn.de/wdqa/causenet/">CauseNet</a> is a large causal knowledge graph
+mined from the web and Wikipedia: each edge is a <code>cause -&gt; effect</code> relation between two
+concepts, backed by the sentences it was extracted from.</p>
+<p><code>causalatee.graph</code> can load CauseNet directly and convert it to <strong>CGF</strong>, a compact,
+memory-mappable binary format for causal graphs (see the
+<a href="../graphs/cgf_spec.md">CGF 1.0 specification</a>). This notebook loads a small CauseNet sample,
+saves it as a <code>.cgf</code> file, and loads that file back.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=acae54e37e7d407bbb7b55eff062a284">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=293e4ffac0f044d686c84f548a3a8eb2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="setup">Setup<a class="anchor-link" href="#setup">¶</a></h2><p>Install the library with its HuggingFace extras and the <code>evaluate</code> library for metrics.</p>
+<h2 id="setup">Setup<a class="anchor-link" href="#setup">¶</a></h2><p><code>causalatee</code> depends on <code>fastavro</code> (used to encode/decode CGF metadata records), so no extra
+install flags are needed.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9a63283cbaf04dbcab1f6479b197f3a8">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3df7025bb8824c4aa80ce958e1df6be4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2817,28 +2734,30 @@ whether it expresses a causal relation (<code>causal</code>) or not (<code>uncau
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">causalatee</span><span class="p">[</span><span class="n">huggingface</span><span class="p">]</span> <span class="n">evaluate</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">causalatee</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-1">%pip install -q causalatee[huggingface] evaluate</div>
+<div class="clipboard-copy-txt" id="cell-1">%pip install -q causalatee</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8dd0d8092fe74a7c96281538738b07e2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cefde98b77cc4a75b22b26398f92631e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="load-the-dataset">Load the dataset<a class="anchor-link" href="#load-the-dataset">¶</a></h2><p>All causalatee datasets are hosted on the HuggingFace Hub. Each dataset exposes multiple
-task-specific configurations; pass the config name as the second argument to <code>load_dataset</code>.</p>
+<h2 id="load-a-causenet-sample">Load a CauseNet sample<a class="anchor-link" href="#load-a-causenet-sample">¶</a></h2><p><code>load_causenet</code> accepts a local path or an HTTP(S) URL, with gzip/bzip2 detected automatically.
+The full CauseNet precision graph has millions of edges, so pass <code>limit</code> to bound how many JSONL
+lines are read -- this is an eager loader that materializes everything it reads as Python
+objects.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=72eea5119410473aa328ad9291626812">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32055a564e884a4eb2c1f2f17b58c0d9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2856,50 +2775,39 @@ task-specific configurations; pass the config name as the second argument to <co
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_causenet</span><span class="p">,</span> <span class="n">load_cgf</span><span class="p">,</span> <span class="n">save_cgf</span>
 
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">"thagen/AltLex"</span><span class="p">,</span> <span class="s2">"causality detection"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">CAUSENET_PRECISION_URL</span> <span class="o">=</span> <span class="s2">"https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-precision.jsonl.bz2"</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">load_causenet</span><span class="p">(</span><span class="n">CAUSENET_PRECISION_URL</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> edges"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-2">from datasets import load_dataset
+<div class="clipboard-copy-txt" id="cell-2">from causalatee.graph import load_causenet, load_cgf, save_cgf
 
-dataset = load_dataset("thagen/AltLex", "causality detection")
-print(dataset)</div>
+CAUSENET_PRECISION_URL = "https://groups.uni-paderborn.de/wdqa/causenet/causality-graphs/causenet-precision.jsonl.bz2"
+
+graph = load_causenet(CAUSENET_PRECISION_URL, limit=50)
+print(f"Loaded {len(graph.nodes)} nodes and {len(graph.edges)} edges")</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8edb47106e1a46a883d545849b8ab81b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b63fbd38646e4f2a8b0864ec40417726">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Expected output:</p>
-<pre><code>DatasetDict({
-    train: Dataset({features: ['index', 'text', 'label'], num_rows: 596})
-    test:  Dataset({features: ['index', 'text', 'label'], num_rows: 404})
-})
+<pre><code>Loaded 49 nodes and 50 edges
 </code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10185d26023b46108eb7d9f57d49d2b3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="tokenize">Tokenize<a class="anchor-link" href="#tokenize">¶</a></h2><p>RoBERTa uses a byte-level BPE tokenizer. We truncate to the model's maximum length
-and pad to the longest sequence in each batch (handled automatically by the <code>Trainer</code>).</p>
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8763a12b2bbd4a93a75aff182afb95dc">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=82d6f26390fd45108eb53f0834ecd394">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2917,46 +2825,52 @@ and pad to the longest sequence in each batch (handled automatically by the <cod
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span>
-
-<span class="n">MODEL</span> <span class="o">=</span> <span class="s2">"roberta-base"</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">"text"</span><span class="p">],</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">tokenized</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"index"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">])</span>
-<span class="n">tokenized</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="s2">"torch"</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">"accident"</span><span class="p">)</span>
+<span class="n">top_effects</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">outgoing_edges</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">edge</span><span class="p">:</span> <span class="n">edge</span><span class="o">.</span><span class="n">support</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">top_effects</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">cause</span><span class="o">.</span><span class="n">concept</span><span class="si">!r}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">effect</span><span class="o">.</span><span class="n">concept</span><span class="si">!r}</span><span class="s2"> (support=</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">support</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-3">from transformers import AutoTokenizer
-
-MODEL = "roberta-base"
-tokenizer = AutoTokenizer.from_pretrained(MODEL)
-
-def tokenize(batch):
-    return tokenizer(batch["text"], truncation=True)
-
-tokenized = dataset.map(tokenize, batched=True, remove_columns=["index", "text"])
-tokenized.set_format("torch")</div>
+<div class="clipboard-copy-txt" id="cell-3">node = graph.get_node("accident")
+top_effects = sorted(node.outgoing_edges(), key=lambda edge: edge.support, reverse=True)[:3]
+for edge in top_effects:
+    print(f"{edge.cause.concept!r} -&gt; {edge.effect.concept!r} (support={edge.support})")</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7623eae2785240b9bd12b16a66d81610">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c52e3108fbc24149ab59a22e91585aec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="define-the-model">Define the model<a class="anchor-link" href="#define-the-model">¶</a></h2><p>We load <code>roberta-base</code> as a sequence classifier and attach the label mapping so that
-the trained model can produce human-readable predictions without extra post-processing.</p>
+<p>Expected output:</p>
+<pre><code>'accident' -&gt; 'death' (support=38)
+'accident' -&gt; 'injury' (support=32)
+'accident' -&gt; 'injuries' (support=27)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59ca58f09559419287f9df03adfd6925">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="save-as-cgf">Save as CGF<a class="anchor-link" href="#save-as-cgf">¶</a></h2><p><code>save_cgf</code> accepts any <code>causalatee.graph.Graph</code>, not just <code>CauseNet</code>. It streams nodes and edges
+through a disk-backed sort rather than holding everything in memory, and by default reuses the
+schemas the adapter defines for its own metadata (here, <code>CauseNetEdgeMetadataLean</code> is <em>not</em> yet in
+play -- this is the CauseNet adapter's own default schema, which embeds each relation's full
+supporting-sentence provenance in the <code>sources</code> field).</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7cdc8c89c7104fffa095e18ddfef8986">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=844da3fe521347b5a64cc87838fa2b14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2974,47 +2888,53 @@ the trained model can produce human-readable predictions without extra post-proc
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">"uncausal"</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">"causal"</span><span class="p">}</span>
-<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<span class="n">save_cgf</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s2">"causenet-sample.cgf"</span><span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="n">MODEL</span><span class="p">,</span>
-    <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span>
-    <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="s1">'causenet-sample.cgf'</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-4">from transformers import AutoModelForSequenceClassification
+<div class="clipboard-copy-txt" id="cell-4">import os
 
-id2label = {0: "uncausal", 1: "causal"}
-label2id = {v: k for k, v in id2label.items()}
+save_cgf(graph, "causenet-sample.cgf")
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL,
-    num_labels=2,
-    id2label=id2label,
-    label2id=label2id,
-)</div>
+print(f"{os.path.getsize('causenet-sample.cgf'):,} bytes")</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b118ea5561624da68c537baed56e602f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fbf680a3ec6f4a56943242047fbdc7ec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="evaluation-metric">Evaluation metric<a class="anchor-link" href="#evaluation-metric">¶</a></h2><p>Causality detection is evaluated with binary F1 (positive class = <code>causal</code>).</p>
+<p>Expected output:</p>
+<pre><code>17,717,600 bytes
+</code></pre>
+<p>That is large for just 50 edges: CauseNet's <code>sources</code> provenance can include thousands of full
+supporting sentences for well-attested relations like <code>accident -&gt; death</code>. Keep this in mind when
+converting a larger slice of CauseNet -- see below for how to drop it.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39f1ce7a57b24ffb9a3be504420d511a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="load-the-cgf-file-back">Load the CGF file back<a class="anchor-link" href="#load-the-cgf-file-back">¶</a></h2><p><code>load_cgf</code> memory-maps the file; nodes and edges are resolved lazily rather than being loaded
+into Python objects up front. Passing <code>validate=True</code> additionally performs a full structural and
+metadata check (sorted IDs, in-bounds offsets, valid Avro records for every node and edge).</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=938c804e27f84196a10c8828c723f798">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=256bbd448eab4a7fa5ff8bfca3278e63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3032,45 +2952,59 @@ model = AutoModelForSequenceClassification.from_pretrained(
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">evaluate</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">with</span> <span class="n">load_cgf</span><span class="p">(</span><span class="s2">"causenet-sample.cgf"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapped</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mapped </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapped</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapped</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span><span class="si">}</span><span class="s2"> edges"</span><span class="p">)</span>
 
-<span class="n">f1_metric</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"f1"</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">compute_metrics</span><span class="p">(</span><span class="n">eval_pred</span><span class="p">):</span>
-    <span class="n">logits</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">eval_pred</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">f1_metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">"binary"</span><span class="p">)</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">mapped</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">"accident"</span><span class="p">)</span>
+    <span class="n">top_effects</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">outgoing_edges</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">edge</span><span class="p">:</span> <span class="n">edge</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"support"</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">top_effects</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">id</span><span class="si">!r}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="si">!r}</span><span class="s2"> (support=</span><span class="si">{</span><span class="n">edge</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'support'</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-5">import evaluate
-import numpy as np
+<div class="clipboard-copy-txt" id="cell-5">with load_cgf("causenet-sample.cgf", validate=True) as mapped:
+    print(f"Mapped {len(mapped.nodes)} nodes and {len(mapped.edges)} edges")
 
-f1_metric = evaluate.load("f1")
-
-def compute_metrics(eval_pred):
-    logits, labels = eval_pred
-    predictions = np.argmax(logits, axis=-1)
-    return f1_metric.compute(predictions=predictions, references=labels, average="binary")</div>
+    node = mapped.get_node("accident")
+    top_effects = sorted(node.outgoing_edges(), key=lambda edge: edge.metadata["support"], reverse=True)[:3]
+    for edge in top_effects:
+        print(f"{edge.source.id!r} -&gt; {edge.target.id!r} (support={edge.metadata['support']})")</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=504fb2a444614c0babb325280ed9130a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf2a1b1a035240188e8debd021fbaf0c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="train">Train<a class="anchor-link" href="#train">¶</a></h2><p>The <code>TrainingArguments</code> below use sensible defaults for a classification fine-tune.
-Adjust <code>num_train_epochs</code>, <code>learning_rate</code>, and <code>per_device_train_batch_size</code> to
-match your available hardware.</p>
+<p>Expected output:</p>
+<pre><code>Mapped 49 nodes and 50 edges
+'accident' -&gt; 'death' (support=38)
+'accident' -&gt; 'injury' (support=32)
+'accident' -&gt; 'injuries' (support=27)
+</code></pre>
+<p>Note that a <code>CGFGraph</code> node's <code>metadata</code> is a plain <code>dict</code> decoded from Avro on access, so
+<code>edge.metadata["support"]</code> replaces the <code>edge.support</code> convenience property <code>CauseNetEdge</code>
+exposed.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1a27e870f9c14823a980ad018cff3bc8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="shrinking-the-file-with-a-custom-metadata-schema">Shrinking the file with a custom metadata schema<a class="anchor-link" href="#shrinking-the-file-with-a-custom-metadata-schema">¶</a></h2><p><code>save_cgf</code> lets you override either adapter schema, which is the documented way to drop fields you
+do not need -- for example, keeping only <code>support</code> and leaving out <code>sources</code> entirely:</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59bbdb311c014d738909a11f9e486628">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6156046449c74de49e3b628bceecba08">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3088,99 +3022,47 @@ match your available hardware.</p>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCollatorWithPadding</span><span class="p">,</span> <span class="n">Trainer</span><span class="p">,</span> <span class="n">TrainingArguments</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">lean_edge_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"record"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"CauseNetEdgeMetadataLean"</span><span class="p">,</span>
+    <span class="s2">"namespace"</span><span class="p">:</span> <span class="s2">"causalatee.graph.causenet"</span><span class="p">,</span>
+    <span class="s2">"fields"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"support"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"long"</span><span class="p">}],</span>
+<span class="p">}</span>
 
-<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
-    <span class="n">output_dir</span><span class="o">=</span><span class="s2">"roberta-causality-detection"</span><span class="p">,</span>
-    <span class="n">eval_strategy</span><span class="o">=</span><span class="s2">"epoch"</span><span class="p">,</span>
-    <span class="n">save_strategy</span><span class="o">=</span><span class="s2">"epoch"</span><span class="p">,</span>
-    <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">metric_for_best_model</span><span class="o">=</span><span class="s2">"f1"</span><span class="p">,</span>
-    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-    <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-5</span><span class="p">,</span>
-    <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
-    <span class="n">train_dataset</span><span class="o">=</span><span class="n">tokenized</span><span class="p">[</span><span class="s2">"train"</span><span class="p">],</span>
-    <span class="n">eval_dataset</span><span class="o">=</span><span class="n">tokenized</span><span class="p">[</span><span class="s2">"test"</span><span class="p">],</span>
-    <span class="n">data_collator</span><span class="o">=</span><span class="n">DataCollatorWithPadding</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">),</span>
-    <span class="n">compute_metrics</span><span class="o">=</span><span class="n">compute_metrics</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="n">save_cgf</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s2">"causenet-sample-lean.cgf"</span><span class="p">,</span> <span class="n">edge_metadata_schema</span><span class="o">=</span><span class="n">lean_edge_schema</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="s1">'causenet-sample-lean.cgf'</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> bytes"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-6">from transformers import DataCollatorWithPadding, Trainer, TrainingArguments
+<div class="clipboard-copy-txt" id="cell-6">lean_edge_schema = {
+    "type": "record",
+    "name": "CauseNetEdgeMetadataLean",
+    "namespace": "causalatee.graph.causenet",
+    "fields": [{"name": "support", "type": "long"}],
+}
 
-training_args = TrainingArguments(
-    output_dir="roberta-causality-detection",
-    eval_strategy="epoch",
-    save_strategy="epoch",
-    load_best_model_at_end=True,
-    metric_for_best_model="f1",
-    num_train_epochs=3,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=32,
-    learning_rate=2e-5,
-    warmup_steps=50,
-    fp16=True,
-    logging_steps=50,
-)
-
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=tokenized["train"],
-    eval_dataset=tokenized["test"],
-    data_collator=DataCollatorWithPadding(tokenizer),
-    compute_metrics=compute_metrics,
-)
-
-trainer.train()</div>
+save_cgf(graph, "causenet-sample-lean.cgf", edge_metadata_schema=lean_edge_schema)
+print(f"{os.path.getsize('causenet-sample-lean.cgf'):,} bytes")</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b43b363d81ae4b689946ece5c682cd59">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0ba1a65c93b420799647a5416ccfd38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Expected training output:</p>
-<pre><code>{'eval_loss': 0.6817, 'eval_f1': 0.0, 'epoch': 1.0}
-{'loss': 0.6924, 'grad_norm': 2.547, 'learning_rate': 1.96e-05, 'epoch': 1.316}
-{'eval_loss': 0.7360, 'eval_f1': 0.4674, 'epoch': 2.0}
-{'loss': 0.6405, 'grad_norm': 8.478, 'learning_rate': 4.688e-06, 'epoch': 2.632}
-{'eval_loss': 0.6791, 'eval_f1': 0.4664, 'epoch': 3.0}
+<p>Expected output:</p>
+<pre><code>4,400 bytes
 </code></pre>
-<p>Note: AltLex has only 596 training examples with a skewed test split (28% causal),
-so results on this dataset will be modest. Larger datasets like BECauSEv2 or
-combined training across multiple corpora will yield significantly better F1.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a65eabff63a45729fe45fb5ade58bdc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="evaluate">Evaluate<a class="anchor-link" href="#evaluate">¶</a></h2><p>After training, run a final evaluation on the test split.</p>
+<p>Dropping the per-edge provenance shrinks this 50-edge sample from ~17 MB to ~4 KB. <code>edge.metadata</code>
+now only contains the fields declared in the lean schema:</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c3933fab20d04ec698c2621248eb3be0">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9352edc5a6b34121bd0488c035eb2afc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3198,97 +3080,28 @@ combined training across multiple corpora will yield significantly better F1.</p
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">with</span> <span class="n">load_cgf</span><span class="p">(</span><span class="s2">"causenet-sample-lean.cgf"</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapped</span><span class="p">:</span>
+    <span class="n">edge</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">mapped</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">"accident"</span><span class="p">)</span><span class="o">.</span><span class="n">outgoing_edges</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-7">results = trainer.evaluate()
-print(results)</div>
+<div class="clipboard-copy-txt" id="cell-7">with load_cgf("causenet-sample-lean.cgf") as mapped:
+    edge = next(iter(mapped.get_node("accident").outgoing_edges()))
+    print(edge.metadata)</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4dd4641cc4064e0191573fe9c69df29b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b5b7a0898f546d391e15d89d8608a9c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Expected output:</p>
-<pre><code>{'eval_loss': 0.7360, 'eval_f1': 0.4674, 'eval_runtime': 0.186,
- 'eval_samples_per_second': 2173.1, 'eval_steps_per_second': 69.9, 'epoch': 3.0}
+<pre><code>{'support': 38}
 </code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8309879909854d7188b41380fd92a7c3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="use-the-model">Use the model<a class="anchor-link" href="#use-the-model">¶</a></h2><p>The trained model is compatible with causalatee's <code>CausalityDetectionPipeline</code>, which
-wraps it for convenient inference.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3ed186c9a28b402fb0bc4494df01f08d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.integrations.huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">CausalityDetectionPipeline</span>  <span class="c1"># noqa: F401 -- registers the pipeline</span>
-
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
-    <span class="s2">"causality-detection"</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">trainer</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
-    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">pipe</span><span class="p">(</span><span class="s2">"The heavy rainfall caused widespread flooding across the valley."</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-8">from transformers import pipeline
-
-from causalatee.integrations.huggingface import CausalityDetectionPipeline  # noqa: F401 -- registers the pipeline
-
-pipe = pipeline(
-    "causality-detection",
-    model=trainer.model,
-    tokenizer=tokenizer,
-)
-pipe("The heavy rainfall caused widespread flooding across the valley.")</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cb1e1581032b452c9409d6c6813c49d1">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Expected output:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">'label'</span><span class="p">:</span> <span class="s1">'causal'</span><span class="p">,</span> <span class="s1">'score'</span><span class="p">:</span> <span class="mf">0.973</span><span class="p">}</span>
-</pre></div>
 </div>
 </div>
 </div>

@@ -2,158 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/AltLex/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/BECauSEv1/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/BECauSEv2/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/BioCause/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/CCNC/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/CNC/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/CNCv2/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/COPA/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/CTB/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/CaTeRS/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/ESL/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/EventCausality/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/FinCausal20/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/FinCausal23/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/PDTB3/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/PDTBv2/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/PolitiCause/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/SCITE/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/SemEval2007T4/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/SemEval2010T8/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/SemEval2020T5/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/SemEval2023T8/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/TCR/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/datasets/UniCausal/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/candidate_extraction/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/causenet_cgf/</loc>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/detection/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/identification/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/examples/sdp_causality_extraction/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/graphs/causalgraphs/</loc>
+         <lastmod>2026-08-04</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/graphs/cgf_spec/</loc>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/models/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/models/biaffine_span_extraction/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/models/sdp_causality_extraction/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/reference/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/reference/data_utils/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
+    </url>
+    <url>
+         <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/reference/graph/</loc>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causal_event_candidate_detection/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_detection/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_extraction/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
     <url>
          <loc>https://TheMrSheldon.github.io/causality-toolkit/nightly/tasks/causality_identification/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-04</lastmod>
     </url>
 </urlset>
