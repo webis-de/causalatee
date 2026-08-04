@@ -102,7 +102,7 @@ class ConnectiveMatch:
         factor") still signals that the text is making a claim ABOUT a
         causal relationship, just denying it -- e.g. CCNC (Countercausal
         News Corpus) labels exactly this pattern as its own relation type
-        (``Relation.Concausal``) rather than "no relation", and this field
+        (``Relation.Countercausal``) rather than "no relation", and this field
         is what lets a caller draw that same distinction instead of
         collapsing every connective match to a single causal/not-causal
         bit.

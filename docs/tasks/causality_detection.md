@@ -5,8 +5,8 @@ express causal information?
 
 The task can be framed as:
 
-- **Binary classification** — `Causal` (procausal *or* countercausal) vs. `Uncausal`
-- **Ternary classification** — `Procausal` / `Countercausal` / `Uncausal`
+- **Binary classification** — `Causal` (either polarity) vs. `Uncausal`
+- **Ternary classification** — `Causal` / `Countercausal` / `Uncausal`
 
 The library currently exposes the binary formulation via `ClassLabel`.
 
@@ -58,7 +58,7 @@ Output: ClassLabel.Causal (1)   # countercausal
 
 {{ task_datasets("causality-detection") }}
 
-**CCNC** [@hagen:2025a] is the first dataset to explicitly distinguish procausal,
+**CCNC** [@hagen:2025a] is the first dataset to explicitly distinguish causal,
 countercausal, and uncausal sentences (inter-annotator agreement: Cohen's κ = 0.74).
 
 ## Models

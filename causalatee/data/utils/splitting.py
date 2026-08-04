@@ -11,10 +11,12 @@ are dropped and counted.
 Sentence boundaries are supplied by the caller (as a list of (start, end) character ranges) rather than computed here,
 so this module has no dependency on any particular sentence segmenter (spaCy, nltk, a regex splitter, ...).
 
-:func:`split_document_by_sentence` is the generic core. Given sentence ranges, a mapping of entity id -> character
-segments, and a list of "groups" (entity ids that must be kept together, e.g. a relation's two participants), it assigns
-each group to the one sentence it fits wholly inside and drops+counts the rest.
-:func:`split_identification_to_sentences` / :func:`split_extraction_to_sentences` are single-example convenience
+[`split_document_by_sentence`][causalatee.data.utils.split_document_by_sentence] is the generic core. Given sentence
+ranges, a mapping of entity id -> character segments, and a list of "groups" (entity ids that must be kept together,
+e.g. a relation's two participants), it assigns each group to the one sentence it fits wholly inside and drops+counts
+the rest.
+[`split_identification_to_sentences`][causalatee.data.utils.split_identification_to_sentences] /
+[`split_extraction_to_sentences`][causalatee.data.utils.split_extraction_to_sentences] are single-example convenience
 wrappers over that core, one per causalatee schema that carries spans (identification, extraction).
 """
 
@@ -83,7 +85,8 @@ def split_identification_to_sentences(
 
     ``text`` carries ``<eN>...</eN>`` entity markers (causalatee's identification schema); ``relations`` is the
     matching list of ``{"relationship", "first": eid, "second": eid}`` dicts. ``sent_ranges`` are character offsets
-    into the MARKER-STRIPPED text (i.e. what :func:`parse_entity_markers` returns as ``clean_text``), not the raw
+    into the MARKER-STRIPPED text (i.e. what [`parse_entity_markers`][causalatee.data.utils.parse_entity_markers]
+    returns as ``clean_text``), not the raw
     ``text`` -- markers shift offsets, so a sentence segmenter should run on the clean text first. Returns ``(rows,
     num_dropped)`` where each row is ``{"text": ..., "relations": [...]}``, one per sentence, and ``num_dropped``
     counts relations whose two entities don't both fit inside a single sentence.

@@ -23,8 +23,8 @@ Relation values come from `causalatee.data.constants.Relation`:
 | Value | Constant | Meaning |
 |-------|----------|---------|
 | 0 | `Relation.NoRelation` | The spans are not causally related |
-| 1 | `Relation.Procausal` | `first` causes `second` |
-| 2 | `Relation.Concausal` | `first` countercausally relates to `second` |
+| 1 | `Relation.Causal` | `first` causes `second` |
+| 2 | `Relation.Countercausal` | `first` countercausally relates to `second` |
 
 ### Example
 
@@ -32,13 +32,13 @@ Relation values come from `causalatee.data.constants.Relation`:
 Input text:  "<e1>The storm</e1> caused <e2>significant flooding</e2>."
 
 Output relations: [
-    {"relationship": 1, "first": "e1", "second": "e2"}   # Procausal
+    {"relationship": 1, "first": "e1", "second": "e2"}   # Causal
 ]
 
 Input text:  "<e1>Sugar</e1> does not cause <e2>hyperactivity</e2>."
 
 Output relations: [
-    {"relationship": 2, "first": "e1", "second": "e2"}   # Concausal
+    {"relationship": 2, "first": "e1", "second": "e2"}   # Countercausal
 ]
 ```
 

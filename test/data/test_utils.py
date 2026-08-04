@@ -303,7 +303,7 @@ class TestIdentificationBatchToDetection:
         # CTB, SemEval2010T8) explicitly list a relationship=0 (NoRelation)
         # entry for every non-causal candidate pair rather than omitting it
         # -- verified directly against real CTB data (3047 NoRelation vs.
-        # 270 Procausal entries). A merely non-empty relations list is NOT
+        # 270 Causal entries). A merely non-empty relations list is NOT
         # a valid causal check for those.
         batch = {
             "text": ["<e1>X</e1> happened near <e2>Y</e2>."],
@@ -312,7 +312,7 @@ class TestIdentificationBatchToDetection:
         out = identification_batch_to_detection(batch)
         assert out["label"] == [0]
 
-    def test_mix_of_norelation_and_procausal_is_causal(self):
+    def test_mix_of_norelation_and_causal_is_causal(self):
         batch = {
             "text": ["<e1>X</e1>, <e2>Y</e2>, and <e3>Z</e3> all happened."],
             "relations": [[

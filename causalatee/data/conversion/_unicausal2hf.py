@@ -17,7 +17,7 @@ def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -
     ["Bla", " ", "bla", " ", "Bla"], [[1], [], [2], [], [3]], {relationship: 1, "first": 0, "second": 1}
 
     pair_labels: optional list of int (one per entry in causal_text_w_pairs) that sets the
-    relationship type for each pair.  Defaults to Relation.Procausal for every pair.
+    relationship type for each pair.  Defaults to Relation.Causal for every pair.
     """
     text, withpairs = row["text"], row["causal_text_w_pairs"]
     # Step 1: Remove all <SIG> tags
@@ -88,8 +88,8 @@ def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -
                 curtags.remove(tagmap[int(match[3])])
             offset += len(match[1])
         # Each entry in withpairs contains exactly one cause (ARG0) and effect (ARG1)
-        label = pair_labels[pair_idx] if pair_labels is not None else Relation.Procausal
-        rtype = Relation.Procausal if label == Relation.Procausal else Relation.NoRelation
+        label = pair_labels[pair_idx] if pair_labels is not None else Relation.Causal
+        rtype = Relation.Causal if label == Relation.Causal else Relation.NoRelation
         relations.append((rtype, tagmap[0], tagmap[1]))
     tags, tagmap = minify(tags)
     # Relations whose entities have zero-length spans won't be in tagmap (zero-span entities are

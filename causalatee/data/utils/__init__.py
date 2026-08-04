@@ -6,14 +6,17 @@ downstream evaluation harness needs that isn't specific to any one corpus.
 Split into submodules by concern (all re-exported here, so
 ``from causalatee.data.utils import X`` keeps working unchanged):
 
-* :mod:`.markers` -- :func:`parse_entity_markers` / :func:`insert_entity_markers`,
+* `markers` -- [`parse_entity_markers`][causalatee.data.utils.parse_entity_markers] /
+  [`insert_entity_markers`][causalatee.data.utils.insert_entity_markers],
   the ``<eN>...</eN>`` marker <-> ``(clean_text, segments_by_eid)`` roundtrip
   used by causalatee's identification schema.
-* :mod:`.splitting` -- :func:`split_document_by_sentence` (the generic core:
-  given sentence ranges, entity segments, and "groups" of entity ids that
+* `splitting` -- [`split_document_by_sentence`][causalatee.data.utils.split_document_by_sentence]
+  (the generic core: given sentence ranges, entity segments, and "groups" of entity ids that
   must stay together, keep every group wholly inside one sentence, drop and
-  COUNT the rest) plus :func:`split_identification_to_sentences` /
-  :func:`split_extraction_to_sentences`, single-example wrappers over it.
+  COUNT the rest) plus
+  [`split_identification_to_sentences`][causalatee.data.utils.split_identification_to_sentences] /
+  [`split_extraction_to_sentences`][causalatee.data.utils.split_extraction_to_sentences],
+  single-example wrappers over it.
 
   Several source corpora (BioCause, CaTeRS's brat annotations, CREST's own
   aggregation) annotate causal relations over a whole document or section,
@@ -23,23 +26,26 @@ Split into submodules by concern (all re-exported here, so
   sentence] This substitution decreases Z") -- silently re-basing such a
   span onto the wrong sentence's text is a real bug, not a hypothetical one
   (previously observed: a marker landing mid-word, "h<e1>istidine", in an
-  early BioCause converter draft). :mod:`.splitting`'s job is to make the
+  early BioCause converter draft). `splitting`'s job is to make the
   correct behaviour a single, tested, reusable piece of code instead of a
   duplicated ad-hoc guard in every converter.
-* :mod:`.batch` -- ``Dataset.map(fn, batched=True, remove_columns=[...])``-
-  ready adapters over the above: :func:`identification_batch_to_sentences`,
-  :func:`extraction_batch_to_sentences`, :func:`identification_batch_to_detection_sentences`
-  (re-splitting to sentence level), and :func:`identification_batch_to_detection`
-  / :func:`identification_batch_to_extraction` (same-granularity detection/
-  extraction tables derived from an identification table, for datasets like
+* `batch` -- ``Dataset.map(fn, batched=True, remove_columns=[...])``-
+  ready adapters over the above:
+  [`identification_batch_to_sentences`][causalatee.data.utils.identification_batch_to_sentences],
+  [`extraction_batch_to_sentences`][causalatee.data.utils.extraction_batch_to_sentences],
+  [`identification_batch_to_detection_sentences`][causalatee.data.utils.identification_batch_to_detection_sentences]
+  (re-splitting to sentence level), and
+  [`identification_batch_to_detection`][causalatee.data.utils.identification_batch_to_detection] /
+  [`identification_batch_to_extraction`][causalatee.data.utils.identification_batch_to_extraction]
+  (same-granularity detection/extraction tables derived from an identification table, for datasets like
   CTB/ESL that only ship identification).
-* :mod:`.validation` -- :func:`verify_dataset`, structural sanity checks
+* `validation` -- [`verify_dataset`][causalatee.data.utils.verify_dataset], structural sanity checks
   (conflicting/duplicate relation pairs, entity ids with no parseable
   marker span) run over a converted split. Every ``conversion_script.py``
   should call this right before writing a split's parquet file and print
   any returned errors as warnings.
 
-IMPORTANT (see :mod:`.markers` for the full explanation): the ``<eN>...</eN>``
+IMPORTANT (see the `markers` module docstring for the full explanation): the ``<eN>...</eN>``
 markers only *look* like XML/HTML tags -- they are not, and do not need to
 be well-nested. Do not "fix" a non-nested marker sequence, and do not add
 crossing-span detection/dropping logic on the assumption that it's needed

@@ -1,11 +1,13 @@
 """``Dataset.map(fn, batched=True, remove_columns=[...])``-ready adapters, so callers never have to hand-roll the loop
 over ``.map()``'s batch dicts.
 
-:func:`identification_batch_to_sentences`, :func:`extraction_batch_to_sentences`,
-:func:`identification_batch_to_detection_sentences` re-split a whole-document/whole-section dataset to sentence level
-(one whole-document batch in, one larger per-sentence batch out) -- thin loops around :mod:`.splitting`'s single-example
-functions, kept here instead of hand-rolled per-project so "re-split this dataset into sentences" is always a one-line
-``.map()`` call:
+[`identification_batch_to_sentences`][causalatee.data.utils.identification_batch_to_sentences],
+[`extraction_batch_to_sentences`][causalatee.data.utils.extraction_batch_to_sentences],
+[`identification_batch_to_detection_sentences`][causalatee.data.utils.identification_batch_to_detection_sentences]
+re-split a whole-document/whole-section dataset to sentence level
+(one whole-document batch in, one larger per-sentence batch out) -- thin loops around the `splitting` module's
+single-example functions, kept here instead of hand-rolled per-project so "re-split this dataset into sentences" is
+always a one-line ``.map()`` call:
 
 Example:
     ```python
@@ -15,7 +17,8 @@ Example:
     )
     ```
 
-:func:`identification_batch_to_detection` / :func:`identification_batch_to_extraction` instead derive a
+[`identification_batch_to_detection`][causalatee.data.utils.identification_batch_to_detection] /
+[`identification_batch_to_extraction`][causalatee.data.utils.identification_batch_to_extraction] instead derive a
 detection/extraction table at the SAME granularity (no sentence splitting at all) -- for datasets that only ship an
 identification table (e.g. CTB, ESL) but need a detection or extraction table too.
 """
@@ -32,7 +35,7 @@ from .splitting import split_document_by_sentence, split_extraction_to_sentences
 
 def _filter_causal_relations(relations: Sequence[Mapping]) -> list:
     """Filters the relation list for those that are causal; i.e., those that have not set ``relationship`` to 0
-    (:attr:`~causalatee.data.constants.Relation.NoRelation`).
+    (``Relation.NoRelation``).
 
     Some converters explicitly record a ``relationship: 0`` (NoRelation) entry for every non-causal candidate pair
     rather than omitting it, so "relations list is non-empty" is NOT a valid causal check for those. Other
@@ -47,7 +50,8 @@ def identification_batch_to_sentences(
     batch: Mapping[str, Sequence],
     sentence_ranges_fn: Callable[[str], Sequence[Span]],
 ) -> dict[str, list]:
-    """Batched wrapper around :func:`~.splitting.split_identification_to_sentences`.
+    """Batched wrapper around
+    [`split_identification_to_sentences`][causalatee.data.utils.split_identification_to_sentences].
 
     ``sentence_ranges_fn(clean_text) -> [(start, end), ...]`` supplies sentence boundaries for the marker-stripped
     text (any segmenter -- spaCy, nltk, a regex splitter).
@@ -66,7 +70,7 @@ def extraction_batch_to_sentences(
     batch: Mapping[str, Sequence],
     sentence_ranges_fn: Callable[[str], Sequence[Span]],
 ) -> dict[str, list]:
-    """Batched wrapper around :func:`~.splitting.split_extraction_to_sentences`."""
+    """Batched wrapper around [`split_extraction_to_sentences`][causalatee.data.utils.split_extraction_to_sentences]."""
     out_text: list[str] = []
     out_entity: list[list] = []
     for text, entities in zip(batch["text"], batch["entity"]):
@@ -105,7 +109,7 @@ def identification_batch_to_detection(batch: Mapping[str, Sequence]) -> dict[str
     """Derive a causality-DETECTION batch (text + 0/1 label) from an IDENTIFICATION batch, at the SAME granularity (no
     sentence splitting).
 
-    A row is causal iff it has at least one ACTUALLY CAUSAL relation (see :func:`_filter_causal_relations` -- a
+    A row is causal iff it has at least one ACTUALLY CAUSAL relation (see ``_filter_causal_relations`` -- a
     merely non-empty ``relations`` list is NOT enough, since some converters explicitly list NoRelation entries for
     non-causal pairs rather than omitting them). This matches how every converter in this project derives a
     detection label from relation presence (e.g. CCNC's countercausal sentences, which still count as causal for
@@ -114,7 +118,8 @@ def identification_batch_to_detection(batch: Mapping[str, Sequence]) -> dict[str
 
     NOT the right choice for BioCause: its own detection convention counts a document as causal if it has ANY marked
     entity, even an unpaired Effect-only one with no Cause and hence no relation -- see
-    :func:`identification_batch_to_detection_sentences` for that case.
+    [`identification_batch_to_detection_sentences`][causalatee.data.utils.identification_batch_to_detection_sentences]
+    for that case.
     """
     out_text: list[str] = []
     out_label: list[int] = []
@@ -130,7 +135,7 @@ def identification_batch_to_extraction(batch: Mapping[str, Sequence]) -> dict[st
     granularity (no sentence splitting).
 
     Only entities that participate in at least one ACTUALLY CAUSAL relation are kept (see
-    :func:`_filter_causal_relations`) -- matching this project's "only causal_eids" convention used by other
+    ``_filter_causal_relations``) -- matching this project's "only causal_eids" convention used by other
     converters throughout. Rows with no causal relation at all are dropped from the output entirely (nothing to
     extract), so the output can have fewer rows than the input, same as this module's sentence-splitting adapters.
     """

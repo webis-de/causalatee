@@ -17,7 +17,7 @@ flowchart LR
     D["3. Causality\nIdentification"]
     --> E(["`*(The storm,
     significant flooding,
-    Procausal)*`"])
+    Causal)*`"])
 
     B -- uncausal --> Z([Discard])
 
@@ -40,7 +40,7 @@ A fully extracted relation is a triple:
 |-------|------|-------------|
 | `cause` | `str` | The causing event span |
 | `effect` | `str` | The caused event span |
-| `relation` | `Relation` | `Procausal` or `Concausal` |
+| `relation` | `Relation` | `Causal` or `Countercausal` |
 
 ### Example
 
@@ -50,7 +50,7 @@ Input:  "The storm caused significant flooding."
 Output: {
     cause:    "The storm",
     effect:   "significant flooding",
-    relation: Relation.Procausal
+    relation: Relation.Causal
 }
 
 Input:  "Sugar does not cause hyperactivity."
@@ -58,7 +58,7 @@ Input:  "Sugar does not cause hyperactivity."
 Output: {
     cause:    "Sugar",
     effect:   "hyperactivity",
-    relation: Relation.Concausal
+    relation: Relation.Countercausal
 }
 ```
 

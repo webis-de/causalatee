@@ -1,7 +1,7 @@
 site_name: Causalatee
 site_url: https://TheMrSheldon.github.io/causality-toolkit/
-repo_url: https://github.com/TheMrSheldon/causality-toolkit
-repo_name: TheMrSheldon/causality-toolkit
+repo_url: https://github.com/webis-de/causalatee
+repo_name: webis-de/causalatee
 edit_uri: edit/main/docs/
 
 theme:
@@ -89,4 +89,5 @@ nav:
       - Causal Candidate Extraction: examples/candidate_extraction.ipynb
       - Causality Identification: examples/identification.ipynb
       - SDP Causality Extraction: examples/sdp_causality_extraction.ipynb
+      - CauseNet and CGF: examples/causenet_cgf.ipynb
   - ...

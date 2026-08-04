@@ -21,6 +21,7 @@ classifiers = [
 ]
 dependencies = [
     "pandas[pyarrow]~=2.3",
+    "fastavro",
 ]
 dynamic = ["version"]
 
@@ -56,8 +57,8 @@ docs = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/TheMrSheldon/causality-toolkit"
-"Bug Tracker" = "https://github.com/TheMrSheldon/causality-toolkit/issues"
+"Homepage" = "https://github.com/webis-de/causalatee"
+"Bug Tracker" = "https://github.com/webis-de/causalatee/issues"
 
 [build-system]
 requires = ["setuptools>=75,<81", "setuptools-scm>=8,<10"]

@@ -24,7 +24,7 @@ def parse_entity_markers(text: str) -> tuple[str, dict[str, list[Span]]]:
 
     An id may open/close more than once -- a discontinuous mention, rendered as repeated ``<eN>...</eN>`` occurrences
     sharing the same id -- every occurrence accumulates onto that id's segment list, in left-to-right order. Inverse
-    of :func:`insert_entity_markers`.
+    of [`insert_entity_markers`][causalatee.data.utils.insert_entity_markers].
 
     NOT an XML parser: matching is per entity id (module docstring has the details), so ``text`` does not need to be
     well-nested -- markers for two genuinely crossing spans parse correctly.
@@ -51,7 +51,7 @@ def insert_entity_markers(text: str, segments_by_eid: Mapping[str, Sequence[Span
 
     Left-to-right, stack-based: closes innermost-first and opens outermost (longest span) first at each boundary, so
     nested and disjoint spans come out correctly nested. Output need not be nested when spans cross -- see the
-    module docstring. Inverse of :func:`parse_entity_markers`.
+    module docstring. Inverse of [`parse_entity_markers`][causalatee.data.utils.parse_entity_markers].
     """
     opens: dict[int, list[str]] = {}
     closes: dict[int, list[str]] = {}

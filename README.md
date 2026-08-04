@@ -5,7 +5,7 @@
 # Installation
 
 ```bash
-pip install git+https://github.com/TheMrSheldon/causality-toolkit.git
+pip install git+https://github.com/webis-de/causalatee.git
 ```
 
 # Building the Documentation

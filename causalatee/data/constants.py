@@ -21,11 +21,11 @@ class Task(StrEnum):
 class ClassLabel(IntEnum):
     # The text does not contain any causal information
     Uncausal = 0
-    # The text contains come causal information (pro- or concausal)
+    # The text contains come causal information (causal or countercausal)
     Causal = 1
 
 
 class Relation(IntEnum):
     NoRelation = 0
-    Procausal = 1
-    Concausal = 2
+    Causal = 1
+    Countercausal = 2

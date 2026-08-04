@@ -222,7 +222,7 @@ class SciteTokenizer:
             Raw sentence, optionally containing ``<eN>…</eN>`` entity markers.
         relations:
             List of relation dicts with keys ``"first"``, ``"second"``, and
-            ``"relationship"`` (1 = procausal).  Procausal relations are extracted;
+            ``"relationship"`` (1 = causal).  Causal relations are extracted;
             other values are ignored.  Mutually exclusive with ``causes``/``effects``.
         causes:
             List of cause entity IDs, e.g. ``["e1", "e3"]``.

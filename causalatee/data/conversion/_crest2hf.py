@@ -152,7 +152,7 @@ class CREST2HF(FormatConverter):
                 cause_span, effect_span = (span2, span1) if direction == 1 else (span1, span2)
                 relations.append(
                     {
-                        "relationship": Relation.Procausal,
+                        "relationship": Relation.Causal,
                         "first": f"e{usable_spans[cause_span] + 1}",
                         "second": f"e{usable_spans[effect_span] + 1}",
                     }
