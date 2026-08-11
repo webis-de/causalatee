@@ -6,30 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="The Lexical Cause-Effect Graph (CEG) is a word-level cause/effect graph mined at CausalBank scale, with an occurrence count and two causal-strength scores ("necessity" and "sufficiency") per pair.">
       
       
-        <link rel="canonical" href="https://causalatee.webis.de/nightly/datasets/FinCausal20/">
+      
+        <link rel="canonical" href="https://causalatee.webis.de/nightly/graphs/graphs/cause_effect_graph/">
       
       
-        <link rel="prev" href="../EventCausality/">
+        <link rel="prev" href="../../cgf_spec/">
       
       
-        <link rel="next" href="../FinCausal23/">
+        <link rel="next" href="../causenet/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
-        <title>FinCausal 2020 (FinCausal-20) - Causalatee</title>
+        <title>CauseEffectGraph - Causalatee</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -48,11 +50,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../css/pills.css">
+      <link rel="stylesheet" href="../../../css/pills.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fincausal-2020-fincausal-20" class="md-skip">
+        <a href="#causeeffectgraph" class="md-skip">
           Skip to content
         </a>
       
@@ -90,9 +92,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Causalatee" class="md-header__button md-logo" aria-label="Causalatee" data-md-component="logo">
+    <a href="../../.." title="Causalatee" class="md-header__button md-logo" aria-label="Causalatee" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -109,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FinCausal 2020 (FinCausal-20)
+              CauseEffectGraph
             
           </span>
         </div>
@@ -199,9 +201,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Causalatee" class="md-nav__button md-logo" aria-label="Causalatee" data-md-component="logo">
+    <a href="../../.." title="Causalatee" class="md-nav__button md-logo" aria-label="Causalatee" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     Causalatee
@@ -228,7 +230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -312,7 +314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/causality_detection/" class="md-nav__link">
+      <a href="../../../tasks/causality_detection/" class="md-nav__link">
         
   
   
@@ -340,7 +342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/causality_extraction/" class="md-nav__link">
+      <a href="../../../tasks/causality_extraction/" class="md-nav__link">
         
   
   
@@ -368,7 +370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/causality_identification/" class="md-nav__link">
+      <a href="../../../tasks/causality_identification/" class="md-nav__link">
         
   
   
@@ -396,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tasks/causal_event_candidate_detection/" class="md-nav__link">
+      <a href="../../../tasks/causal_event_candidate_detection/" class="md-nav__link">
         
   
   
@@ -490,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/detection/" class="md-nav__link">
+      <a href="../../../examples/detection/" class="md-nav__link">
         
   
   
@@ -518,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/candidate_extraction/" class="md-nav__link">
+      <a href="../../../examples/candidate_extraction/" class="md-nav__link">
         
   
   
@@ -546,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/identification/" class="md-nav__link">
+      <a href="../../../examples/identification/" class="md-nav__link">
         
   
   
@@ -574,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/sdp_causality_extraction/" class="md-nav__link">
+      <a href="../../../examples/sdp_causality_extraction/" class="md-nav__link">
         
   
   
@@ -602,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/causenet_cgf/" class="md-nav__link">
+      <a href="../../../examples/causenet_cgf/" class="md-nav__link">
         
   
   
@@ -634,10 +636,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -693,15 +693,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../../datasets/" class="md-nav__link ">
               
   
   
@@ -725,7 +725,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -743,7 +743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../AltLex/" class="md-nav__link">
+      <a href="../../../datasets/AltLex/" class="md-nav__link">
         
   
   
@@ -771,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BECauSEv1/" class="md-nav__link">
+      <a href="../../../datasets/BECauSEv1/" class="md-nav__link">
         
   
   
@@ -799,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BECauSEv2/" class="md-nav__link">
+      <a href="../../../datasets/BECauSEv2/" class="md-nav__link">
         
   
   
@@ -827,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BioCause/" class="md-nav__link">
+      <a href="../../../datasets/BioCause/" class="md-nav__link">
         
   
   
@@ -855,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CCNC/" class="md-nav__link">
+      <a href="../../../datasets/CCNC/" class="md-nav__link">
         
   
   
@@ -883,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CNC/" class="md-nav__link">
+      <a href="../../../datasets/CNC/" class="md-nav__link">
         
   
   
@@ -911,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CNCv2/" class="md-nav__link">
+      <a href="../../../datasets/CNCv2/" class="md-nav__link">
         
   
   
@@ -939,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../COPA/" class="md-nav__link">
+      <a href="../../../datasets/COPA/" class="md-nav__link">
         
   
   
@@ -967,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CTB/" class="md-nav__link">
+      <a href="../../../datasets/CTB/" class="md-nav__link">
         
   
   
@@ -995,7 +995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CaTeRS/" class="md-nav__link">
+      <a href="../../../datasets/CaTeRS/" class="md-nav__link">
         
   
   
@@ -1023,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ESL/" class="md-nav__link">
+      <a href="../../../datasets/ESL/" class="md-nav__link">
         
   
   
@@ -1051,7 +1051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../EventCausality/" class="md-nav__link">
+      <a href="../../../datasets/EventCausality/" class="md-nav__link">
         
   
   
@@ -1076,37 +1076,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    FinCausal 2020 (FinCausal-20)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../datasets/FinCausal20/" class="md-nav__link">
         
   
   
@@ -1122,48 +1095,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tasks-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tasks &amp; Splits
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1176,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../FinCausal23/" class="md-nav__link">
+      <a href="../../../datasets/FinCausal23/" class="md-nav__link">
         
   
   
@@ -1204,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PDTB3/" class="md-nav__link">
+      <a href="../../../datasets/PDTB3/" class="md-nav__link">
         
   
   
@@ -1232,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PDTBv2/" class="md-nav__link">
+      <a href="../../../datasets/PDTBv2/" class="md-nav__link">
         
   
   
@@ -1260,7 +1191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PolitiCause/" class="md-nav__link">
+      <a href="../../../datasets/PolitiCause/" class="md-nav__link">
         
   
   
@@ -1288,7 +1219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SCITE/" class="md-nav__link">
+      <a href="../../../datasets/SCITE/" class="md-nav__link">
         
   
   
@@ -1316,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2007T4/" class="md-nav__link">
+      <a href="../../../datasets/SemEval2007T4/" class="md-nav__link">
         
   
   
@@ -1344,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2010T8/" class="md-nav__link">
+      <a href="../../../datasets/SemEval2010T8/" class="md-nav__link">
         
   
   
@@ -1372,7 +1303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2020T5/" class="md-nav__link">
+      <a href="../../../datasets/SemEval2020T5/" class="md-nav__link">
         
   
   
@@ -1400,7 +1331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2023T8/" class="md-nav__link">
+      <a href="../../../datasets/SemEval2023T8/" class="md-nav__link">
         
   
   
@@ -1428,7 +1359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TCR/" class="md-nav__link">
+      <a href="../../../datasets/TCR/" class="md-nav__link">
         
   
   
@@ -1456,7 +1387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../UniCausal/" class="md-nav__link">
+      <a href="../../../datasets/UniCausal/" class="md-nav__link">
         
   
   
@@ -1507,7 +1438,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../graphs/causalgraphs/" class="md-nav__link ">
+            <a href="../../causalgraphs/" class="md-nav__link ">
               
   
   
@@ -1549,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphs/cgf_spec/" class="md-nav__link">
+      <a href="../../cgf_spec/" class="md-nav__link">
         
   
   
@@ -1602,7 +1533,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../models/" class="md-nav__link ">
+            <a href="../../../models/" class="md-nav__link ">
               
   
   
@@ -1644,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/biaffine_span_extraction/" class="md-nav__link">
+      <a href="../../../models/biaffine_span_extraction/" class="md-nav__link">
         
   
   
@@ -1672,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sdp_causality_extraction/" class="md-nav__link">
+      <a href="../../../models/sdp_causality_extraction/" class="md-nav__link">
         
   
   
@@ -1729,7 +1660,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/" class="md-nav__link ">
+            <a href="../../../reference/" class="md-nav__link ">
               
   
   
@@ -1771,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/data_utils/" class="md-nav__link">
+      <a href="../../../reference/data_utils/" class="md-nav__link">
         
   
   
@@ -1799,7 +1730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/graph/" class="md-nav__link">
+      <a href="../../../reference/graph/" class="md-nav__link">
         
   
   
@@ -1827,7 +1758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/mining/" class="md-nav__link">
+      <a href="../../../reference/mining/" class="md-nav__link">
         
   
   
@@ -1855,7 +1786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/models/" class="md-nav__link">
+      <a href="../../../reference/models/" class="md-nav__link">
         
   
   
@@ -1903,36 +1834,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tasks-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tasks &amp; Splits
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1948,7 +1849,7 @@
 
 
   
-    <a href="https://github.com/webis-de/causalatee/edit/main/docs/datasets/FinCausal20.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/webis-de/causalatee/edit/main/docs/graphs/graphs/cause_effect_graph.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1957,76 +1858,41 @@
     
       
     
-    <a href="https://github.com/webis-de/causalatee/raw/main/docs/datasets/FinCausal20.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/webis-de/causalatee/raw/main/docs/graphs/graphs/cause_effect_graph.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<!-- TODO(user): add the FinCausal 2020 bibtex entry to docs/references/datasets.bib
-     (Mariko et al., FNP 2020, "The Financial Document Causality Detection Shared
-     Task", https://aclanthology.org/2020.fnp-1.3/), then set bib_key: in the
-     frontmatter above and add  to the bottom of this page. -->
+<h1 id="causeeffectgraph">CauseEffectGraph</h1>
+<p><a href="https://doi.org/10.24963/IJCAI.2020/502"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f4c4.png" title=":page_facing_up:" /></a> <a href="https://github.com/eecrazy/CausalBank"><img alt="🌐" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f310.png" title=":globe_with_meridians:" /></a></p>
+<p>The Lexical Cause-Effect Graph (CEG) is a word-level cause/effect graph mined at CausalBank scale, with an occurrence count and two causal-strength scores ("necessity" and "sufficiency") per pair.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_cause_effect_graph</span>
 
-<h1 id="fincausal-2020-fincausal-20">FinCausal 2020 (FinCausal-20)</h1>
-<p><span class="pill pill-inter-sentence">Inter-sentence (whole document/section)</span></p>
-<p>FinCausal annotates causal relations in financial disclosures and news, targeting quantified facts where a cause leads to a measurable financial effect. Converted directly from the FNP 2020 shared task organizers' own repository, using only the "practice" (train) and "trial" (test) splits — the "evaluation" split is an unlabeled blind test set that was never republished with gold labels.</p>
-<p>Each row is a whole text section (see the granularity pill above), not a single sentence: causal relations can genuinely span multiple sentences within one section, so a per-sentence schema would risk dropping or corrupting them — the same reasoning already applied to <a href="../BioCause/">BioCause</a> and <a href="../TCR/">TCR</a>.</p>
-<h2 id="overview">Overview</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Domain</strong></td>
-<td>Finance</td>
-</tr>
-<tr>
-<td><strong>Year</strong></td>
-<td>2020</td>
-</tr>
-<tr>
-<td><strong>Sentences</strong></td>
-<td>22,058</td>
-</tr>
-<tr>
-<td><strong>Granularity</strong></td>
-<td>Inter-sentence (whole document/section)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="tasks-splits">Tasks &amp; Splits</h2>
-<table>
-<thead>
-<tr>
-<th>Task</th>
-<th style="text-align: right;">Train</th>
-<th style="text-align: right;">Test</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../../tasks/causality_detection/">Causality Detection</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-<tr>
-<td><a href="../../tasks/causal_event_candidate_detection/">Causal Event Candidate Extraction</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-<tr>
-<td><a href="../../tasks/causality_identification/">Causality Identification</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-</tbody>
-</table>
+<span class="c1"># Download the CEG file from the CausalBank project (see the link above). Omitting `limit`</span>
+<span class="c1"># is safe even for the full release: node vocabulary loads eagerly (cheap), but edges always</span>
+<span class="c1"># stream from disk rather than being materialized as Python objects.</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">load_cause_effect_graph</span><span class="p">(</span><span class="s2">&quot;Lexical_Cause_Effect_Graph.txt&quot;</span><span class="p">)</span>
+
+<span class="n">storm</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;storm&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">storm</span><span class="o">.</span><span class="n">outgoing_edges</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">])</span>
+</code></pre></div>
+<h1 id="citation">Citation</h1>
+<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">li:2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Guided {{Generation}} of {{Cause}} and {{Effect}}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Proceedings of the {{Twenty-Ninth International Joint Conference}} on {{Artificial Intelligence}}, {{IJCAI}} 2020}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Li, Zhongyang and Ding, Xiao and Liu, Ting and Hu, J. Edward and Durme, Benjamin Van}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">editor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Bessiere, Christian}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{3629--3636}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{ijcai.org}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.24963/IJCAI.2020/502}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://doi.org/10.24963/ijcai.2020/502}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">urldate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2026-05-20}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -2112,14 +1978,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../js/dataset-page.js"></script>
+        <script src="../../../js/dataset-page.js"></script>
       
-        <script src="../../js/mathjax.js"></script>
+        <script src="../../../js/mathjax.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       

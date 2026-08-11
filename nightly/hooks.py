@@ -41,6 +41,10 @@ _GRANULARITY_LABELS = {
 }
 _DEFAULT_GRANULARITY = "intra-sentence"
 
+# Order the "Supported Causal Graphs" accordions appear in on causalgraphs.md --
+# matches the order they're introduced in that page's own prose, not alphabetical.
+_GRAPH_ORDER = ["causenet", "cgf", "cause_effect_graph"]
+
 
 def define_env(env):
     @env.macro
@@ -149,32 +153,91 @@ def define_env(env):
             )
         return "".join(lines)
 
-    @env.macro
-    def bibtex_entry(key):
-        """Look up ``key`` in docs/references/*.bib and render its raw entry in a ```bibtex fence.
-
-        Falls back to a plain ``[@key]`` inline citation if no matching entry is found.
-        """
+    def _find_bib_entry(key):
+        """Return the raw text of docs/references/*.bib's entry for ``key``, or None."""
         import re
         from pathlib import Path
 
         refs_dir = Path(env.conf["docs_dir"]) / "references"
-        entry = None
         for bib_file in refs_dir.glob("*.bib"):
             text = bib_file.read_text()
             # Split on entry boundaries and find the one matching our key
             for candidate in re.split(r"\n(?=@)", text.strip()):
                 m = re.match(r"@\w+\{([^,\s]+)", candidate)
                 if m and m.group(1) == key:
-                    entry = candidate.strip()
-                    break
-            if entry:
-                break
+                    return candidate.strip()
+        return None
 
+    @env.macro
+    def bibtex_entry(key):
+        """Look up ``key`` in docs/references/*.bib and render its raw entry in a ```bibtex fence.
+
+        Falls back to a plain ``[@key]`` inline citation if no matching entry is found.
+        """
+        entry = _find_bib_entry(key)
         if not entry:
             return f"[@{key}]\n"
-
         return f"```bibtex\n{entry}\n```\n"
+
+    def _paper_link(key):
+        """DOI (preferred, as a doi.org URL) or URL field from ``key``'s own .bib entry, or
+        None if the entry has neither -- so a paper-icon link never needs its own duplicated
+        frontmatter field, just the same bib_key already used for the citation itself."""
+        import re
+
+        entry = _find_bib_entry(key)
+        if not entry:
+            return None
+        doi = re.search(r'doi\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
+        if doi:
+            return f"https://doi.org/{doi.group(1)}"
+        url = re.search(r'url\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
+        return url.group(1) if url else None
+
+    def _resolve_link(target, from_src_path):
+        """Resolve ``target`` to a link valid from whatever page is currently being rendered.
+
+        ``target`` is either an absolute URL (used as-is) or a path relative to ``docs_dir``
+        root (e.g. ``"graphs/cgf_spec.md"``) -- resolved against ``from_src_path`` (typically
+        ``env.page.file.src_path``, i.e. wherever this is actually being rendered right now, be
+        that a standalone page or an accordion built by another page's macro), so the SAME
+        frontmatter value produces a correct link regardless of which page embeds it.
+        """
+        if target.startswith(("http://", "https://")):
+            return target
+        from pathlib import PurePosixPath
+
+        depth = len(PurePosixPath(from_src_path).parent.parts)
+        return "../" * depth + target
+
+    def _icon_row(meta, from_src_path, *, docs_page_target=None):
+        """Badge-style icon links for a causal graph -- the same icon-row idea
+        ``dataset_badges()`` already applies to dataset pages:
+
+        - the paper (derived from ``bib_key``'s own doi/url field, if any)
+        - its website (``meta["website"]``, if set -- an external homepage like causenet.org,
+          or an internal page like the CGF spec; either way resolved via ``_resolve_link``)
+        - the generated docs page for this graph under docs/graphs/graphs/*.md
+          (``docs_page_target``, only passed by ``graph_accordions()`` -- omitted from a page's
+          own icon row, since that page linking to itself would be pointless)
+        """
+        icons = []
+        bib_key = meta.get("bib_key")
+        if bib_key:
+            paper_url = _paper_link(bib_key)
+            if paper_url:
+                icons.append(f"[:page_facing_up:]({paper_url})")
+        website = meta.get("website")
+        if website:
+            icons.append(f"[:globe_with_meridians:]({_resolve_link(website, from_src_path)})")
+        if docs_page_target:
+            icons.append(f"[:link:]({_resolve_link(docs_page_target, from_src_path)})")
+        return " ".join(icons)
+
+    @env.macro
+    def graph_page_icons():
+        """Icon row for a docs/graphs/graphs/*.md page's own body -- see ``_icon_row``."""
+        return _icon_row(env.page.meta, env.page.file.src_path)
 
     @env.macro
     def dataset_citation():
@@ -249,3 +312,54 @@ def define_env(env):
         for corpus, sents, domain, year, granularity, ref, badges in rows:
             lines.append(f"| {corpus} | {sents} | {domain} | {year} | {granularity} | {ref} | {badges} |\n")
         return "".join(lines)
+
+    @env.macro
+    def graph_accordions():
+        """Build one collapsible ``??? example`` block per file in docs/graphs/graphs/*.md, each
+        showing that graph backend's description, usage snippet, and (if present) citation.
+
+        Sourced entirely from each file's own frontmatter (``title``/``description``/
+        ``snippet``/``bib_key``), read directly from disk -- the same pattern
+        ``task_datasets`` already uses -- never from the file's rendered BODY. Each of those
+        files is also its own standalone page using the same fields via ``{{ page.meta.* }}``;
+        Jinja's ``page`` context inside a reused snippet resolves against the file being
+        RENDERED (this one), not wherever the content originally came from, so anything meant
+        to be reused across pages has to be a plain frontmatter value, not templated body text.
+        Verified empirically: an embedded ``{{ page.meta... }}``/``{{ bibtex_entry(...) }}``
+        call silently renders as literal, un-evaluated text when read this way, not an error.
+        """
+        import textwrap
+        from pathlib import Path
+
+        import yaml
+
+        graphs_dir = Path(env.conf["docs_dir"]) / "graphs" / "graphs"
+        blocks = []
+        for slug in _GRAPH_ORDER:
+            md_file = graphs_dir / f"{slug}.md"
+            if not md_file.exists():
+                continue
+            text = md_file.read_text()
+            if not text.startswith("---"):
+                continue
+            end = text.index("---", 3)
+            fm = yaml.safe_load(text[3:end]) or {}
+            title = fm.get("title", slug)
+            description = (fm.get("description") or "").strip()
+            snippet = (fm.get("snippet") or "").strip()
+            bib_key = fm.get("bib_key")
+
+            parts = []
+            icons = _icon_row(fm, env.page.file.src_path, docs_page_target=f"graphs/graphs/{slug}.md")
+            if icons:
+                parts.append(icons)
+            if description:
+                parts.append(description)
+            if snippet:
+                parts.append(f"```python\n{snippet}\n```")
+            if bib_key:
+                parts.append("**Citation:**\n\n" + bibtex_entry(bib_key))
+
+            block = f'??? example "{title}"\n\n' + textwrap.indent("\n\n".join(parts), "    ")
+            blocks.append(block)
+        return "\n\n".join(blocks)
