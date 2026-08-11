@@ -55,14 +55,14 @@ def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -
             for x in lst:
                 tag2pos[x].append(idx)
         pos2tag = defaultdict(list)
-        for tag, pos in tag2pos.items():
-            pos2tag[tuple(pos)].append(tag)
-        newtags = [[] for _ in range(len(tags))]
+        for tag, positions in tag2pos.items():
+            pos2tag[tuple(positions)].append(tag)
+        newtags: list[list[int]] = [[] for _ in range(len(tags))]
         tagmap: dict[int, int] = dict()
-        for i, (pos, tags) in enumerate(pos2tag.items()):
-            for t in tags:
+        for i, (position_group, tags_at_positions) in enumerate(pos2tag.items()):
+            for t in tags_at_positions:
                 tagmap[t] = i
-            for p in pos:
+            for p in position_group:
                 newtags[p].append(i)
         return newtags, tagmap
 
@@ -95,9 +95,9 @@ def _extract_entities_and_relations(row, pair_labels: list[int] | None = None) -
     # Relations whose entities have zero-length spans won't be in tagmap (zero-span entities are
     # invisible to minify); drop them rather than raising KeyError on malformed source data.
     remapped = []
-    for rtype, e1, e2 in relations:
+    for relation_type, e1, e2 in relations:
         if e1 in tagmap and e2 in tagmap:
-            remapped.append((rtype, tagmap[e1], tagmap[e2]))
+            remapped.append((relation_type, tagmap[e1], tagmap[e2]))
     return (splits, tags, remapped)
 
 

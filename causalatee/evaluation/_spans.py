@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Sequence
 
 
 def _mean(values: list[float], default: float = 0.0) -> float:
@@ -86,8 +87,8 @@ def dataset_span_scores(
 
 
 def bio_to_spans(
-    label_ids: list[int],
-    offset_mapping: list[tuple[int, int]],
+    label_ids: Sequence[int],
+    offset_mapping: Sequence[tuple[int, int]],
     id2label: dict[int, str],
     *,
     ignored_id: int = -100,

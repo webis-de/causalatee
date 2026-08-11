@@ -44,12 +44,16 @@ baselines = [
     "spacy>=3.7",
     "networkx>=3.0",
 ]
+mining = [
+    "aiostream>=0.5",
+]
 docs = [
     "mkdocs~=1.6",
     "mkdocs-material~=9.5",
     "mkdocs-bibtex~=2.16",
     "mkdocs-macros-plugin>=1.0",
     "mkdocs-awesome-pages-plugin>=2.9",
+    "mkdocs-section-index>=0.3",
     "mkdocs-jupyter>=0.24",
     "mkdocstrings[python]>=0.27,<1.0",
     "mike~=2.1",

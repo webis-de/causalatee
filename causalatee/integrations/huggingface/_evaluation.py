@@ -15,10 +15,9 @@ def span_compute_metrics(
 ) -> Callable[[EvalPrediction], dict[str, float]]:
     """Return a ``compute_metrics`` function for :class:`~transformers.Trainer`.
 
-    The returned callable decodes BIO token predictions to character-level spans
-    using the provided offset mappings, then computes macro-averaged precision,
-    recall, F1, granularity-penalised F1, and IoU — matching the Touché subtask-2
-    evaluator.
+    The returned callable decodes BIO token predictions to character-level spans using the provided offset mappings,
+    then computes macro-averaged precision, recall, F1, granularity-penalised F1, and IoU — matching the Touché
+    subtask-2 evaluator.
 
     Parameters
     ----------
@@ -27,9 +26,9 @@ def span_compute_metrics(
         ``{0: "O", 1: "B-CAUSE", 2: "I-CAUSE", ...}``.
         Typically ``model.config.id2label``.
     eval_offset_mappings:
-        Per-token ``(char_start, char_end)`` pairs for every example in the
-        evaluation split.  Capture these from the tokenised dataset *before*
-        removing them with ``remove_columns``, then pass the captured list here::
+        Per-token ``(char_start, char_end)`` pairs for every example in the evaluation split.  Capture these
+        from the tokenised dataset *before* removing them with ``remove_columns``, then pass the captured list
+        here::
 
             eval_offsets = tokenised_eval["offset_mapping"]
             trainer = Trainer(
@@ -40,13 +39,17 @@ def span_compute_metrics(
     Returns
     -------
     callable
-        A function with the signature ``(EvalPrediction) -> dict[str, float]``
-        accepted by :class:`~transformers.Trainer`.
+        A function with the signature ``(EvalPrediction) -> dict[str, float]`` accepted by
+        :class:`~transformers.Trainer`.
     """
     offsets = list(eval_offset_mappings)  # snapshot; avoids HF Dataset lazy-eval surprises
 
     def _compute_metrics(eval_pred: EvalPrediction) -> dict[str, float]:
         predictions = eval_pred.predictions
+        # transformers.Trainer wraps a multi-output model's predictions in a tuple; this pipeline only ever
+        # has one (token-classification) output.
+        if isinstance(predictions, tuple):
+            predictions = predictions[0]
         label_ids = eval_pred.label_ids
 
         # Accept both raw logits (3-D) and already argmax'd label ids (2-D).

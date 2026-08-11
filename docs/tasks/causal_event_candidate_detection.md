@@ -35,12 +35,11 @@ Spans can overlap when a phrase participates in multiple causal pairs within the
 
 ## Models
 
-Models are evaluated using **macro-averaged F₁** over extracted spans.
+A model for this task implements the
+[`causalatee.models.CandidateExtraction`][causalatee.models.CandidateExtraction] protocol —
+see the [API reference](../reference/models.md) for the full interface.
 
-| Model | F₁ | Reference |
-|-------|-----|-----------|
-| DistilBERT | 35.8% | [@sanh2019distilbert] |
-| RoBERTa | 44.0% | [@liu2019roberta] |
+Models are evaluated using **macro-averaged F₁** over extracted spans.
 
 !!! note
     Span extraction is substantially harder than sentence classification. The relatively low F₁

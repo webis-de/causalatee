@@ -13,14 +13,16 @@ change for that.
 from __future__ import annotations
 
 from collections import defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+
+import pandas as pd
 
 from causalatee.data.constants import Task
 
 from .markers import parse_entity_markers
 
 
-def _check_relation_pairs(relations_col: Sequence[Sequence[Mapping]]) -> list[str]:
+def _check_relation_pairs(relations_col: Iterable[Sequence[Mapping]]) -> list[str]:
     """Flag every (first, second) pair with more than one relation record.
 
     Two flavours, both worth surfacing but for different reasons:
@@ -53,7 +55,7 @@ def _check_relation_pairs(relations_col: Sequence[Sequence[Mapping]]) -> list[st
     return errors
 
 
-def _check_entity_markup(text_col: Sequence[str], relations_col: Sequence[Sequence[Mapping]]) -> list[str]:
+def _check_entity_markup(text_col: Iterable[str], relations_col: Iterable[Sequence[Mapping]]) -> list[str]:
     """Flag a relation whose entity id has no parseable ``<eN>...</eN>`` span.
 
     Corrupted or truncated markup can name an entity id in ``relations`` that
@@ -73,7 +75,7 @@ def _check_entity_markup(text_col: Sequence[str], relations_col: Sequence[Sequen
     return errors
 
 
-def verify_dataset(batch: Mapping[str, Sequence], task: Task) -> list[str]:
+def verify_dataset(batch: Mapping[str, Sequence] | pd.DataFrame, task: Task) -> list[str]:
     """Run every applicable structural check over one converted split.
 
     ``batch`` is column-oriented (``batch["text"]``, ``batch["relations"]``, ...) -- same convention as the

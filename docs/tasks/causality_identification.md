@@ -50,6 +50,17 @@ A sentence may contain multiple entity pairs and therefore multiple relation ent
 
 ## Models
 
+A model classifying exactly the two spans marked in `text` implements
+[`causalatee.models.PairwiseIdentification`][causalatee.models.PairwiseIdentification] —
+what nearly every trained relation classifier in the literature implements, and what
+every current identification model in this repo implements. A model that instead
+classifies every relation among an arbitrary number of marked spans in one call
+implements the more general
+[`causalatee.models.Identification`][causalatee.models.Identification]; see
+[`lift_pairwise_identification`][causalatee.models.lift_pairwise_identification] for
+building one of those from any `PairwiseIdentification` model. Full interfaces in the
+[API reference](../reference/models.md).
+
 Models are evaluated using **macro-averaged F₁**.
 
 | Model | F₁ | Reference |

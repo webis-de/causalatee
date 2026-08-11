@@ -10,7 +10,6 @@ except ImportError:
     ) from None
 
 from ._candidate_extraction import CausalCandidateExtractionPipeline
-from ._causality_extraction import CausalityExtractionPipeline
 from ._detection import CausalityDetectionPipeline
 from ._evaluation import span_compute_metrics
 from ._identification import CausalityIdentificationPipeline
@@ -35,6 +34,5 @@ __all__ = [
     "CausalityDetectionPipeline",
     "CausalCandidateExtractionPipeline",
     "CausalityIdentificationPipeline",
-    "CausalityExtractionPipeline",
     "span_compute_metrics",
 ]

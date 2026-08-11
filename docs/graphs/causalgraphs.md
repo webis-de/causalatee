@@ -1,8 +1,8 @@
 # Causal Graphs
 
-Sentence-level extraction (see [Tasks](../tasks/causality_detection.md)) recovers causal relations
-that are stated explicitly in text. **Causal graphs** aggregate such relations — one edge per
-`cause → effect` pair — into a knowledge graph that can be queried, traversed, and used as
+Causality extraction (see [Tasks](../tasks/causality_detection.md)) identifies causal relationships claimed in natural
+language text. **Causal graphs** aggregate such relations (one edge per
+`cause → effect` pair) into a knowledge graph that can be queried, traversed, and used as
 background knowledge (for example to look up whether a candidate cause/effect pair is already
 attested, or to expand a seed concept along its causal neighborhood).
 
@@ -13,6 +13,8 @@ attested, or to expand a seed concept along its causal neighborhood).
 - [`load_causenet`][causalatee.graph.load_causenet], an eager loader for the
   [CauseNet](https://causenet.org) causality graph and other
   compatible JSONL resources.
+- [`load_cause_effect_graph`][causalatee.graph.load_cause_effect_graph], a loader for the Lexical
+  Cause-Effect Graph (CEG) format, mined at CausalBank scale.
 - **CGF** (Causal Graph Format), a compact, memory-mappable binary format for storing a `Graph` on
   disk and traversing it without materializing it in Python objects — see the
   [CGF 1.0 specification](cgf_spec.md) for the full format.
@@ -56,6 +58,20 @@ it once for fast, low-memory access afterwards via `load_cgf`.
 
 See the [CauseNet and CGF](../examples/causenet_cgf.ipynb) notebook for a runnable walkthrough of
 loading a CauseNet sample, saving it as CGF, and loading it back.
+
+## Supported Causal Graphs
+
+{{ graph_accordions() }}
+
+## Citations
+
+CauseNet:
+
+{{ bibtex_entry("heindorf:2020") }}
+
+Cause Effect Graph (CausalBank):
+
+{{ bibtex_entry("li:2020") }}
 
 ## API Reference
 

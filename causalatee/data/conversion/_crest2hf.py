@@ -49,7 +49,10 @@ def _parse_idx(idx_str: str) -> tuple[tuple[int, int] | None, tuple[int, int] | 
     for line in idx_str.strip().split("\n"):
         parts = line.strip().split(" ")
         key = parts[0]
-        spans[key] = tuple(int(x) for x in parts[1].split(":")) if len(parts) > 1 and ":" in parts[1] else None  # type: ignore[assignment]
+        if len(parts) > 1 and ":" in parts[1]:
+            spans[key] = tuple(int(x) for x in parts[1].split(":"))  # type: ignore[assignment]
+        else:
+            spans[key] = None
     return spans.get("span1"), spans.get("span2")
 
 
@@ -84,12 +87,14 @@ class CREST2HF(FormatConverter):
 
     def _convert_causality_detection(self, split: str) -> pd.DataFrame:
         df = self._load_base_df(split)
-        df = df.groupby(by="ann_file")
-        df = df.agg({"context": "first", "split": "first", "ann_file": "first", "label": "max"})
-        df["text"] = df["context"]
-        df["index"] = df.apply(lambda row: f"{self._prefix}_{row['ann_file']}", axis=1)
-        df["label"] = df["label"].apply(lambda lbl: ClassLabel.Causal if lbl == 1 else ClassLabel.Uncausal)
-        return df[["index", "text", "label"]].set_index("index", verify_integrity=True)
+        grouped = df.groupby(by="ann_file")
+        aggregated = grouped.agg({"context": "first", "split": "first", "ann_file": "first", "label": "max"})
+        aggregated["text"] = aggregated["context"]
+        aggregated["index"] = aggregated.apply(lambda row: f"{self._prefix}_{row['ann_file']}", axis=1)
+        aggregated["label"] = aggregated["label"].apply(
+            lambda lbl: ClassLabel.Causal if lbl == 1 else ClassLabel.Uncausal
+        )
+        return aggregated[["index", "text", "label"]].set_index("index", verify_integrity=True)
 
     def _convert_causal_candidate_extraction(self, split: str) -> pd.DataFrame:
         df = self._load_base_df(split)

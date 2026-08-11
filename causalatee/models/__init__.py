@@ -1,0 +1,31 @@
+from ._protocols import (
+    CandidateExtraction,
+    CandidateSpan,
+    Detection,
+    DetectionResult,
+    ExtractedRelation,
+    Extraction,
+    Identification,
+    IdentifiedRelation,
+    PairwiseIdentification,
+    PairwiseRelation,
+    compose_extraction,
+    identify_candidates,
+    lift_pairwise_identification,
+)
+
+__all__ = [
+    "CandidateExtraction",
+    "CandidateSpan",
+    "Detection",
+    "DetectionResult",
+    "ExtractedRelation",
+    "Extraction",
+    "Identification",
+    "IdentifiedRelation",
+    "PairwiseIdentification",
+    "PairwiseRelation",
+    "compose_extraction",
+    "identify_candidates",
+    "lift_pairwise_identification",
+]

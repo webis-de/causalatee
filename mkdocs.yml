@@ -1,5 +1,5 @@
 site_name: Causalatee
-site_url: https://TheMrSheldon.github.io/causality-toolkit/
+site_url: https://causalatee.webis.de/
 repo_url: https://github.com/webis-de/causalatee
 repo_name: webis-de/causalatee
 edit_uri: edit/main/docs/
@@ -10,6 +10,7 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - navigation.indexes
 
 hooks:
   - docs/hooks.py
@@ -17,6 +18,7 @@ hooks:
 plugins:
   - search
   - awesome-pages
+  - section-index
   - mike
   - mkdocs-jupyter:
       execute: false

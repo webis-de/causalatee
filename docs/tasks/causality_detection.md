@@ -63,6 +63,10 @@ countercausal, and uncausal sentences (inter-annotator agreement: Cohen's κ = 0
 
 ## Models
 
+A model for this task implements the
+[`causalatee.models.Detection`][causalatee.models.Detection] protocol — see the
+[API reference](../reference/models.md) for the full interface.
+
 Models are evaluated using **macro-averaged F₁**.
 
 | Model | F₁ | Reference |

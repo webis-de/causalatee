@@ -15,19 +15,17 @@ from causalatee.evaluation._spans import bio_to_spans, span_scores
 class SpanMetric(torchmetrics.Metric):
     """Macro-averaged character-span metric for token-classification models.
 
-    Primary interface (:meth:`update`) takes character spans directly — the
-    same format that :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline`
-    returns in production.  :meth:`update_from_bio` is a convenience wrapper
-    for training loops where BIO token-label ids are more readily available.
+    Primary interface (:meth:`update`) takes character spans directly — the same format that
+    :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline` returns in production.
+    :meth:`update_from_bio` is a convenience wrapper for training loops where BIO token-label ids are more readily
+    available.
 
-    Compatible with multi-GPU / DDP: running sums are plain ``torch.Tensor``
-    states reduced with ``"sum"``.
+    Compatible with multi-GPU / DDP: running sums are plain ``torch.Tensor`` states reduced with ``"sum"``.
 
     Parameters
     ----------
     id2label:
-        Mapping from label index to BIO label string, e.g.
-        ``{0: "O", 1: "B-CAUSE", 2: "I-CAUSE", ...}``.
+        Mapping from label index to BIO label string, e.g. ``{0: "O", 1: "B-CAUSE", 2: "I-CAUSE", ...}``.
         Typically ``model.config.id2label``.
 
     Example
@@ -64,9 +62,19 @@ class SpanMetric(torchmetrics.Metric):
     higher_is_better: bool = True
     full_state_update: bool = False
 
+    precision: torch.Tensor
+    recall: torch.Tensor
+    f1: torch.Tensor
+    f1_gran: torch.Tensor
+    iou: torch.Tensor
+    count: torch.Tensor
+
     def __init__(self, id2label: dict[int, str]) -> None:
         super().__init__()
         self.id2label = id2label
+        # add_state() sets these attributes dynamically (for DDP reduction), so mypy can't infer their type
+        # from it alone -- the class-level annotations above tell mypy they're always torch.Tensor rather than
+        # falling back to Module.__getattr__'s generic Tensor | Module stub.
         for key in ("precision", "recall", "f1", "f1_gran", "iou"):
             self.add_state(key, default=torch.tensor(0.0), dist_reduce_fx="sum")
         self.add_state("count", default=torch.tensor(0), dist_reduce_fx="sum")
@@ -79,9 +87,8 @@ class SpanMetric(torchmetrics.Metric):
         """Accumulate one batch of character-span predictions.
 
         Both arguments use the same format that
-        :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline`
-        returns at inference time, so evaluation and production use the same
-        representation.
+        :class:`~causalatee.integrations.huggingface.CausalCandidateExtractionPipeline` returns at inference
+        time, so evaluation and production use the same representation.
 
         Parameters
         ----------
@@ -108,9 +115,8 @@ class SpanMetric(torchmetrics.Metric):
     ) -> None:
         """Accumulate from raw BIO token predictions (training-time convenience).
 
-        Use this when you have token-level logits / label ids rather than
-        decoded spans — for example inside a ``validation_step`` that receives
-        batched model outputs directly.
+        Use this when you have token-level logits / label ids rather than decoded spans — for example inside a
+        ``validation_step`` that receives batched model outputs directly.
 
         Parameters
         ----------
@@ -128,8 +134,8 @@ class SpanMetric(torchmetrics.Metric):
     def compute(self) -> dict[str, torch.Tensor]:
         """Return macro-averaged scores over all accumulated examples.
 
-        Keys are prefixed with ``span/`` so they appear grouped in loggers
-        that support namespacing (TensorBoard, W&B, etc.).
+        Keys are prefixed with ``span/`` so they appear grouped in loggers that support namespacing
+        (TensorBoard, W&B, etc.).
         """
         if self.count == 0:
             zero = torch.tensor(0.0)

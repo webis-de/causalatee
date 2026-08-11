@@ -78,5 +78,10 @@ A single sentence may yield multiple relation triples when several cause–effec
 
 ## Models
 
+A model for this end-to-end task implements
+[`causalatee.models.Extraction`][causalatee.models.Extraction] — see the
+[API reference](../reference/models.md) for the full interface. Each subtask page below
+links to the narrower protocol it implements individually.
+
 End-to-end causality extraction results are typically reported per subtask. See the individual task
 pages for model benchmarks.
