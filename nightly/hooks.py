@@ -12,6 +12,7 @@ def on_pre_build(config):
     for nb in src.glob("*.ipynb"):
         shutil.copy(nb, dst / nb.name)
 
+
 _TASK_NAMES = {
     "causality-detection": "Causality Detection",
     "causal-candidate-extraction": "Causal Event Candidate Extraction",
@@ -41,21 +42,50 @@ _GRANULARITY_LABELS = {
 }
 _DEFAULT_GRANULARITY = "intra-sentence"
 
+# A dataset page's frontmatter may set ``polarity``/``strength`` to describe whether its
+# original annotation distinguishes countercausal (negated-effect) relations, or hedged/
+# asserted causal strength, and whether causalatee's converter currently surfaces that in the
+# converted data:
+#   - "none": the original annotation carries no such signal.
+#   - "documented": the signal exists in the original annotation but causalatee's converter
+#     does not (yet) surface it -- usually because the upstream source causalatee actually reads
+#     (e.g. a UniCausal aggregation) already stripped the field before causalatee's own code runs.
+#   - "captured": the converted data actually carries the signal (e.g. via Relation.Countercausal).
+# Unset on a dataset page means "not yet assessed", not "none" -- the pill is simply omitted.
+_POLARITY_LABELS = {
+    "none": "No Polarity Signal",
+    "documented": "Polarity Documented, Not Converted",
+    "captured": "Polarity Captured",
+}
+_STRENGTH_LABELS = {
+    "none": "No Strength Signal",
+    "documented": "Strength Documented, Not Converted",
+    "captured": "Strength Captured",
+}
+
 # Order the "Supported Causal Graphs" accordions appear in on causalgraphs.md --
 # matches the order they're introduced in that page's own prose, not alphabetical.
-_GRAPH_ORDER = ["causenet", "cgf", "cause_effect_graph"]
+_GRAPH_ORDER = ["causenet", "cgf", "cause_effect_graph", "sql_graph"]
 
 
 def define_env(env):
     @env.macro
     def dataset_pills():
-        """Small colored ``<span class="pill pill-...">`` tags summarising
-        at-a-glance dataset properties (currently just granularity — see
-        ``_GRANULARITY_LABELS`` — but built to take more fields later)."""
+        """Small colored ``<span class="pill pill-...">`` tags summarizing
+        at-a-glance dataset properties: granularity (always shown), plus
+        polarity/strength (shown only when the page's frontmatter sets them —
+        see ``_POLARITY_LABELS``/``_STRENGTH_LABELS``)."""
         meta = env.page.meta
         granularity_key = meta.get("granularity", _DEFAULT_GRANULARITY)
-        label = _GRANULARITY_LABELS.get(granularity_key, granularity_key)
-        return f'<span class="pill pill-{granularity_key}">{label}</span>\n\n'
+        granularity_label = _GRANULARITY_LABELS.get(granularity_key, granularity_key)
+        pills = [f'<span class="pill pill-{granularity_key}">{granularity_label}</span>']
+        for field, labels in (("polarity", _POLARITY_LABELS), ("strength", _STRENGTH_LABELS)):
+            key = meta.get(field)
+            if key is None:
+                continue
+            label = labels.get(key, key)
+            pills.append(f'<span class="pill pill-{field}-{key}">{label}</span>')
+        return " ".join(pills) + "\n\n"
 
     @env.macro
     def dataset_badges():
@@ -125,9 +155,7 @@ def define_env(env):
         for task_id, url in embeds:
             if len(embeds) > 1:
                 lines.append(f"### {_TASK_NAMES.get(task_id, task_id)}\n\n")
-            lines.append(
-                f'<iframe src="{url}" frameborder="0" width="100%" height="560px"></iframe>\n\n'
-            )
+            lines.append(f'<iframe src="{url}" frameborder="0" width="100%" height="560px"></iframe>\n\n')
         return "".join(lines)
 
     @env.macro
@@ -148,8 +176,7 @@ def define_env(env):
             if len(entries) > 1:
                 lines.append(f"### {_TASK_NAMES.get(task_id, task_id)}\n\n")
             lines.append(
-                f'<div class="tira-leaderboard" data-tira-url="{url}">'
-                "<p><em>Loading leaderboard…</em></p></div>\n\n"
+                f'<div class="tira-leaderboard" data-tira-url="{url}"><p><em>Loading leaderboard…</em></p></div>\n\n'
             )
         return "".join(lines)
 
@@ -285,22 +312,28 @@ def define_env(env):
 
             link = f"[{title}]({link_base}/{md_file.stem}.md)"
             ref = f"[@{bib_key}]" if bib_key else "—"
-            badges = " ".join(
-                p for p in [
-                    f"[:page_facing_up:](https://doi.org/{doi})" if doi else "",
-                    f"[:hugging:]({hf_page})" if hf_page else "",
-                ]
-                if p
-            ) or "—"
-            rows.append((
-                link,
-                fm.get("sentences", "—"),
-                fm.get("domain", "—"),
-                str(fm.get("year", "—")),
-                granularity,
-                ref,
-                badges,
-            ))
+            badges = (
+                " ".join(
+                    p
+                    for p in [
+                        f"[:page_facing_up:](https://doi.org/{doi})" if doi else "",
+                        f"[:hugging:]({hf_page})" if hf_page else "",
+                    ]
+                    if p
+                )
+                or "—"
+            )
+            rows.append(
+                (
+                    link,
+                    fm.get("sentences", "—"),
+                    fm.get("domain", "—"),
+                    str(fm.get("year", "—")),
+                    granularity,
+                    ref,
+                    badges,
+                )
+            )
 
         if not rows:
             return ""

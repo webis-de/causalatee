@@ -31,6 +31,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -61,7 +64,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -116,6 +126,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -145,6 +181,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -445,6 +483,8 @@
       
         
       
+        
+      
     
     
     
@@ -456,8 +496,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -471,8 +512,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
@@ -760,6 +807,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mining a Causal Graph from a Corpus with
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -775,6 +850,8 @@
   
     
     
+      
+        
       
         
       
@@ -1334,6 +1411,34 @@
     
   
     PolitiCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PubMedCausal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PubMedCausal
   
 
     
@@ -3006,6 +3111,7 @@ back into character spans.</p>
 <span class="n">LABEL2ID</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"O"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"B-SPAN"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"I-SPAN"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="n">ID2LABEL</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">LABEL2ID</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">char_spans_to_bio</span><span class="p">(</span><span class="n">char_start</span><span class="p">,</span> <span class="n">char_end</span><span class="p">,</span> <span class="n">gold_spans</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Return BIO label id for a single token given its character range."""</span>
     <span class="k">if</span> <span class="n">char_start</span> <span class="o">==</span> <span class="n">char_end</span><span class="p">:</span>  <span class="c1"># special token</span>
@@ -3015,6 +3121,7 @@ back into character spans.</p>
             <span class="k">return</span> <span class="n">LABEL2ID</span><span class="p">[</span><span class="s2">"B-SPAN"</span><span class="p">]</span> <span class="k">if</span> <span class="n">char_start</span> <span class="o">==</span> <span class="n">span_start</span> <span class="k">else</span> <span class="n">LABEL2ID</span><span class="p">[</span><span class="s2">"I-SPAN"</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">LABEL2ID</span><span class="p">[</span><span class="s2">"O"</span><span class="p">]</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">tokenize_and_align</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
     <span class="n">encoding</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
         <span class="n">batch</span><span class="p">[</span><span class="s2">"text"</span><span class="p">],</span>
@@ -3023,13 +3130,11 @@ back into character spans.</p>
     <span class="p">)</span>
     <span class="n">all_labels</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">offsets</span><span class="p">,</span> <span class="n">gold_spans</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">encoding</span><span class="p">[</span><span class="s2">"offset_mapping"</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">"entity"</span><span class="p">]):</span>
-        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">char_spans_to_bio</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ce</span><span class="p">,</span> <span class="n">gold_spans</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">cs</span><span class="p">,</span> <span class="n">ce</span> <span class="ow">in</span> <span class="n">offsets</span>
-        <span class="p">]</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">char_spans_to_bio</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ce</span><span class="p">,</span> <span class="n">gold_spans</span><span class="p">)</span> <span class="k">for</span> <span class="n">cs</span><span class="p">,</span> <span class="n">ce</span> <span class="ow">in</span> <span class="n">offsets</span><span class="p">]</span>
         <span class="n">all_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
     <span class="n">encoding</span><span class="p">[</span><span class="s2">"labels"</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_labels</span>
     <span class="k">return</span> <span class="n">encoding</span>
+
 
 <span class="c1"># Capture eval offsets before the column is removed</span>
 <span class="n">eval_offset_mappings</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">"test"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
@@ -3052,6 +3157,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL)
 LABEL2ID = {"O": 0, "B-SPAN": 1, "I-SPAN": 2}
 ID2LABEL = {v: k for k, v in LABEL2ID.items()}
 
+
 def char_spans_to_bio(char_start, char_end, gold_spans):
     """Return BIO label id for a single token given its character range."""
     if char_start == char_end:  # special token
@@ -3061,6 +3167,7 @@ def char_spans_to_bio(char_start, char_end, gold_spans):
             return LABEL2ID["B-SPAN"] if char_start == span_start else LABEL2ID["I-SPAN"]
     return LABEL2ID["O"]
 
+
 def tokenize_and_align(batch):
     encoding = tokenizer(
         batch["text"],
@@ -3069,13 +3176,11 @@ def tokenize_and_align(batch):
     )
     all_labels = []
     for offsets, gold_spans in zip(encoding["offset_mapping"], batch["entity"]):
-        labels = [
-            char_spans_to_bio(cs, ce, gold_spans)
-            for cs, ce in offsets
-        ]
+        labels = [char_spans_to_bio(cs, ce, gold_spans) for cs, ce in offsets]
         all_labels.append(labels)
     encoding["labels"] = all_labels
     return encoding
+
 
 # Capture eval offsets before the column is removed
 eval_offset_mappings = dataset["test"].map(
@@ -3457,6 +3562,12 @@ pipe("The heavy rainfall caused widespread flooding across the valley.")</div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -3519,7 +3630,7 @@ pipe("The heavy rainfall caused widespread flooding across the valley.")</div>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

@@ -31,6 +31,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -61,7 +64,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -116,6 +126,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -145,6 +181,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -443,6 +481,8 @@
       
         
       
+        
+      
     
     
     
@@ -454,8 +494,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../examples/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -469,8 +510,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
@@ -623,6 +670,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mining a Causal Graph from a Corpus with
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -638,6 +713,8 @@
   
     
     
+      
+        
       
         
       
@@ -1197,6 +1274,34 @@
     
   
     PolitiCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PubMedCausal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PubMedCausal
   
 
     
@@ -1957,6 +2062,9 @@ attested, or to expand a seed concept along its causal neighborhood).</p>
 <li><strong>CGF</strong> (Causal Graph Format), a compact, memory-mappable binary format for storing a <code>Graph</code> on
   disk and traversing it without materializing it in Python objects — see the
   <a href="../cgf_spec/">CGF 1.0 specification</a> for the full format.</li>
+<li><a class="autorefs autorefs-internal" title="SQLGraph(connection)" href="../../reference/graph/#causalatee.graph.SQLGraph"><code>SQLGraph</code></a>, a generic, mutable, SQLite-backed <code>Graph</code> you build
+  yourself via <code>add_node</code>/<code>add_edge</code> — unlike the loaders above, it has no external source to load
+  from (<code>causalatee.mining.GraphSink</code> uses one as its storage engine).</li>
 </ul>
 <h2 id="quick-start">Quick start</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_causenet</span><span class="p">,</span> <span class="n">save_cgf</span><span class="p">,</span> <span class="n">load_cgf</span>
@@ -2103,6 +2211,28 @@ loading a CauseNet sample, saving it as CGF, and loading it back.</p>
 <span class="p">}</span>
 </code></pre></div>
 </details>
+<details class="example">
+<summary>SQLGraph</summary>
+<p><a href="../graphs/sql_graph/"><img alt="🔗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f517.png" title=":link:" /></a></p>
+<p>SQLGraph is causalatee's generic, mutable, SQLite-backed causal graph, for building a graph incrementally rather than loading one from an existing external resource.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLGraph</span>
+
+<span class="c1"># Unlike causalatee&#39;s other graph implementations (CauseNet, CGF, CauseEffectGraph), SQLGraph has</span>
+<span class="c1"># no external source to load from -- build one yourself, one add_node()/add_edge() call at a</span>
+<span class="c1"># time. Use sqlite3.connect(&quot;:memory:&quot;) for a scratch graph, or a file path to persist it.</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">SQLGraph</span><span class="p">(</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;my_graph.sqlite3&quot;</span><span class="p">))</span>
+
+<span class="c1"># add_edge auto-creates missing endpoints. Metadata is stored generically as JSON, so any</span>
+<span class="c1"># JSON-serializable fields work -- there&#39;s no fixed schema like CauseNet&#39;s/CGF&#39;s typed edges.</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;storm&quot;</span><span class="p">,</span> <span class="s2">&quot;flooding&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;support&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+
+<span class="n">storm</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;storm&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">storm</span><span class="o">.</span><span class="n">outgoing_edges</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;support&quot;</span><span class="p">])</span>
+</code></pre></div>
+</details>
 <h2 id="citations">Citations</h2>
 <p>CauseNet:</p>
 <div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">heindorf:2020</span><span class="p">,</span>
@@ -2157,6 +2287,12 @@ loading a CauseNet sample, saving it as CGF, and loading it back.</p>
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -2220,7 +2356,7 @@ loading a CauseNet sample, saving it as CGF, and loading it back.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

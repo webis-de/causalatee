@@ -31,6 +31,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -61,7 +64,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -116,6 +126,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -145,6 +181,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -443,6 +481,8 @@
       
         
       
+        
+      
     
     
     
@@ -454,8 +494,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../examples/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -469,8 +510,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
@@ -623,6 +670,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/mining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mining a Causal Graph from a Corpus with
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -638,6 +713,8 @@
   
     
     
+      
+        
       
         
       
@@ -1197,6 +1274,34 @@
     
   
     PolitiCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PubMedCausal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PubMedCausal
   
 
     
@@ -1851,6 +1956,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1898,28 +2014,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causalatee.mining.MinedEdge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MinedEdge
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causalatee.mining.MinedNode" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MinedNode
-      
-    </span>
-  </a>
   
 </li>
         
@@ -2126,6 +2220,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2173,28 +2278,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causalatee.mining.MinedEdge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MinedEdge
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causalatee.mining.MinedNode" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MinedNode
-      
-    </span>
-  </a>
   
 </li>
         
@@ -2381,8 +2464,15 @@ stages are.</p>
 <a class="autorefs autorefs-internal" title="save_cgf(graph, path, *, include_incoming=True, node_metadata_schema=None, edge_metadata_schema=None)" href="../graph/#causalatee.graph.save_cgf"><code>save_cgf</code></a>. Every relation the pipeline emits is spooled
 to a temp SQLite database as it arrives (bounded memory regardless of corpus size);
 aggregation by <code>(cause, effect)</code> pair happens once, lazily, the first time <code>.nodes</code>/
-<code>.edges</code> is accessed. Close it (or use it as a context manager) once done with the
+<code>.edges</code> is accessed, and populates a
+<a class="autorefs autorefs-internal" title="SQLGraph(connection)" href="../graph/#causalatee.graph.SQLGraph"><code>SQLGraph</code></a> with one <code>add_edge</code> call per aggregated pair
+— <code>GraphSink</code> only owns the spooling/aggregation, <code>SQLGraph</code> is the generic,
+reusable storage engine. Close it (or use it as a context manager) once done with the
 resulting graph, the same way <a class="autorefs autorefs-internal" title="load_cgf(path, *, validate=False)" href="../graph/#causalatee.graph.load_cgf"><code>load_cgf</code></a> is used.</p>
+<h2 id="example">Example</h2>
+<p>See the <a href="../../examples/mining/">Mining a Causal Graph</a> notebook for a runnable
+walkthrough of the full pipeline -&gt; <code>graph_sink</code> -&gt; <code>save_cgf</code> flow, using a
+deterministic stand-in extraction function so it runs without a real model.</p>
 <h2 id="api-reference">API Reference</h2>
 
 
@@ -2429,7 +2519,7 @@ resulting graph, the same way <a class="autorefs autorefs-internal" title="load_
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="Graph (causalatee.graph.Graph)" href="../graph/#causalatee.graph.Graph">Graph</a>[<a class="autorefs autorefs-internal" title="MinedNode(graph, phrase) (causalatee.mining._graph_sink.MinedNode)" href="#causalatee.mining.MinedNode">MinedNode</a>, <a class="autorefs autorefs-internal" title="MinedEdge(graph, cause, effect, *, support, causal_count, countercausal_count, avg_score) (causalatee.mining._graph_sink.MinedEdge)" href="#causalatee.mining.MinedEdge">MinedEdge</a>]</code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="SQLGraph(connection) (causalatee.graph.SQLGraph)" href="../graph/#causalatee.graph.SQLGraph">SQLGraph</a></code></p>
 
 
 
@@ -2444,27 +2534,27 @@ resulting graph, the same way <a class="autorefs autorefs-internal" title="load_
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>causalatee/mining/_graph_sink.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_tempdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;causalatee-mining-&quot;</span><span class="p">)</span>
     <span class="n">db_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tempdir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;mentions.sqlite3&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
         <span class="s2">&quot;CREATE TABLE mentions (cause TEXT NOT NULL, effect TEXT NOT NULL, &quot;</span>
         <span class="s2">&quot;relation TEXT NOT NULL, score REAL NOT NULL)&quot;</span>
     <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">connection</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_aggregated</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_nodes_by_id</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MinedNode</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -2497,11 +2587,11 @@ resulting graph, the same way <a class="autorefs autorefs-internal" title="load_
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>causalatee/mining/_graph_sink.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
-<span class="normal">248</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Close the spool database and remove its temp directory.&quot;&quot;&quot;</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -2511,148 +2601,6 @@ resulting graph, the same way <a class="autorefs autorefs-internal" title="load_
     </div>
 
 </div>
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h3 id="causalatee.mining.MinedEdge" class="doc doc-heading">
-              <code class="highlight language-python"><span class="n">MinedEdge</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">cause</span><span class="p">,</span> <span class="n">effect</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">support</span><span class="p">,</span> <span class="n">causal_count</span><span class="p">,</span> <span class="n">countercausal_count</span><span class="p">,</span> <span class="n">avg_score</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="Edge(graph) (causalatee.graph.Edge)" href="../graph/#causalatee.graph.Edge">Edge</a>[<a class="autorefs autorefs-internal" title="MinedNode(graph, phrase) (causalatee.mining._graph_sink.MinedNode)" href="#causalatee.mining.MinedNode">MinedNode</a>, &#39;MinedEdge&#39;]</code></p>
-
-
-
-        <p>A directed cause-&gt;effect edge aggregated across every mention in the corpus.</p>
-
-
-
-
-
-
-
-
-                  <details class="mkdocstrings-source">
-                    <summary>Source code in <code>causalatee/mining/_graph_sink.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">graph</span><span class="p">:</span> <span class="n">GraphSink</span><span class="p">,</span>
-    <span class="n">cause</span><span class="p">:</span> <span class="n">MinedNode</span><span class="p">,</span>
-    <span class="n">effect</span><span class="p">:</span> <span class="n">MinedNode</span><span class="p">,</span>
-    <span class="o">*</span><span class="p">,</span>
-    <span class="n">support</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">causal_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">countercausal_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">avg_score</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_cause</span> <span class="o">=</span> <span class="n">cause</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_effect</span> <span class="o">=</span> <span class="n">effect</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">support</span> <span class="o">=</span> <span class="n">support</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">causal_count</span> <span class="o">=</span> <span class="n">causal_count</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">countercausal_count</span> <span class="o">=</span> <span class="n">countercausal_count</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">avg_score</span> <span class="o">=</span> <span class="n">avg_score</span>
-</code></pre></div></td></tr></table></div>
-                  </details>
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h3 id="causalatee.mining.MinedNode" class="doc doc-heading">
-              <code class="highlight language-python"><span class="n">MinedNode</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">phrase</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="Node(graph) (causalatee.graph.Node)" href="../graph/#causalatee.graph.Node">Node</a>[&#39;MinedNode&#39;, &#39;MinedEdge&#39;]</code></p>
-
-
-
-        <p>A single normalized cause/effect phrase mined from the corpus.</p>
-
-
-
-
-
-
-
-
-                  <details class="mkdocstrings-source">
-                    <summary>Source code in <code>causalatee/mining/_graph_sink.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="n">GraphSink</span><span class="p">,</span> <span class="n">phrase</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_phrase</span> <span class="o">=</span> <span class="n">phrase</span>
-</code></pre></div></td></tr></table></div>
-                  </details>
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3167,13 +3115,13 @@ aggregation/lifecycle details.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>causalatee/mining/_graph_sink.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">251</span>
-<span class="normal">252</span>
-<span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">graph_sink</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">GraphSink</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">graph_sink</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">GraphSink</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a ``Pipeline.reduce`` sink that aggregates every ``list[ExtractedRelation]`` batch it receives into a</span>
 <span class="sd">    ``causalatee.graph.Graph``, by ``(cause, effect)`` pair across the whole corpus. See ``GraphSink`` for the</span>
 <span class="sd">    aggregation/lifecycle details.</span>
@@ -3198,7 +3146,7 @@ aggregation/lifecycle details.</p>
     <div class="doc doc-contents ">
 
         <p><code>predicate=</code> for :meth:<code>Pipeline.filter</code> when <code>fn</code> is a <code>causalatee.models.Detection</code> model directly: true
-unless labelled "Uncausal" (case-insensitive) -- the exact check <code>causalatee.models._ComposedExtraction</code> makes
+unless labeled "Uncausal" (case-insensitive) -- the exact check <code>causalatee.models._ComposedExtraction</code> makes
 internally, so a mining pipeline's detection-gating stage agrees with the end-to-end <code>Extraction</code> composition
 rather than drifting from it.</p>
 
@@ -3213,7 +3161,7 @@ rather than drifting from it.</p>
 <span class="normal">223</span>
 <span class="normal">224</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">causal_predicate</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;``predicate=`` for :meth:`Pipeline.filter` when ``fn`` is a ``causalatee.models.Detection`` model directly: true</span>
-<span class="sd">    unless labelled &quot;Uncausal&quot; (case-insensitive) -- the exact check ``causalatee.models._ComposedExtraction`` makes</span>
+<span class="sd">    unless labeled &quot;Uncausal&quot; (case-insensitive) -- the exact check ``causalatee.models._ComposedExtraction`` makes</span>
 <span class="sd">    internally, so a mining pipeline&#39;s detection-gating stage agrees with the end-to-end ``Extraction`` composition</span>
 <span class="sd">    rather than drifting from it.&quot;&quot;&quot;</span>
 
@@ -3250,6 +3198,12 @@ rather than drifting from it.</p>
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -3313,7 +3267,7 @@ rather than drifting from it.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

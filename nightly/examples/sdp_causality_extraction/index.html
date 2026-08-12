@@ -31,6 +31,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -61,7 +64,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -116,6 +126,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -145,6 +181,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -445,6 +483,8 @@
       
         
       
+        
+      
     
     
     
@@ -456,8 +496,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -471,8 +512,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
@@ -772,6 +819,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mining a Causal Graph from a Corpus with
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -787,6 +862,8 @@
   
     
     
+      
+        
       
         
       
@@ -1346,6 +1423,34 @@
     
   
     PolitiCause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/PubMedCausal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PubMedCausal
   
 
     
@@ -2996,6 +3101,7 @@ syntactic argument spans rather than finding connectives or paths).</p>
 
 <span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"en_core_web_sm"</span><span class="p">)</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">subtree_span</span><span class="p">(</span><span class="n">token</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Return the (char_start, char_end) of the syntactic subtree rooted at token."""</span>
     <span class="n">subtree</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">subtree</span><span class="p">)</span>
@@ -3009,11 +3115,11 @@ from causalatee.nlp import find_causal_connectives, shortest_dependency_path
 
 nlp = spacy.load("en_core_web_sm")
 
+
 def subtree_span(token):
     """Return the (char_start, char_end) of the syntactic subtree rooted at token."""
     subtree = list(token.subtree)
-    return (min(t.idx for t in subtree), max(t.idx + len(t.text) for t in subtree))
-</div>
+    return (min(t.idx for t in subtree), max(t.idx + len(t.text) for t in subtree))</div>
 </div>
 </div>
 </div>
@@ -3146,7 +3252,7 @@ to a curated <strong>causal lexicon</strong>.</p>
     <span class="n">offsets</span><span class="p">,</span> <span class="n">starts</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
     <span class="n">result</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s2">"&lt;(/?e\d+)&gt;"</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="n">text</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">text</span><span class="p">[</span><span class="n">pos</span> <span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
         <span class="n">tag</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">tag</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"/"</span><span class="p">):</span>
             <span class="n">starts</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -3156,6 +3262,7 @@ to a curated <strong>causal lexicon</strong>.</p>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
     <span class="n">result</span> <span class="o">+=</span> <span class="n">text</span><span class="p">[</span><span class="n">pos</span><span class="p">:]</span>
     <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">offsets</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">predict_identification</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Return (true_label, predicted_label) for one identification example.</span>
@@ -3173,15 +3280,15 @@ to a curated <strong>causal lexicon</strong>.</p>
     <span class="n">clean</span><span class="p">,</span> <span class="n">spans</span> <span class="o">=</span> <span class="n">strip_markers</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">"text"</span><span class="p">])</span>
     <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">spans</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"e1"</span><span class="p">),</span> <span class="n">spans</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"e2"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">s1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">s2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>          <span class="c1"># no entity markers → predict no-relation</span>
+        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>  <span class="c1"># no entity markers → predict no-relation</span>
 
     <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">shortest_dependency_path</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>          <span class="c1"># span_head_token couldn't align a span</span>
+        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>  <span class="c1"># span_head_token couldn't align a span</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>          <span class="c1"># same head token, or no path (different sentences)</span>
+        <span class="k">return</span> <span class="n">true_label</span><span class="p">,</span> <span class="mi">0</span>  <span class="c1"># same head token, or no path (different sentences)</span>
 
     <span class="n">path_ranges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_token</span><span class="o">.</span><span class="n">idx</span><span class="p">,</span> <span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_token</span><span class="o">.</span><span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_token</span><span class="o">.</span><span class="n">text</span><span class="p">))]</span>
     <span class="n">path_ranges</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">step</span><span class="o">.</span><span class="n">to_token</span><span class="o">.</span><span class="n">idx</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">to_token</span><span class="o">.</span><span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">step</span><span class="o">.</span><span class="n">to_token</span><span class="o">.</span><span class="n">text</span><span class="p">))</span> <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">path</span><span class="p">]</span>
@@ -3195,7 +3302,7 @@ to a curated <strong>causal lexicon</strong>.</p>
     offsets, starts = {}, {}
     result, pos = "", 0
     for m in re.finditer(r"&lt;(/?e\d+)&gt;", text):
-        result += text[pos:m.start()]
+        result += text[pos : m.start()]
         tag = m.group(1)
         if not tag.startswith("/"):
             starts[tag] = len(result)
@@ -3205,6 +3312,7 @@ to a curated <strong>causal lexicon</strong>.</p>
         pos = m.end()
     result += text[pos:]
     return result, offsets
+
 
 def predict_identification(example):
     """Return (true_label, predicted_label) for one identification example.
@@ -3222,23 +3330,22 @@ def predict_identification(example):
     clean, spans = strip_markers(example["text"])
     s1, s2 = spans.get("e1"), spans.get("e2")
     if not s1 or not s2:
-        return true_label, 0          # no entity markers → predict no-relation
+        return true_label, 0  # no entity markers → predict no-relation
 
     doc = nlp(clean)
     try:
         path = shortest_dependency_path(doc, s1, s2)
     except ValueError:
-        return true_label, 0          # span_head_token couldn't align a span
+        return true_label, 0  # span_head_token couldn't align a span
     if not path:
-        return true_label, 0          # same head token, or no path (different sentences)
+        return true_label, 0  # same head token, or no path (different sentences)
 
     path_ranges = [(path[0].from_token.idx, path[0].from_token.idx + len(path[0].from_token.text))]
     path_ranges += [(step.to_token.idx, step.to_token.idx + len(step.to_token.text)) for step in path]
 
     connectives = find_causal_connectives(doc)
     causal = any(c.start &lt; end and c.end &gt; start for start, end in path_ranges for c in connectives)
-    return true_label, int(causal)
-</div>
+    return true_label, int(causal)</div>
 </div>
 </div>
 </div>
@@ -3444,14 +3551,11 @@ print(dataset_ex)</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">causalatee.nlp</span><span class="w"> </span><span class="kn">import</span> <span class="n">CAUSAL_CONNECTIVES</span>
 
 <span class="c1"># Only single-word entries apply here -- see the note above.</span>
-<span class="n">SINGLE_WORD_LEMMAS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">phrase</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"verb"</span><span class="p">,</span> <span class="s2">"noun"</span><span class="p">)</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">CAUSAL_CONNECTIVES</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span>
-    <span class="k">if</span> <span class="s2">" "</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phrase</span>
-<span class="p">}</span>
+<span class="n">SINGLE_WORD_LEMMAS</span> <span class="o">=</span> <span class="p">{</span><span class="n">phrase</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"verb"</span><span class="p">,</span> <span class="s2">"noun"</span><span class="p">)</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">CAUSAL_CONNECTIVES</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="k">if</span> <span class="s2">" "</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phrase</span><span class="p">}</span>
 <span class="n">SINGLE_WORD_CUES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">phrase</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"cue_phrase"</span><span class="p">,</span> <span class="s2">"adverbial"</span><span class="p">)</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">CAUSAL_CONNECTIVES</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span>
-    <span class="k">if</span> <span class="s2">" "</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phrase</span>
+    <span class="n">phrase</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"cue_phrase"</span><span class="p">,</span> <span class="s2">"adverbial"</span><span class="p">)</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">CAUSAL_CONNECTIVES</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span> <span class="k">if</span> <span class="s2">" "</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">phrase</span>
 <span class="p">}</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">extract_candidates</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -3494,14 +3598,11 @@ print(dataset_ex)</div>
 <div class="clipboard-copy-txt" id="cell-7">from causalatee.nlp import CAUSAL_CONNECTIVES
 
 # Only single-word entries apply here -- see the note above.
-SINGLE_WORD_LEMMAS = {
-    phrase for cat in ("verb", "noun") for phrase in CAUSAL_CONNECTIVES[cat]
-    if " " not in phrase
-}
+SINGLE_WORD_LEMMAS = {phrase for cat in ("verb", "noun") for phrase in CAUSAL_CONNECTIVES[cat] if " " not in phrase}
 SINGLE_WORD_CUES = {
-    phrase for cat in ("cue_phrase", "adverbial") for phrase in CAUSAL_CONNECTIVES[cat]
-    if " " not in phrase
+    phrase for cat in ("cue_phrase", "adverbial") for phrase in CAUSAL_CONNECTIVES[cat] if " " not in phrase
 }
+
 
 def extract_candidates(text):
     """
@@ -3539,8 +3640,7 @@ def extract_candidates(text):
         if k not in seen:
             seen.add(k)
             result.append(sp)
-    return result
-</div>
+    return result</div>
 </div>
 </div>
 </div>
@@ -3667,6 +3767,12 @@ BECauSEv2 or CNC, the same heuristic achieves substantially higher recall.</p>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -3729,7 +3835,7 @@ BECauSEv2 or CNC, the same heuristic achieves substantially higher recall.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

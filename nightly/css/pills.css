@@ -28,3 +28,39 @@
   background-color: #4a3b0a;
   color: #f0c060;
 }
+
+.pill-polarity-none,
+.pill-strength-none {
+  background-color: #e0e0e0;
+  color: #5f5f5f;
+}
+
+.pill-polarity-documented,
+.pill-strength-documented {
+  background-color: #fff3cd;
+  color: #8a6100;
+}
+
+.pill-polarity-captured,
+.pill-strength-captured {
+  background-color: #d6e8fc;
+  color: #1a5aa8;
+}
+
+[data-md-color-scheme="slate"] .pill-polarity-none,
+[data-md-color-scheme="slate"] .pill-strength-none {
+  background-color: #3a3a3a;
+  color: #b0b0b0;
+}
+
+[data-md-color-scheme="slate"] .pill-polarity-documented,
+[data-md-color-scheme="slate"] .pill-strength-documented {
+  background-color: #4a3b0a;
+  color: #f0c060;
+}
+
+[data-md-color-scheme="slate"] .pill-polarity-captured,
+[data-md-color-scheme="slate"] .pill-strength-captured {
+  background-color: #123a5e;
+  color: #7fb8f0;
+}
