@@ -19,7 +19,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install ".[tests]"
+        # mypy type-checks the whole package, including the huggingface/lightning/nn/mining/nlp
+        # modules gated behind their own extras -- without them installed, mypy can't resolve
+        # transformers/torch/torchmetrics/spacy/aiostream and errors on every import instead.
+        run: pip install ".[tests,huggingface,baselines,mining,torch]"
 
       - name: ruff lint
         run: ruff check .

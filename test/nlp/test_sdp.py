@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import pytest
-import spacy
 
 from causalatee.nlp._sdp import format_sdp, shortest_dependency_path, span_head_token
 
-_nlp = spacy.load("en_core_web_sm")
+from .conftest import load_spacy_model
+
+_nlp = load_spacy_model("en_core_web_sm")
 
 _SVO_TEXT = "The storm caused significant flooding."
 # Verified programmatically (str.index), not hand-counted:

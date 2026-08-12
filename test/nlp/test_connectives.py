@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-import spacy
-
 from causalatee.nlp._connectives import find_causal_connectives
 
-_nlp = spacy.load("en_core_web_sm")
+from .conftest import load_spacy_model
+
+_nlp = load_spacy_model("en_core_web_sm")
 
 
 class TestFindCausalConnectives:
