@@ -107,7 +107,10 @@ class _StreamingSQLEdges(Collection[SQLGraphEdge]):
 
     def __iter__(self) -> Iterator[SQLGraphEdge]:
         clause, params = self._where()
-        cursor = self._graph._connection.execute(f"SELECT source, target, metadata FROM edges{clause}", params)
+        # `clause` is always one of the three hardcoded literals _where() returns above, never caller-controlled
+        # data; the actual filter VALUE is passed through the parameterized `?` placeholder, not interpolated.
+        query = f"SELECT source, target, metadata FROM edges{clause}"  # nosec B608
+        cursor = self._graph._connection.execute(query, params)
         for source_id, target_id, metadata_json in cursor:
             yield SQLGraphEdge(
                 self._graph,
@@ -118,7 +121,9 @@ class _StreamingSQLEdges(Collection[SQLGraphEdge]):
 
     def __len__(self) -> int:
         clause, params = self._where()
-        (count,) = self._graph._connection.execute(f"SELECT COUNT(*) FROM edges{clause}", params).fetchone()
+        # Same as __iter__ above: `clause` is always a hardcoded literal, never caller-controlled.
+        query = f"SELECT COUNT(*) FROM edges{clause}"  # nosec B608
+        (count,) = self._graph._connection.execute(query, params).fetchone()
         return count
 
     def __contains__(self, value: object) -> bool:

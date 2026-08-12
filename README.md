@@ -13,6 +13,7 @@
   <img alt="Python" src="https://img.shields.io/pypi/pyversions/causalatee">
   <a href="https://github.com/webis-de/causalatee/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/webis-de/causalatee/actions/workflows/tests.yml/badge.svg"/></a>
   <a href="https://github.com/webis-de/causalatee/actions/workflows/linter.yml"><img alt="Linter" src="https://github.com/webis-de/causalatee/actions/workflows/linter.yml/badge.svg"/></a>
+  <a href="https://codecov.io/gh/webis-de/causalatee"><img src="https://codecov.io/gh/webis-de/causalatee/graph/badge.svg?token=4jXcKrEUFc"/></a>
 </p>
 
 ## What is this?
