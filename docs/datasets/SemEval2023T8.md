@@ -3,6 +3,8 @@ title: SemEval-2023 Task 8 (RedHOT)
 domain: Social media / Medical
 year: 2023
 sentences: "—"
+polarity: none
+strength: none
 supported_tasks: {}
 ---
 

@@ -4,7 +4,7 @@ Given a causal sentence and a pair of candidate event spans, causality identific
 whether the two events stand in a causal relation — and, if so, the *direction* and *polarity* of
 that relation.
 
-The task is typically modelled as classification over marked-up text: entity markers are inserted
+The task is typically modeled as classification over marked-up text: entity markers are inserted
 into the sentence to delimit the two candidate spans, and a classifier is applied to the resulting
 string.
 
@@ -62,12 +62,6 @@ building one of those from any `PairwiseIdentification` model. Full interfaces i
 [API reference](../reference/models.md).
 
 Models are evaluated using **macro-averaged F₁**.
-
-| Model | F₁ | Reference |
-|-------|-----|-----------|
-| DistilBERT | 90.1% | [@sanh2019distilbert] |
-| RoBERTa | 92.1% | [@liu2019roberta] |
-| Mistral-7B-Instruct | 56.0% | [@jiang2023mistral] |
 
 ## Example
 

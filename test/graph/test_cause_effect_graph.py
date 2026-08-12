@@ -24,9 +24,7 @@ def ceg_path(tmp_path: Path) -> Path:
 
 class TestParseLine:
     def test_splits_on_first_arrow_only(self):
-        cause, effect, count, necessity, sufficiency = _parse_line(
-            "future->cap->lock\t11\t0.0\t0.0\n", line_number=1
-        )
+        cause, effect, count, necessity, sufficiency = _parse_line("future->cap->lock\t11\t0.0\t0.0\n", line_number=1)
         assert cause == "future"
         assert effect == "cap->lock"
         assert (count, necessity, sufficiency) == (11, 0.0, 0.0)

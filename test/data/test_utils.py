@@ -1,4 +1,5 @@
 """Tests for causalatee.data.utils."""
+
 from __future__ import annotations
 
 import re
@@ -315,10 +316,12 @@ class TestIdentificationBatchToDetection:
     def test_mix_of_norelation_and_causal_is_causal(self):
         batch = {
             "text": ["<e1>X</e1>, <e2>Y</e2>, and <e3>Z</e3> all happened."],
-            "relations": [[
-                {"relationship": 0, "first": "e1", "second": "e2"},
-                {"relationship": 1, "first": "e2", "second": "e3"},
-            ]],
+            "relations": [
+                [
+                    {"relationship": 0, "first": "e1", "second": "e2"},
+                    {"relationship": 1, "first": "e2", "second": "e3"},
+                ]
+            ],
         }
         out = identification_batch_to_detection(batch)
         assert out["label"] == [1]
@@ -378,10 +381,12 @@ class TestIdentificationBatchToExtraction:
     def test_norelation_entity_excluded_even_alongside_a_real_relation(self):
         batch = {
             "text": ["<e1>X</e1>, <e2>Y</e2>, and <e3>Z</e3> all happened."],
-            "relations": [[
-                {"relationship": 0, "first": "e1", "second": "e3"},
-                {"relationship": 1, "first": "e2", "second": "e3"},
-            ]],
+            "relations": [
+                [
+                    {"relationship": 0, "first": "e1", "second": "e3"},
+                    {"relationship": 1, "first": "e2", "second": "e3"},
+                ]
+            ],
         }
         out = identification_batch_to_extraction(batch)
         # e1 is only ever referenced by the NoRelation entry -- excluded.

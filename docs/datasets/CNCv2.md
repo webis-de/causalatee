@@ -4,6 +4,8 @@ domain: News
 year: 2023
 sentences: "3,415"
 hf_repo: thagen/CausalNewsCorpusV2
+polarity: none
+strength: none
 hf_page: https://huggingface.co/datasets/thagen/CausalNewsCorpusV2
 supported_tasks:
   causality-detection:

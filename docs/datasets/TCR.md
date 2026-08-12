@@ -8,6 +8,8 @@ doi: 10.18653/V1/P18-1212
 bib_key: ning:2018
 hf_repo: thagen/TCR
 hf_page: https://huggingface.co/datasets/thagen/TCR
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

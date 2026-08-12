@@ -4,6 +4,8 @@ domain: News / WSJ
 year: 2008
 sentences: "—"
 granularity: intra-sentence
+polarity: none
+strength: none
 supported_tasks: {}
 ---
 

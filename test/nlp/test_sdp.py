@@ -1,4 +1,5 @@
 """Tests for causalatee.nlp._sdp — shortest dependency path extraction."""
+
 from __future__ import annotations
 
 import pytest
@@ -10,14 +11,14 @@ _nlp = spacy.load("en_core_web_sm")
 
 _SVO_TEXT = "The storm caused significant flooding."
 # Verified programmatically (str.index), not hand-counted:
-_SPAN_THE_STORM = (0, 9)     # "The storm"
-_SPAN_STORM = (4, 9)         # "storm"
-_SPAN_CAUSED = (10, 16)      # "caused"
+_SPAN_THE_STORM = (0, 9)  # "The storm"
+_SPAN_STORM = (4, 9)  # "storm"
+_SPAN_CAUSED = (10, 16)  # "caused"
 _SPAN_SIG_FLOODING = (17, 37)  # "significant flooding"
-_SPAN_FLOODING = (29, 37)    # "flooding"
+_SPAN_FLOODING = (29, 37)  # "flooding"
 
 _CROSS_SENT_TEXT = "The storm hit land. Flooding followed everywhere."
-_SPAN_STORM_2 = (4, 9)       # "storm"
+_SPAN_STORM_2 = (4, 9)  # "storm"
 _SPAN_FLOODING_2 = (20, 28)  # "Flooding"
 
 

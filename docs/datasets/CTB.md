@@ -5,6 +5,8 @@ year: 2014
 sentences: "2,201"
 doi: 10.3115/v1/W14-0702
 bib_key: mirza:2014a
+polarity: none
+strength: none
 hf_repo: thagen/CausalTimeBank
 hf_page: https://huggingface.co/datasets/thagen/CausalTimeBank
 supported_tasks:

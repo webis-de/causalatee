@@ -4,6 +4,8 @@ domain: News / WSJ
 year: 2019
 sentences: "—"
 bib_key: webber:2019
+polarity: documented
+strength: documented
 hf_repo: thagen/PennDiscourseTreebankv3
 hf_page: https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3
 supported_tasks:
@@ -18,6 +20,8 @@ supported_tasks:
 {{ dataset_pills() }}
 
 PDTB 3.0 annotates discourse relations — including causal, temporal, and contingency senses — across the full Penn Treebank WSJ corpus using both explicit connectives and implicit relation spans.
+
+The real PDTB-3 sense hierarchy distinguishes `Contingency.Negative-condition` (polarity) and `Cause+Belief`/`Cause+SpeechAct` (epistemic strength), but this project's converter only reads UniCausal's binary `pair_label`, so both signals are documented here without being surfaced in the converted data.
 
 !!! note "Requires your own paid LDC license — not redistributed by causalatee"
     PDTB 3.0 is a paid Linguistic Data Consortium resource

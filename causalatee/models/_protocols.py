@@ -10,7 +10,7 @@ These are Protocols rather than ABCs deliberately. Contrast with [`causalatee.gr
 every ``Graph`` implementation (``CauseNet``, ``CGFGraph``) lives inside this package, so requiring explicit subclassing
 there costs nothing. Causality models are the opposite case -- usually a fine-tuned ``transformers.Pipeline``, a custom
 ``torch.nn.Module`` baseline, or a spaCy-based rule system defined elsewhere, which should not have to import and
-subclass anything here to be recognised. A class satisfies these protocols purely by having a matching ``__call__``
+subclass anything here to be recognized. A class satisfies these protocols purely by having a matching ``__call__``
 signature -- exactly how every current pipeline in ``causalatee.integrations.huggingface`` is already invoked
 (``self._detection(text)``, not ``self._detection.detect(text)``) -- so every one of them satisfies its protocol here
 with no code changes at all. ``compose_extraction`` deliberately does NOT require its three arguments to be
@@ -326,8 +326,7 @@ class _ComposedExtraction:
         detections = self._detection(texts)
         all_spans = self._candidate_extraction(texts)
         causal_spans = [
-            spans if detection["label"].lower() != "uncausal" else []
-            for detection, spans in zip(detections, all_spans)
+            spans if detection["label"].lower() != "uncausal" else [] for detection, spans in zip(detections, all_spans)
         ]
         return identify_candidates(texts, causal_spans, self._identification)
 

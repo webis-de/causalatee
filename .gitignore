@@ -1,5 +1,10 @@
 /tmp/
 
+# mkdocs documentation
+/site
+/docs/examples/*
+!/docs/examples/index.md
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,windows,linux,macos,vim,visualstudiocode,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,windows,linux,macos,vim,visualstudiocode,git
 
@@ -316,10 +321,6 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
-
-# mkdocs documentation
-/site
-/docs/examples
 
 # mypy
 .mypy_cache/

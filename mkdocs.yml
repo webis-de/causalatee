@@ -10,7 +10,22 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - content.code.copy
     - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 hooks:
   - docs/hooks.py
@@ -41,6 +56,8 @@ plugins:
             merge_init_into_class: true
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - footnotes
   - admonition
   - pymdownx.details
@@ -87,9 +104,11 @@ nav:
       - Causality Identification: tasks/causality_identification.md
       - Causal Event Candidate Detection: tasks/causal_event_candidate_detection.md
   - Examples:
+      - examples/index.md
       - Causality Detection: examples/detection.ipynb
       - Causal Candidate Extraction: examples/candidate_extraction.ipynb
       - Causality Identification: examples/identification.ipynb
       - SDP Causality Extraction: examples/sdp_causality_extraction.ipynb
       - CauseNet and CGF: examples/causenet_cgf.ipynb
+      - Mining a Causal Graph: examples/mining.ipynb
   - ...

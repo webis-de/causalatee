@@ -11,7 +11,7 @@ The lexicon here is a hand-curated list organized into the categories
 commonly distinguished in the discourse-connective literature: causal verbs
 and nouns, subordinating cue phrases, and sentence-linking adverbials
 (broadly following the PDTB's ``Contingency.Cause`` connective class
-[Prasad et al. 2008] and the causal verb patterns catalogued by Girju et al.
+[Prasad et al. 2008] and the causal verb patterns cataloged by Girju et al.
 2003). It is **not** a reproduction of any single published list; treat it
 as a reasonable, general-purpose starting point rather than an exhaustively
 validated resource.
@@ -27,6 +27,7 @@ show that many real causal relations use no fixed connective at all
 ("alternative lexicalizations" — see the AltLex dataset), so absence of a
 match is equally uninformative about the absence of a causal relation.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -36,9 +37,7 @@ try:
     from spacy.tokens import Doc
     from spacy.vocab import Vocab
 except ImportError as e:
-    raise ImportError(
-        "causalatee.nlp requires spacy.\nInstall it with: pip install 'causalatee[baselines]'"
-    ) from e
+    raise ImportError("causalatee.nlp requires spacy.\nInstall it with: pip install 'causalatee[baselines]'") from e
 
 CAUSAL_CONNECTIVES: dict[str, list[str]] = {
     # Matched by LEMMA: single- or multi-word causal verbs/verb phrases.
@@ -46,10 +45,26 @@ CAUSAL_CONNECTIVES: dict[str, list[str]] = {
     # ("leads to"/"led to"/"leading to" all match "lead to"), so no
     # inflected forms need to be listed separately.
     "verb": [
-        "cause", "lead to", "result in", "trigger", "induce", "bring about",
-        "give rise to", "stem from", "contribute to", "produce", "generate",
-        "force", "enable", "prevent", "provoke", "prompt", "necessitate",
-        "compel", "determine", "arise",
+        "cause",
+        "lead to",
+        "result in",
+        "trigger",
+        "induce",
+        "bring about",
+        "give rise to",
+        "stem from",
+        "contribute to",
+        "produce",
+        "generate",
+        "force",
+        "enable",
+        "prevent",
+        "provoke",
+        "prompt",
+        "necessitate",
+        "compel",
+        "determine",
+        "arise",
     ],
     # Matched by LEMMA: causal nouns. Deliberately excludes "cause" itself
     # (also a verb lemma, above) — PhraseMatcher(attr="LEMMA") has no POS
@@ -59,20 +74,42 @@ CAUSAL_CONNECTIVES: dict[str, list[str]] = {
     # resolve. "reason"/"effect"/"result" etc. already cover the concept
     # without that overlap.
     "noun": [
-        "reason", "result", "effect", "consequence", "outcome",
-        "impact", "source", "origin", "factor",
+        "reason",
+        "result",
+        "effect",
+        "consequence",
+        "outcome",
+        "impact",
+        "source",
+        "origin",
+        "factor",
     ],
     # Matched by LOWER surface form: closed-class subordinating cue phrases.
     # These don't meaningfully inflect, so lemma matching adds no value.
     "cue_phrase": [
-        "because", "because of", "since", "as", "so that", "given that",
-        "due to", "owing to", "on account of", "as a result of",
-        "as a consequence of", "in view of", "thanks to",
+        "because",
+        "because of",
+        "since",
+        "as",
+        "so that",
+        "given that",
+        "due to",
+        "owing to",
+        "on account of",
+        "as a result of",
+        "as a consequence of",
+        "in view of",
+        "thanks to",
     ],
     # Matched by LOWER: sentence-linking adverbials.
     "adverbial": [
-        "therefore", "thus", "hence", "consequently", "accordingly",
-        "as a result", "for this reason",
+        "therefore",
+        "thus",
+        "hence",
+        "consequently",
+        "accordingly",
+        "as a result",
+        "for this reason",
     ],
 }
 

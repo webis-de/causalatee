@@ -4,6 +4,8 @@ domain: News
 year: 2022
 sentences: "3,248"
 bib_key: tan:2022a
+polarity: none
+strength: none
 hf_repo: thagen/CausalNewsCorpus
 hf_page: https://huggingface.co/datasets/thagen/CausalNewsCorpus
 supported_tasks:

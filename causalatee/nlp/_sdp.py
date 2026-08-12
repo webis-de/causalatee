@@ -16,6 +16,7 @@ heads, find the path, encode direction) — turning the extracted path into
 features and applying a classifier is left to the caller, exactly as in the
 literature (the SDP is a *representation*, not a full classifier).
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

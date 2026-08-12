@@ -19,6 +19,7 @@ on top of whichever backbone it is attached to; the projections it learns
 are specific to that backbone's hidden space and do not transfer to a
 different one without retraining.
 """
+
 from __future__ import annotations
 
 import torch
@@ -101,12 +102,8 @@ class BiaffineSpanHead(nn.Module):
 
     def __init__(self, hidden_size: int, ffn_dim: int = 256, dropout: float = 0.2) -> None:
         super().__init__()
-        self.start_mlp = nn.Sequential(
-            nn.Linear(hidden_size, ffn_dim), nn.GELU(), nn.Dropout(dropout)
-        )
-        self.end_mlp = nn.Sequential(
-            nn.Linear(hidden_size, ffn_dim), nn.GELU(), nn.Dropout(dropout)
-        )
+        self.start_mlp = nn.Sequential(nn.Linear(hidden_size, ffn_dim), nn.GELU(), nn.Dropout(dropout))
+        self.end_mlp = nn.Sequential(nn.Linear(hidden_size, ffn_dim), nn.GELU(), nn.Dropout(dropout))
         self.biaffine = Biaffine(ffn_dim)
 
     def forward(self, hidden_states: Tensor) -> Tensor:
@@ -223,10 +220,7 @@ class BiaffineSpanHead(nn.Module):
         valid = (real.unsqueeze(1) & real.unsqueeze(0)).triu()
         probs = torch.sigmoid(scores)
         hits = ((probs >= threshold) & valid).nonzero(as_tuple=False)
-        candidates = [
-            (probs[i, j].item(), int(offsets[i, 0]), int(offsets[j, 1]))
-            for i, j in hits.tolist()
-        ]
+        candidates = [(probs[i, j].item(), int(offsets[i, 0]), int(offsets[j, 1])) for i, j in hits.tolist()]
         if allow_overlap:
             return [(s, e) for _, s, e in candidates]
 

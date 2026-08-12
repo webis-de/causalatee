@@ -96,7 +96,7 @@ def bio_to_spans(
     """Decode a BIO label-id sequence into character-level span tuples.
 
     Special tokens (offset ``(0, 0)``) and tokens with ``label_id == ignored_id``
-    are treated as span boundaries.  Recognises labels of the form ``B-*``/ ``I-*``
+    are treated as span boundaries.  Recognizes labels of the form ``B-*``/ ``I-*``
     (entity type is ignored; all non-O spans are collected).
     """
     spans: list[tuple[int, int]] = []

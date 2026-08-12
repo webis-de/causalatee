@@ -1,4 +1,5 @@
 """Tests for CausalCandidateExtractionPipeline (no real model required)."""
+
 from __future__ import annotations
 
 import sys
@@ -67,11 +68,17 @@ def stub_transformers():
         pass
 
     transformers.Pipeline = _Pipeline
-    transformers.PIPELINE_REGISTRY = MagicMock()
     transformers.AutoModelForSequenceClassification = MagicMock()
     transformers.AutoModelForTokenClassification = MagicMock()
 
-    with patch.dict(sys.modules, {"transformers": transformers}):
+    # transformers 4.57+ no longer re-exports PIPELINE_REGISTRY from the top level -- it must be
+    # reachable as a real submodule (transformers.pipelines), not just a flat attribute, since
+    # causalatee.integrations.huggingface does `from transformers.pipelines import PIPELINE_REGISTRY`.
+    transformers_pipelines = types.ModuleType("transformers.pipelines")
+    transformers_pipelines.PIPELINE_REGISTRY = MagicMock()
+    transformers.pipelines = transformers_pipelines
+
+    with patch.dict(sys.modules, {"transformers": transformers, "transformers.pipelines": transformers_pipelines}):
         for key in list(sys.modules):
             if key.startswith("causalatee.integrations"):
                 del sys.modules[key]

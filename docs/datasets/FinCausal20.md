@@ -4,6 +4,8 @@ domain: Finance
 year: 2020
 sentences: "22,058"
 granularity: inter-sentence
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

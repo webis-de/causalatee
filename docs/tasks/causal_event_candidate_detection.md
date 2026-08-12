@@ -2,7 +2,7 @@
 
 Given a sentence that has been classified as causal (or countercausal), causal event candidate
 extraction identifies the text spans that are plausible **cause** and **effect** candidates. The task
-is typically modelled as sequence labelling (BIO tagging) or as direct span prediction.
+is typically modeled as sequence labeling (BIO tagging) or as direct span prediction.
 
 The output spans are *candidates* — their actual causal relationship is determined in the subsequent
 [Causality Identification](causality_identification.md) step.

@@ -88,7 +88,7 @@ grid = head(hidden_states)  # (batch, seq_len, seq_len) raw logits
 | **Backbone-agnostic** | Read-out layer only needs `hidden_size`; works with any encoder |
 | **Quadratic cost** | $O(L^2)$ scored cells per sentence; costly for very long sequences |
 | **Sparse supervision** | Requires care (dynamic `pos_weight`, or focal loss) to avoid the head collapsing to all-negative |
-| **Needs training** | Unlike a rule-based baseline, the head must be fit (or fine-tuned) on labelled span data |
+| **Needs training** | Unlike a rule-based baseline, the head must be fit (or fine-tuned) on labeled span data |
 
 ## Citation
 

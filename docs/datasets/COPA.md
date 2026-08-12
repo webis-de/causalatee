@@ -6,6 +6,8 @@ sentences: "2,000"
 bib_key: roemmele:2011a
 hf_repo: thagen/COPA
 hf_page: https://huggingface.co/datasets/thagen/COPA
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

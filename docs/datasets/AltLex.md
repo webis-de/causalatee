@@ -5,6 +5,8 @@ year: 2016
 sentences: "1,000"
 doi: 10.18653/V1/P16-1135
 bib_key: hidey:2016
+polarity: none
+strength: none
 hf_repo: thagen/AltLex
 hf_page: https://huggingface.co/datasets/thagen/AltLex
 supported_tasks:

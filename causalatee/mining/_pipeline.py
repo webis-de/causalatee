@@ -217,7 +217,7 @@ class Pipeline(Generic[T]):
 
 def causal_predicate(result: Any) -> bool:
     """``predicate=`` for :meth:`Pipeline.filter` when ``fn`` is a ``causalatee.models.Detection`` model directly: true
-    unless labelled "Uncausal" (case-insensitive) -- the exact check ``causalatee.models._ComposedExtraction`` makes
+    unless labeled "Uncausal" (case-insensitive) -- the exact check ``causalatee.models._ComposedExtraction`` makes
     internally, so a mining pipeline's detection-gating stage agrees with the end-to-end ``Extraction`` composition
     rather than drifting from it."""
 

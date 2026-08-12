@@ -6,6 +6,8 @@ sentences: "583"
 bib_key: do:2011
 hf_repo: thagen/EventCausality
 hf_page: https://huggingface.co/datasets/thagen/EventCausality
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:
@@ -28,8 +30,10 @@ EventCausality provides minimally-supervised annotations of causal relations bet
     re-annotation** (different event set, different label scheme, 172 vs. 580 links) — using it
     here would silently conflate two distinct datasets under one citation, so this repo does not
     do that. The data below still comes from CREST's own aggregation, which has a confirmed
-    corruption/completeness bug (0 train rows) — treat results on this dataset with that caveat
-    in mind.
+    corruption/completeness bug (0 train rows) and a confirmed character-offset misalignment
+    affecting causal-candidate-extraction and causality-identification alike (~21% of spans are
+    fully out-of-bounds, now dropped rather than silently shipped) — treat results on this
+    dataset with those caveats in mind.
 
 {{ dataset_overview() }}
 {{ dataset_viewer() }}

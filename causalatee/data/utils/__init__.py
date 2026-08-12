@@ -27,7 +27,7 @@ Split into submodules by concern (all re-exported here, so
   span onto the wrong sentence's text is a real bug, not a hypothetical one
   (previously observed: a marker landing mid-word, "h<e1>istidine", in an
   early BioCause converter draft). `splitting`'s job is to make the
-  correct behaviour a single, tested, reusable piece of code instead of a
+  correct behavior a single, tested, reusable piece of code instead of a
   duplicated ad-hoc guard in every converter.
 * `batch` -- ``Dataset.map(fn, batched=True, remove_columns=[...])``-
   ready adapters over the above:

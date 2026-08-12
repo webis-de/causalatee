@@ -1,4 +1,5 @@
 """Tests for causalatee.nn._biaffine_span_head — the backbone-agnostic span-grid read-out head."""
+
 from __future__ import annotations
 
 import torch
@@ -80,10 +81,10 @@ class TestDecodeSpansFromGrid:
 
     def test_nms_suppresses_overlapping_lower_score(self):
         scores = torch.full((4, 4), -10.0)
-        scores[0, 2] = 5.0   # best, char span (0, 14)
-        scores[0, 3] = 3.0   # overlaps -> suppressed
-        scores[1, 2] = 2.0   # overlaps -> suppressed
-        scores[3, 3] = 4.0   # disjoint -> kept
+        scores[0, 2] = 5.0  # best, char span (0, 14)
+        scores[0, 3] = 3.0  # overlaps -> suppressed
+        scores[1, 2] = 2.0  # overlaps -> suppressed
+        scores[3, 3] = 4.0  # disjoint -> kept
         offsets = self._offsets([(0, 4), (5, 9), (10, 14), (15, 19)])
         spans = BiaffineSpanHead.decode_spans_from_grid(scores, offsets, threshold=0.5)
         assert spans == [(0, 14), (15, 19)]

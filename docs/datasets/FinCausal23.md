@@ -4,6 +4,8 @@ domain: Financial news
 year: 2023
 sentences: "2,630"
 granularity: inter-sentence
+polarity: none
+strength: none
 supported_tasks:
   causal-candidate-extraction:
   causality-identification:

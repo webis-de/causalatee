@@ -5,6 +5,8 @@ year: 2025
 sentences: "3,415"
 doi: 10.48550/ARXIV.2510.08224
 bib_key: hagen:2025a
+polarity: captured
+strength: none
 supported_tasks:
   causality-detection:
     tiraurl: https://www.tira.io/api/evaluations/causality-extraction-toucheclef26/task1-ccnc-test-dataset-20260605-test

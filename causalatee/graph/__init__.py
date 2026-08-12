@@ -2,6 +2,7 @@ from ._cause_effect_graph import CauseEffectEdge, CauseEffectNode, load_cause_ef
 from ._causenet import CauseNetEdge, CauseNetNode, load_causenet
 from ._cgf import load_cgf, save_cgf
 from ._graph import Edge, Graph, Node
+from ._sql_graph import SQLGraph, SQLGraphEdge, SQLGraphNode
 
 __all__ = [
     "CauseNetNode",
@@ -15,4 +16,7 @@ __all__ = [
     "load_cgf",
     "Node",
     "save_cgf",
+    "SQLGraph",
+    "SQLGraphEdge",
+    "SQLGraphNode",
 ]

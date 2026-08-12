@@ -103,12 +103,23 @@ class CREST2HF(FormatConverter):
             context: str = group["context"].iloc[0]
             seen: set[tuple[int, int]] = set()
             entity_spans: list[list[int]] = []
+            dropped = 0
             for _, row in group[group["label"] == 1].iterrows():
                 span1, span2 = _parse_idx(row["idx"])
                 for span in (span1, span2):
-                    if span is not None and span not in seen:
-                        seen.add(span)
-                        entity_spans.append(list(span))
+                    if span is None or span in seen:
+                        continue
+                    seen.add(span)
+                    # Same out-of-bounds guard as _convert_causality_identification: CREST's idx/context
+                    # offsets are confirmed misaligned for some datasets (e.g. CaTeRS, EventCausality) --
+                    # an out-of-bounds span here would silently slice to '' or a truncated substring
+                    # instead of erroring, so it must be dropped explicitly rather than shipped as-is.
+                    if not (0 <= span[0] < span[1] <= len(context)):
+                        dropped += 1
+                        continue
+                    entity_spans.append(list(span))
+            if dropped:
+                print(f"WARNING: {self._prefix}_{ann_file}: dropped {dropped} out-of-bounds/invalid span(s).")
             rows.append({"index": f"{self._prefix}_{ann_file}", "text": context, "entity": entity_spans})
         assert bool(rows)
         return pd.DataFrame(rows).set_index("index")

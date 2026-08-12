@@ -1,4 +1,5 @@
 """Tests for causalatee.nlp._connectives — causal discourse connective matching."""
+
 from __future__ import annotations
 
 import spacy
@@ -108,7 +109,7 @@ class TestFindCausalConnectives:
         matches = find_causal_connectives(doc)
         assert len(matches) == 1
         m = matches[0]
-        assert text[m.start:m.end] == m.text
+        assert text[m.start : m.end] == m.text
 
     def test_unnegated_connective_reports_negated_false(self):
         doc = _nlp("The storm caused significant flooding.")

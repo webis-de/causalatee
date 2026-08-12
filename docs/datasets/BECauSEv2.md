@@ -5,6 +5,8 @@ year: 2017
 sentences: "1,803"
 doi: 10.18653/V1/W17-0812
 bib_key: dunietz:2017
+polarity: none
+strength: none
 hf_repo: thagen/BECauSEv2
 hf_page: https://huggingface.co/datasets/thagen/BECauSEv2
 supported_tasks:
@@ -27,7 +29,9 @@ supported_tasks:
 {{ dataset_badges() }}
 {{ dataset_pills() }}
 
-BECauSE 2.0 annotates causal and five overlapping semantic relations (e.g. *motivation*, *purpose*) in English news text, making it one of the most relation-dense corpora for causal NLP.
+BECauSE 2.0 annotates causal relations (three types: *Consequence*, *Motivation*, *Purpose*) alongside seven non-causal "overlapping" relations that share causal-like constructions (e.g. *Correlation*, *Hypothetical*) in English news text, making it one of the most relation-dense corpora for causal NLP.
+
+The original annotation also tags each causal instance's `Degree` as `Facilitate` or `Inhibit`, but `Inhibit` ("the cause suppresses the effect") is negative-valence causation, not a denial that a causal relationship holds at all — so it isn't represented as `Relation.Countercausal` here (see the dataset's README for the full reasoning).
 
 {{ dataset_overview() }}
 {{ dataset_viewer() }}

@@ -143,7 +143,7 @@ class UniCausal2HF(FormatConverter):
 
         Regular splits (data/splits/) have one row per entity pair with
         text_w_pairs as a single annotated string and explicit seq_label /
-        pair_label columns.  This method normalises the latter into the same
+        pair_label columns.  This method normalizes the latter into the same
         grouped representation so all downstream converters stay unchanged.
         """
         if self._grouped:

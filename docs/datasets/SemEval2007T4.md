@@ -4,6 +4,8 @@ domain: Web
 year: 2007
 sentences: "220"
 bib_key: girju:2007
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

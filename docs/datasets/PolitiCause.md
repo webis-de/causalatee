@@ -3,6 +3,8 @@ title: PolitiCause
 domain: Politics
 year: 2024
 sentences: "17,780"
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

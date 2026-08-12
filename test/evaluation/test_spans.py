@@ -1,4 +1,5 @@
 """Tests for causalatee.evaluation._spans — pure span metric functions."""
+
 from __future__ import annotations
 
 import math

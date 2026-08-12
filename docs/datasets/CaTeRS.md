@@ -7,6 +7,8 @@ doi: 10.18653/V1/W16-1007
 bib_key: mostafazadeh:2016
 hf_repo: thagen/CaTeRS
 hf_page: https://huggingface.co/datasets/thagen/CaTeRS
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

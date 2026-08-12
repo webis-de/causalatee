@@ -8,6 +8,8 @@ doi: 10.1186/1471-2105-14-2
 bib_key: mihaila:2013
 hf_repo: thagen/BioCause
 hf_page: https://huggingface.co/datasets/thagen/BioCause
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:

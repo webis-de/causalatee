@@ -6,6 +6,8 @@ sentences: "10,690"
 bib_key: hendrickx:2010
 hf_repo: thagen/SemEval2010T8
 hf_page: https://huggingface.co/datasets/thagen/SemEval2010T8
+polarity: none
+strength: none
 supported_tasks:
   causality-detection:
     splits:

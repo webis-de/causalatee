@@ -87,9 +87,7 @@ class TestMap:
 
         async def go():
             results = []
-            await Pipeline(_source(5)).map(batch_fn, batch_size=2, concurrency=1).reduce(
-                lambda x: results.append(x)
-            )
+            await Pipeline(_source(5)).map(batch_fn, batch_size=2, concurrency=1).reduce(lambda x: results.append(x))
             return results
 
         results = run(go())
@@ -138,8 +136,10 @@ class TestFilter:
 
         async def go():
             results = []
-            await Pipeline(_source(6)).filter(batch_is_even, batch_size=3, predicate=lambda r: r).reduce(
-                lambda x: results.append(x)
+            await (
+                Pipeline(_source(6))
+                .filter(batch_is_even, batch_size=3, predicate=lambda r: r)
+                .reduce(lambda x: results.append(x))
             )
             return results
 

@@ -59,8 +59,17 @@ stages are.
 [`save_cgf`][causalatee.graph.save_cgf]. Every relation the pipeline emits is spooled
 to a temp SQLite database as it arrives (bounded memory regardless of corpus size);
 aggregation by `(cause, effect)` pair happens once, lazily, the first time `.nodes`/
-`.edges` is accessed. Close it (or use it as a context manager) once done with the
+`.edges` is accessed, and populates a
+[`SQLGraph`][causalatee.graph.SQLGraph] with one `add_edge` call per aggregated pair
+— `GraphSink` only owns the spooling/aggregation, `SQLGraph` is the generic,
+reusable storage engine. Close it (or use it as a context manager) once done with the
 resulting graph, the same way [`load_cgf`][causalatee.graph.load_cgf] is used.
+
+## Example
+
+See the [Mining a Causal Graph](../examples/mining.ipynb) notebook for a runnable
+walkthrough of the full pipeline -> `graph_sink` -> `save_cgf` flow, using a
+deterministic stand-in extraction function so it runs without a real model.
 
 ## API Reference
 

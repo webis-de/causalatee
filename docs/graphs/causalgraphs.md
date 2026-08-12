@@ -18,6 +18,9 @@ attested, or to expand a seed concept along its causal neighborhood).
 - **CGF** (Causal Graph Format), a compact, memory-mappable binary format for storing a `Graph` on
   disk and traversing it without materializing it in Python objects — see the
   [CGF 1.0 specification](cgf_spec.md) for the full format.
+- [`SQLGraph`][causalatee.graph.SQLGraph], a generic, mutable, SQLite-backed `Graph` you build
+  yourself via `add_node`/`add_edge` — unlike the loaders above, it has no external source to load
+  from (`causalatee.mining.GraphSink` uses one as its storage engine).
 
 ## Quick start
 

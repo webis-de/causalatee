@@ -29,7 +29,7 @@ three conditions (following Grivaz):
 2. **Counterfactuality** — B is less likely without A
 3. **Ontological asymmetry** — A causing B does not imply B causes A
 
-Sentences that *negate* such a relation are **countercausal** and are still labelled `Causal` in the
+Sentences that *negate* such a relation are **countercausal** and are still labeled `Causal` in the
 binary scheme. Common countercausal patterns include [@hagen:2025a]:
 
 | Pattern | Example |
@@ -68,12 +68,6 @@ A model for this task implements the
 [API reference](../reference/models.md) for the full interface.
 
 Models are evaluated using **macro-averaged F₁**.
-
-| Model | F₁ | Reference |
-|-------|-----|-----------|
-| DistilBERT | 80.0% | [@sanh2019distilbert] |
-| RoBERTa | 87.4% | [@liu2019roberta] |
-| Mistral-7B-Instruct | 66.2% | [@jiang2023mistral] |
 
 !!! note
     Models trained without countercausal examples misclassify countercausal sentences as causal

@@ -84,7 +84,7 @@ distinguished in the discourse-connective literature — causal verbs and nouns 
 *result in*, *factor*, *consequence*), subordinating cue phrases (*because*, *due to*, *since*),
 and sentence-linking adverbials (*therefore*, *consequently*) — broadly following the connective
 categories used by the Penn Discourse TreeBank's `Contingency.Cause` relation class [@pdtb:2008]
-and the causal verb patterns catalogued by [@girju:2003]. Verbs and nouns are matched by lemma
+and the causal verb patterns cataloged by [@girju:2003]. Verbs and nouns are matched by lemma
 (one entry, e.g. "lead to", automatically covers every inflection: "leads to"/"led to"/"leading
 to"); cue phrases and adverbials are matched as literal surface forms, since they don't
 meaningfully inflect.
@@ -116,7 +116,7 @@ entirely.
 | | |
 |---|---|
 | **Interpretable** | The extracted path is human-readable; misclassifications are easy to trace |
-| **Low data requirement** | Feature-based variants work with a few hundred labelled examples |
+| **Low data requirement** | Feature-based variants work with a few hundred labeled examples |
 | **Parse-dependent** | Errors in the dependency tree propagate directly to the relation representation |
 | **Explicit markers only** | Fails on implicit causality where no lexical connective appears on the path |
 | **Span detection required** | Assumes entity spans are already identified; not a stand-alone pipeline |

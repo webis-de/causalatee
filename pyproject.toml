@@ -47,6 +47,10 @@ baselines = [
 mining = [
     "aiostream>=0.5",
 ]
+torch = [
+    "torch>=2.0",
+    "torchmetrics>=1.0",
+]
 docs = [
     "mkdocs~=1.6",
     "mkdocs-material~=9.5",
@@ -92,3 +96,8 @@ skips = ["B101"]
 
 [tool.pytest.ini_options]
 log_cli = true
+addopts = "--cov=causalatee --cov-report=term-missing --cov-report=xml"
+
+[tool.coverage.run]
+source = ["causalatee"]
+omit = ["*/test/*"]
