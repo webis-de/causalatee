@@ -1489,6 +1489,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1695,6 +1706,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1757,6 +1772,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2036,6 +2107,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2069,12 +2151,8 @@
   
 
 
-<!-- TODO(user): add the SemEval-2020 Task 5 bibtex entry to docs/references/datasets.bib
-     (Yang et al., SemEval-2020, "SemEval-2020 Task 5: Counterfactual Recognition",
-     https://aclanthology.org/2020.semeval-1.40/), then set bib_key: in the
-     frontmatter above and add  to the bottom of this page. -->
-
 <h1 id="semeval-2020-task-5">SemEval-2020 Task 5</h1>
+<p><a href="https://doi.org/10.18653/V1/2020.SEMEVAL-1.40"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a> <a href="https://github.com/arielsho/SemEval-2020-Task-5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></p>
 <p><span class="pill pill-intra-sentence">Intra-sentence</span> <span class="pill pill-polarity-none">No Polarity Signal</span> <span class="pill pill-strength-none">No Strength Signal</span></p>
 <p>SemEval-2020 Task 5 asks systems to recognize counterfactual statements in news text and, for causal ones, extract the antecedent (hypothetical condition) and consequent (hypothetical result) spans — mapped here onto this project's cause/effect roles.</p>
 <p>Detection draws from all 20,000 sentences (2,192 causal); extraction and identification draw from a separate, smaller set of 5,501 sentences re-collected specifically for span annotation — about 14% of those have only an antecedent span with no separate consequent, so they contribute a marked entity but no relation.</p>
@@ -2131,8 +2209,28 @@
 <td style="text-align: right;">—</td>
 <td style="text-align: right;">—</td>
 </tr>
+<tr>
+<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
 </tbody>
 </table>
+<h2 id="citation">Citation</h2>
+<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">yang:2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{{SemEval-2020 Task}} 5: {{Counterfactual Recognition}}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">shorttitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{{SemEval-2020 Task}} 5}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Proceedings of the {{Fourteenth Workshop}} on {{Semantic Evaluation}}, {{SemEval}}@{{COLING}} 2020, {{Barcelona}} (Online), {{December}} 12-13, 2020}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Yang, Xiaoyu and Obadinma, Stephen and Zhao, Huasha and Zhang, Qiong and Matwin, Stan and Zhu, Xiaodan}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">editor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Herbelot, Aur{\&#39;e}lie and Zhu, Xiaodan and Palmer, Alexis and Schneider, Nathan and May, Jonathan and Shutova, Ekaterina}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{322--335}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{International Committee for Computational Linguistics}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.18653/V1/2020.SEMEVAL-1.40}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://doi.org/10.18653/v1/2020.semeval-1.40}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">urldate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2026-01-05}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -2224,7 +2322,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

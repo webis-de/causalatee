@@ -1626,6 +1626,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1688,6 +1692,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -1973,33 +2033,67 @@
 <h1 id="models">Models</h1>
 <p>Model approaches for causality extraction, ranging from interpretable rule-based baselines to
 fine-tuned neural classifiers.</p>
+<p><strong>Task codes</strong>: D = Detection · E = Extraction · I = Identification</p>
 <table>
 <thead>
 <tr>
 <th>Model</th>
 <th>Type</th>
 <th>Tasks</th>
-<th>Page</th>
+<th>Reference</th>
+<th>Links</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="sdp_causality_extraction/">SDP Causality Extraction</a></td>
-<td>Dependency-based baseline</td>
-<td>E · I</td>
-<td><a href="sdp_causality_extraction/">→</a></td>
-</tr>
-<tr>
 <td><a href="biaffine_span_extraction/">Biaffine Span-Grid Extraction</a></td>
 <td>Neural read-out layer (<code>causalatee.nn.BiaffineSpanHead</code>)</td>
 <td>E</td>
-<td><a href="biaffine_span_extraction/">→</a></td>
+<td>(Yu et al. 2020)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+<td><a href="https://doi.org/10.18653/V1/2020.ACL-MAIN.577"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a></td>
+</tr>
+<tr>
+<td><a href="kcnn/">k-CNN</a></td>
+<td>Knowledge- + data-channel CNN for relation classification</td>
+<td>I</td>
+<td>(Li and Mao 2019)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></td>
+<td><a href="https://doi.org/10.1016/J.ESWA.2018.08.009"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a></td>
+</tr>
+<tr>
+<td><a href="scite/">SCITE</a></td>
+<td>BiLSTM + char-CNN + Flair/BERT + self-attention + CRF</td>
+<td>E</td>
+<td>(Li et al. 2021)<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></td>
+<td><a href="https://doi.org/10.1016/J.NEUCOM.2020.08.078"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a> <a href="https://github.com/Das-Boot/scite"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></td>
+</tr>
+<tr>
+<td><a href="sdp_causality_extraction/">SDP Causality Extraction</a></td>
+<td>Dependency-based baseline</td>
+<td>EI</td>
+<td>(Girju 2003)<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></td>
+<td><a href="https://doi.org/10.3115/1119312.1119322"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Task codes</strong>: E = Causal Event Candidate Extraction · I = Causality Identification</p>
 <p>Neural fine-tuning approaches (RoBERTa etc.) are covered in the <a href="../examples/detection/">Examples</a>
 section.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Yu, Juntao, Bernd Bohnet, and Massimo Poesio. 2020. “Named Entity Recognition as Dependency Parsing.” In <em>Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, ACL 2020, Online, July 5-10, 2020</em>, edited by Dan Jurafsky, Joyce Chai, Natalie Schluter, and Joel R. Tetreault. Association for Computational Linguistics. <a href="https://doi.org/10.18653/V1/2020.ACL-MAIN.577">https://doi.org/10.18653/V1/2020.ACL-MAIN.577</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Li, Pengfei, and Kezhi Mao. 2019. “Knowledge-Oriented Convolutional Neural Network for Causal Relation Extraction from Natural Language Texts.” <em>Expert Syst. Appl.</em> 115: 512–23. <a href="https://doi.org/10.1016/J.ESWA.2018.08.009">https://doi.org/10.1016/J.ESWA.2018.08.009</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Li, Zhaoning, Qi Li, Xiaotian Zou, and Jiangtao Ren. 2021. “Causality Extraction Based on Self-Attentive BiLSTM-CRF with Transferred Embeddings.” <em>Neurocomputing</em> 423: 207–19. <a href="https://doi.org/10.1016/J.NEUCOM.2020.08.078">https://doi.org/10.1016/J.NEUCOM.2020.08.078</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Girju, Roxana. 2003. “Automatic Detection of Causal Relations for Question Answering.” <em>Proceedings of the ACL 2003 Workshop on Multilingual Summarization and Question Answering</em> (Sapporo, Japan), 76–83. <a href="https://doi.org/10.3115/1119312.1119322">https://doi.org/10.3115/1119312.1119322</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -2088,7 +2182,7 @@ section.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

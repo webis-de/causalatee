@@ -1237,6 +1237,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1695,6 +1706,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1757,6 +1772,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2036,6 +2107,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2069,12 +2151,8 @@
   
 
 
-<!-- TODO(user): add the FinCausal 2020 bibtex entry to docs/references/datasets.bib
-     (Mariko et al., FNP 2020, "The Financial Document Causality Detection Shared
-     Task", https://aclanthology.org/2020.fnp-1.3/), then set bib_key: in the
-     frontmatter above and add  to the bottom of this page. -->
-
 <h1 id="fincausal-2020-fincausal-20">FinCausal 2020 (FinCausal-20)</h1>
+<p><a href="https://aclanthology.org/2020.fnp-1.3/"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a> <a href="https://github.com/yseop/YseopLab"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></p>
 <p><span class="pill pill-inter-sentence">Inter-sentence (whole document/section)</span> <span class="pill pill-polarity-none">No Polarity Signal</span> <span class="pill pill-strength-none">No Strength Signal</span></p>
 <p>FinCausal annotates causal relations in financial disclosures and news, targeting quantified facts where a cause leads to a measurable financial effect. Converted directly from the FNP 2020 shared task organizers' own repository, using only the "practice" (train) and "trial" (test) splits — the "evaluation" split is an unlabeled blind test set that was never republished with gold labels.</p>
 <p>Each row is a whole text section (see the granularity pill above), not a single sentence: causal relations can genuinely span multiple sentences within one section, so a per-sentence schema would risk dropping or corrupting them — the same reasoning already applied to <a href="../BioCause/">BioCause</a> and <a href="../TCR/">TCR</a>.</p>
@@ -2130,8 +2208,27 @@
 <td style="text-align: right;">—</td>
 <td style="text-align: right;">—</td>
 </tr>
+<tr>
+<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
 </tbody>
 </table>
+<h2 id="citation">Citation</h2>
+<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">mariko:2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{The Financial Document Causality Detection Shared Task ({{FinCausal}} 2020)}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Proceedings of the 1st Joint Workshop on Financial Narrative Processing and {{MultiLing}} Financial Summarisation}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Mariko, Dominique and {Abi-Akl}, Hanna and Labidurie, Estelle and Durfort, Stephane and De Mazancourt, Hugues and {El-Haj}, Mahmoud}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">editor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{El-Haj}, Dr Mahmoud and Athanasakou, Dr Vasiliki and Ferradans, Dr Sira and Salzedo, Dr Catherine and Elhag, Dr Ans and Bouamor, Dr Houda and Litvak, Dr Marina and Rayson, Dr Paul and Giannakopoulos, Dr George and Pittaras, Nikiforos}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2020</span><span class="p">,</span>
+<span class="w">  </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nv">dec</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{23--32}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{COLING}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Barcelona, Spain (Online)}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://aclanthology.org/2020.fnp-1.3/}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -2223,7 +2320,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

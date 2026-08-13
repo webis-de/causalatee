@@ -1622,6 +1622,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1684,6 +1688,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2359,7 +2419,7 @@ protocol applies there.</p>
 
         <p>The end-to-end task: raw, unmarked text straight to structured relations.</p>
 <p>No current model in this repo implements this directly; see
-<a class="autorefs autorefs-internal" title="compose_extraction(detection, candidate_extraction, identification)" href="#causalatee.models.compose_extraction"><code>compose_extraction</code></a> to build one from a <code>Detection</code>, a
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;compose_extraction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;candidate_extraction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;identification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.models.compose_extraction"><code>compose_extraction</code></a> to build one from a <code>Detection</code>, a
 <code>CandidateExtraction</code>, and a <code>PairwiseIdentification</code> model.</p>
 
 
@@ -2395,7 +2455,7 @@ protocol applies there.</p>
 <p>Classifies every relation among an arbitrary number of pre-marked spans (<code>&lt;e1&gt;</code>...<code>&lt;eN&gt;</code>) in one call,
 matching the <code>relations</code> column of the identification dataset schema directly -- a sentence may carry more
 than two marked entities and more than one relation record. No current model in this repo implements this
-directly; see <a class="autorefs autorefs-internal" title="lift_pairwise_identification(model)" href="#causalatee.models.lift_pairwise_identification"><code>lift_pairwise_identification</code></a> to build one from
+directly; see <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;lift_pairwise_identification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.models.lift_pairwise_identification"><code>lift_pairwise_identification</code></a> to build one from
 any <code>PairwiseIdentification</code> model.</p>
 
 
@@ -2526,7 +2586,7 @@ ever reaching <code>identification</code> -- callers that need to gate on e.g. <
 span list for texts that shouldn't be identified at all (see <code>_ComposedExtraction</code> for the causality-gating
 example).</p>
 <p><code>identification</code> can be any <code>Identification</code> model, including one built by
-<a class="autorefs autorefs-internal" title="lift_pairwise_identification(model)" href="#causalatee.models.lift_pairwise_identification"><code>lift_pairwise_identification</code></a> from a
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;lift_pairwise_identification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.models.lift_pairwise_identification"><code>lift_pairwise_identification</code></a> from a
 <code>PairwiseIdentification</code> model, or a genuinely joint/N-ary model. Shared by <code>compose_extraction</code> and
 <code>causalatee.mining</code>'s identification stage so the marking/enumeration/remapping logic exists once, not twice.</p>
 
@@ -2773,7 +2833,7 @@ and its O(n^2)-pairs-per-text cost caveat.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

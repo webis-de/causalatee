@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://causalatee.webis.de/nightly/models/sdp_causality_extraction/">
       
       
-        <link rel="prev" href="../biaffine_span_extraction/">
+        <link rel="prev" href="../scite/">
       
       
         <link rel="next" href="../../reference/">
@@ -1626,6 +1626,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1688,6 +1692,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2236,12 +2296,13 @@
 
 
 <h1 id="sdp-causality-extraction">SDP Causality Extraction</h1>
+<p><a href="https://doi.org/10.3115/1119312.1119322"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a></p>
 <p>The <strong>Shortest Dependency Path (SDP)</strong> approach is a classical, linguistically motivated baseline
 for causal relation extraction. Given a sentence and two candidate entity spans, it finds the
 shortest path connecting the two entities in the syntactic dependency parse tree and uses that
 path as the feature representation for a downstream classifier.</p>
 <p>The approach was introduced for general relation extraction by [@bunescu:2005] and later applied
-specifically to causal relations by [@girju:2003] and others. It remains a strong, interpretable
+specifically to causal relations by (Girju 2003)<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">1</a></sup> and others. It remains a strong, interpretable
 baseline for the <a href="../../tasks/causal_event_candidate_detection/">Causal Event Candidate Detection</a>
 and <a href="../../tasks/causality_identification/">Causality Identification</a> steps of the extraction
 pipeline.</p>
@@ -2306,7 +2367,7 @@ Output: relation label (causal / no-relation)
 </tr>
 <tr>
 <td><strong>Causal lexicon</strong></td>
-<td>Whether any known causal connective (<em>cause</em>, <em>lead to</em>, <em>result in</em>, …) appears on the path [@girju:2003] — see <a href="#causal-lexicon">Causal Lexicon</a> below</td>
+<td>Whether any known causal connective (<em>cause</em>, <em>lead to</em>, <em>result in</em>, …) appears on the path (Girju 2003)<sup id="fnref4:2"><a class="footnote-ref" href="#fn:2">1</a></sup> — see <a href="#causal-lexicon">Causal Lexicon</a> below</td>
 </tr>
 <tr>
 <td><strong>Entity types</strong></td>
@@ -2326,13 +2387,13 @@ Output: relation label (causal / no-relation)
 </ul>
 <h2 id="causal-lexicon">Causal Lexicon</h2>
 <p>Whether a known causal connective appears on (or near) the path is one of the oldest and
-cheapest features for causal relation classification [@girju:2003]. <code>causalatee.nlp.find_causal_connectives</code>
+cheapest features for causal relation classification (Girju 2003)<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">1</a></sup>. <code>causalatee.nlp.find_causal_connectives</code>
 implements this over a small, hand-curated lexicon organized into the categories commonly
 distinguished in the discourse-connective literature — causal verbs and nouns (<em>cause</em>, <em>trigger</em>,
 <em>result in</em>, <em>factor</em>, <em>consequence</em>), subordinating cue phrases (<em>because</em>, <em>due to</em>, <em>since</em>),
 and sentence-linking adverbials (<em>therefore</em>, <em>consequently</em>) — broadly following the connective
 categories used by the Penn Discourse TreeBank's <code>Contingency.Cause</code> relation class [@pdtb:2008]
-and the causal verb patterns cataloged by [@girju:2003]. Verbs and nouns are matched by lemma
+and the causal verb patterns cataloged by (Girju 2003)<sup id="fnref3:2"><a class="footnote-ref" href="#fn:2">1</a></sup>. Verbs and nouns are matched by lemma
 (one entry, e.g. "lead to", automatically covers every inflection: "leads to"/"led to"/"leading
 to"); cue phrases and adverbials are matched as literal surface forms, since they don't
 meaningfully inflect.</p>
@@ -2351,7 +2412,7 @@ the lexicon are highly ambiguous outside of context — <em>since</em> and <em>a
 or comparative than causal in general text. This is exactly why the classical feature-based
 encoding above uses the causal lexicon as one feature among several (path length, POS tags,
 dependency labels), never as a standalone decision rule. Absence of a match is equally
-uninformative: (Hidey and McKeown 2016)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">1</a></sup> show that many real causal relations use no fixed connective at all
+uninformative: (Hidey and McKeown 2016)<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">2</a></sup> show that many real causal relations use no fixed connective at all
 ("alternative lexicalizations" — see the <a href="../../datasets/AltLex/">AltLex dataset</a>), motivating the
 neural encodings described above as a way to capture causality that lexical matching misses
 entirely.</p>
@@ -2459,8 +2520,11 @@ taking character-offset spans rather than requiring the caller to locate head to
 <div class="footnote">
 <hr />
 <ol>
+<li id="fn:2">
+<p>Girju, Roxana. 2003. “Automatic Detection of Causal Relations for Question Answering.” <em>Proceedings of the ACL 2003 Workshop on Multilingual Summarization and Question Answering</em> (Sapporo, Japan), 76–83. <a href="https://doi.org/10.3115/1119312.1119322">https://doi.org/10.3115/1119312.1119322</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:2" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:2" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
 <li id="fn:7">
-<p>Hidey, Christopher, and Kathy McKeown. 2016. “Identifying Causal Relations Using Parallel Wikipedia Articles.” <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics, ACL 2016, August 7-12, 2016, Berlin, Germany, Volume 1: Long Papers</em>. <a href="https://doi.org/10.18653/V1/P16-1135">https://doi.org/10.18653/V1/P16-1135</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Hidey, Christopher, and Kathy McKeown. 2016. “Identifying Causal Relations Using Parallel Wikipedia Articles.” <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics, ACL 2016, August 7-12, 2016, Berlin, Germany, Volume 1: Long Papers</em>. <a href="https://doi.org/10.18653/V1/P16-1135">https://doi.org/10.18653/V1/P16-1135</a>.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -2470,6 +2534,9 @@ taking character-offset spans rather than requiring the caller to locate head to
 
 
 
+
+  
+  
 
 
 
@@ -2552,7 +2619,7 @@ taking character-offset spans rather than requiring the caller to locate head to
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

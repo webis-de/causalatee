@@ -1756,6 +1756,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1818,6 +1822,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2192,7 +2252,7 @@
 
 
 <h1 id="penn-discourse-treebank-30-pdtb-30">Penn Discourse Treebank 3.0 (PDTB 3.0)</h1>
-<p><a href="https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f917.png" title=":hugging:" /></a></p>
+<p><a href="https://huggingface.co/datasets/thagen/PennDiscourseTreebankv3"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f917.svg" title=":hugging:" /></a> <a href="https://github.com/tanfiona/UniCausal"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></p>
 <p><span class="pill pill-intra-sentence">Intra-sentence</span> <span class="pill pill-polarity-documented">Polarity Documented, Not Converted</span> <span class="pill pill-strength-documented">Strength Documented, Not Converted</span></p>
 <p>PDTB 3.0 annotates discourse relations — including causal, temporal, and contingency senses — across the full Penn Treebank WSJ corpus using both explicit connectives and implicit relation spans.</p>
 <p>The real PDTB-3 sense hierarchy distinguishes <code>Contingency.Negative-condition</code> (polarity) and <code>Cause+Belief</code>/<code>Cause+SpeechAct</code> (epistemic strength), but this project's converter only reads UniCausal's binary <code>pair_label</code>, so both signals are documented here without being surfaced in the converted data.</p>
@@ -2255,6 +2315,11 @@ yourself.</p>
 </tr>
 <tr>
 <td><a href="../../tasks/causality_identification/">Causality Identification</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
 <td style="text-align: right;">—</td>
 <td style="text-align: right;">—</td>
 </tr>
@@ -2371,7 +2436,7 @@ yourself.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

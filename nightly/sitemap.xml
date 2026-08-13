@@ -2,210 +2,218 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://causalatee.webis.de/nightly/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/AltLex/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/BECauSEv1/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/BECauSEv2/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/BioCause/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/CCNC/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/CNC/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/CNCv2/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/COPA/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/CTB/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/CaTeRS/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/ESL/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/EventCausality/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/FinCausal20/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/FinCausal23/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/PDTB3/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/PDTBv2/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/PolitiCause/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/PubMedCausal/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/SCITE/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/SemEval2007T4/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/SemEval2010T8/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/SemEval2020T5/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/SemEval2023T8/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/TCR/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/datasets/UniCausal/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/candidate_extraction/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/causenet_cgf/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/detection/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/identification/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/mining/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/examples/sdp_causality_extraction/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/causalgraphs/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/cgf_spec/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/graphs/cause_effect_graph/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/graphs/causenet/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/graphs/cgf/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/graphs/graphs/sql_graph/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/models/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/models/biaffine_span_extraction/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
+    </url>
+    <url>
+         <loc>https://causalatee.webis.de/nightly/models/kcnn/</loc>
+         <lastmod>2026-08-13</lastmod>
+    </url>
+    <url>
+         <loc>https://causalatee.webis.de/nightly/models/scite/</loc>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/models/sdp_causality_extraction/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/reference/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/reference/data_utils/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/reference/graph/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/reference/mining/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/reference/models/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/tasks/causal_event_candidate_detection/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/tasks/causality_detection/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/tasks/causality_extraction/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
     <url>
          <loc>https://causalatee.webis.de/nightly/tasks/causality_identification/</loc>
-         <lastmod>2026-08-12</lastmod>
+         <lastmod>2026-08-13</lastmod>
     </url>
 </urlset>

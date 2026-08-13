@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://causalatee.webis.de/nightly/datasets/COPA/">
+        <link rel="canonical" href="https://causalatee.webis.de/nightly/models/kcnn/">
       
       
-        <link rel="prev" href="../CNCv2/">
+        <link rel="prev" href="../biaffine_span_extraction/">
       
       
-        <link rel="next" href="../CTB/">
+        <link rel="next" href="../scite/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>COPA - Causalatee</title>
+        <title>k-CNN - Causalatee</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#copa" class="md-skip">
+        <a href="#k-cnn" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              COPA
+              k-CNN
             
           </span>
         </div>
@@ -709,10 +709,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -770,15 +768,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../datasets/" class="md-nav__link ">
               
   
   
@@ -802,7 +800,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -820,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../AltLex/" class="md-nav__link">
+      <a href="../../datasets/AltLex/" class="md-nav__link">
         
   
   
@@ -848,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BECauSEv1/" class="md-nav__link">
+      <a href="../../datasets/BECauSEv1/" class="md-nav__link">
         
   
   
@@ -876,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BECauSEv2/" class="md-nav__link">
+      <a href="../../datasets/BECauSEv2/" class="md-nav__link">
         
   
   
@@ -904,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../BioCause/" class="md-nav__link">
+      <a href="../../datasets/BioCause/" class="md-nav__link">
         
   
   
@@ -932,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CCNC/" class="md-nav__link">
+      <a href="../../datasets/CCNC/" class="md-nav__link">
         
   
   
@@ -960,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CNC/" class="md-nav__link">
+      <a href="../../datasets/CNC/" class="md-nav__link">
         
   
   
@@ -988,7 +986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CNCv2/" class="md-nav__link">
+      <a href="../../datasets/CNCv2/" class="md-nav__link">
         
   
   
@@ -1013,37 +1011,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    COPA
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../datasets/COPA/" class="md-nav__link">
         
   
   
@@ -1059,109 +1030,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tasks-splits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tasks &amp; Splits
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-explorer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Explorer
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Data Explorer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#causality-detection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causality Detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causal-event-candidate-extraction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causal Event Candidate Extraction
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causality-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causality Identification
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Citation
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1174,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CTB/" class="md-nav__link">
+      <a href="../../datasets/CTB/" class="md-nav__link">
         
   
   
@@ -1202,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CaTeRS/" class="md-nav__link">
+      <a href="../../datasets/CaTeRS/" class="md-nav__link">
         
   
   
@@ -1230,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ESL/" class="md-nav__link">
+      <a href="../../datasets/ESL/" class="md-nav__link">
         
   
   
@@ -1258,7 +1126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../EventCausality/" class="md-nav__link">
+      <a href="../../datasets/EventCausality/" class="md-nav__link">
         
   
   
@@ -1286,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../FinCausal20/" class="md-nav__link">
+      <a href="../../datasets/FinCausal20/" class="md-nav__link">
         
   
   
@@ -1314,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../FinCausal23/" class="md-nav__link">
+      <a href="../../datasets/FinCausal23/" class="md-nav__link">
         
   
   
@@ -1342,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PDTB3/" class="md-nav__link">
+      <a href="../../datasets/PDTB3/" class="md-nav__link">
         
   
   
@@ -1370,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PDTBv2/" class="md-nav__link">
+      <a href="../../datasets/PDTBv2/" class="md-nav__link">
         
   
   
@@ -1398,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PolitiCause/" class="md-nav__link">
+      <a href="../../datasets/PolitiCause/" class="md-nav__link">
         
   
   
@@ -1426,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PubMedCausal/" class="md-nav__link">
+      <a href="../../datasets/PubMedCausal/" class="md-nav__link">
         
   
   
@@ -1454,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SCITE/" class="md-nav__link">
+      <a href="../../datasets/SCITE/" class="md-nav__link">
         
   
   
@@ -1482,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2007T4/" class="md-nav__link">
+      <a href="../../datasets/SemEval2007T4/" class="md-nav__link">
         
   
   
@@ -1510,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2010T8/" class="md-nav__link">
+      <a href="../../datasets/SemEval2010T8/" class="md-nav__link">
         
   
   
@@ -1538,7 +1406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2020T5/" class="md-nav__link">
+      <a href="../../datasets/SemEval2020T5/" class="md-nav__link">
         
   
   
@@ -1566,7 +1434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../SemEval2023T8/" class="md-nav__link">
+      <a href="../../datasets/SemEval2023T8/" class="md-nav__link">
         
   
   
@@ -1594,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TCR/" class="md-nav__link">
+      <a href="../../datasets/TCR/" class="md-nav__link">
         
   
   
@@ -1622,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../UniCausal/" class="md-nav__link">
+      <a href="../../datasets/UniCausal/" class="md-nav__link">
         
   
   
@@ -1747,8 +1615,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1764,15 +1634,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../models/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1796,7 +1666,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1814,7 +1684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/biaffine_span_extraction/" class="md-nav__link">
+      <a href="../biaffine_span_extraction/" class="md-nav__link">
         
   
   
@@ -1839,10 +1709,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../models/kcnn/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1858,6 +1755,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strengths-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths and Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1870,7 +1831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/scite/" class="md-nav__link">
+      <a href="../scite/" class="md-nav__link">
         
   
   
@@ -1898,7 +1859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sdp_causality_extraction/" class="md-nav__link">
+      <a href="../sdp_causality_extraction/" class="md-nav__link">
         
   
   
@@ -2136,10 +2097,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        Architecture
       
     </span>
   </a>
@@ -2147,10 +2108,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tasks-splits" class="md-nav__link">
+  <a href="#evaluation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tasks &amp; Splits
+        Evaluation
       
     </span>
   </a>
@@ -2158,52 +2119,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-explorer" class="md-nav__link">
+  <a href="#strengths-and-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Explorer
+        Strengths and Limitations
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Data Explorer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#causality-detection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causality Detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causal-event-candidate-extraction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causal Event Candidate Extraction
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#causality-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Causality Identification
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2235,7 +2157,7 @@
 
 
   
-    <a href="https://github.com/webis-de/causalatee/edit/main/docs/datasets/COPA.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/webis-de/causalatee/edit/main/docs/models/kcnn.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2244,18 +2166,46 @@
     
       
     
-    <a href="https://github.com/webis-de/causalatee/raw/main/docs/datasets/COPA.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/webis-de/causalatee/raw/main/docs/models/kcnn.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="copa">COPA</h1>
-<p><a href="https://huggingface.co/datasets/thagen/COPA"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f917.svg" title=":hugging:" /></a> <a href="https://github.com/drwiner/COPA"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></p>
-<p><span class="pill pill-intra-sentence">Intra-sentence</span> <span class="pill pill-polarity-none">No Polarity Signal</span> <span class="pill pill-strength-none">No Strength Signal</span></p>
-<p>The Choice of Plausible Alternatives corpus evaluates commonsense causal reasoning by asking models to select the most plausible cause or effect for a short premise from two candidate sentences.</p>
-<h2 id="overview">Overview</h2>
+<h1 id="k-cnn">k-CNN</h1>
+<p><a href="https://doi.org/10.1016/J.ESWA.2018.08.009"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a></p>
+<p><strong>k-CNN</strong> classifies whether a causal relation holds between two already-marked entity spans by
+combining two parallel convolutional channels: a <em>knowledge-oriented</em> (K) channel that encodes
+linguistic cues from the text strictly between the two entities, and a <em>data-oriented</em> (D)
+channel that encodes the whole sentence with position-relative embeddings.</p>
+<p>Introduced by (Li and Mao 2019)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> for binary causal-vs-non-causal relation classification over an
+already-identified entity pair, k-CNN directly targets
+<a href="../../tasks/causality_identification/">Causality Identification</a> — it needs both spans marked
+ahead of time and does not itself detect or extract them.</p>
+<h2 id="architecture">Architecture</h2>
+<p><strong>K-channel</strong> (knowledge-oriented): only the lemmatized words strictly between the two entity
+spans. Convolves with cosine similarity (unit-vector dot product) over 1/2/3-word windows, then
+max-pools. Filters are pruned by an ANOVA F-test (keeping only filters whose class separation is
+statistically significant) and the survivors are clustered (k-means, separately for
+unigrams/bigrams) to control dimensionality.</p>
+<p><strong>D-channel</strong> (data-oriented): the full sentence, each word embedded together with its relative
+position to both entity heads (20-d trainable position embeddings). Convolves with a standard
+dot product + tanh over 3/4-word windows, then max-pools.</p>
+<p><strong>Semantic features</strong> (optional): WordNet top-level category one-hots for both entities (82-d)
+plus four FrameNet causal-lexicon scores, summed separately over the before/between/after regions
+of the sentence relative to the entity pair.</p>
+<p>The K-channel, D-channel, and semantic features are concatenated and fed to a small fully
+connected softmax classifier (dropout 0.4). Word embeddings are the frozen, unit-normalized
+Levy &amp; Goldberg dependency-based embeddings — not the more commonly substituted word2vec or
+GloVe embeddings.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>(Li and Mao 2019)<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> reports macro-averaged F1 (10-fold cross-validation, averaged over 10 seeds) of 92.64
+on SemEval-2010 Task 8, 77.86 on CausalTimeBank, and 83.31 on Event StoryLine for the best
+configuration (both channels plus semantic features). The knowledge-oriented channel —
+restricting convolution to only the words between the two entities, rather than the whole
+sentence — is the paper's central contribution over a plain sentence-level CNN baseline.</p>
+<h2 id="strengths-and-limitations">Strengths and Limitations</h2>
 <table>
 <thead>
 <tr>
@@ -2265,76 +2215,44 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Domain</strong></td>
-<td>General</td>
+<td><strong>Strong on SemEval-2010 Task 8</strong></td>
+<td>Competitive F1 without any contextual (transformer) embeddings</td>
 </tr>
 <tr>
-<td><strong>Year</strong></td>
-<td>2011</td>
+<td><strong>Identification-only</strong></td>
+<td>Needs both entity spans already marked; cannot detect or extract spans itself</td>
 </tr>
 <tr>
-<td><strong>Sentences</strong></td>
-<td>2,000</td>
+<td><strong>Needs markers on negatives too</strong></td>
+<td>Both channels require two marked entity spans on <em>every</em> example, including non-causal ones — datasets whose <code>causality-identification</code> conversion only marks entities on causal-relation rows (rather than on every candidate pair) can't be fed to k-CNN as-is; see <code>resources/models/kCNN/notes.txt</code> for the concrete blocker hit reproducing it against causalatee's own converted tables</td>
 </tr>
 <tr>
-<td><strong>Granularity</strong></td>
-<td>Intra-sentence</td>
+<td><strong>Sensitive to embedding choice</strong></td>
+<td>Built specifically around Levy-Goldberg dependency-based embeddings, whose original distribution site is no longer reliably available</td>
 </tr>
 </tbody>
 </table>
-<h2 id="tasks-splits">Tasks &amp; Splits</h2>
-<table>
-<thead>
-<tr>
-<th>Task</th>
-<th style="text-align: right;">Train</th>
-<th style="text-align: right;">Test</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../../tasks/causality_detection/">Causality Detection</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-<tr>
-<td><a href="../../tasks/causal_event_candidate_detection/">Causal Event Candidate Extraction</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-<tr>
-<td><a href="../../tasks/causality_identification/">Causality Identification</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-<tr>
-<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
-<td style="text-align: right;">—</td>
-<td style="text-align: right;">—</td>
-</tr>
-</tbody>
-</table>
-<h2 id="data-explorer">Data Explorer</h2>
-<h3 id="causality-detection">Causality Detection</h3>
-<iframe src="https://huggingface.co/datasets/thagen/COPA/embed/viewer/causality%20detection/train" frameborder="0" width="100%" height="560px"></iframe>
-
-<h3 id="causal-event-candidate-extraction">Causal Event Candidate Extraction</h3>
-<iframe src="https://huggingface.co/datasets/thagen/COPA/embed/viewer/causal%20candidate%20extraction/train" frameborder="0" width="100%" height="560px"></iframe>
-
-<h3 id="causality-identification">Causality Identification</h3>
-<iframe src="https://huggingface.co/datasets/thagen/COPA/embed/viewer/causality%20identification/train" frameborder="0" width="100%" height="560px"></iframe>
-
 <h2 id="citation">Citation</h2>
-<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">roemmele:2011a</span><span class="p">,</span>
-<span class="w">  </span><span class="na">title</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{Choice of {{Plausible Alternatives}}: {{An Evaluation}} of {{Commonsense Causal Reasoning}}}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">shorttitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Choice of {{Plausible Alternatives}}}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">booktitle</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Logical {{Formalizations}} of {{Commonsense Reasoning}}, {{Papers}} from the 2011 {{AAAI Spring Symposium}}, {{Technical Report SS-11-06}}, {{Stanford}}, {{California}}, {{USA}}, {{March}} 21-23, 2011}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">author</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{Roemmele, Melissa and Bejan, Cosmin Adrian and Gordon, Andrew S.}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">year</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="m">2011</span><span class="p">,</span>
-<span class="w">  </span><span class="na">publisher</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{AAAI}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">urldate</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{2026-06-10}</span>
+<div class="highlight"><pre><span></span><code><span class="nc">@article</span><span class="p">{</span><span class="nl">li:2019</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Knowledge-Oriented Convolutional Neural Network for Causal Relation Extraction from Natural Language Texts}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Li, Pengfei and Mao, Kezhi}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2019</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Expert Syst. Appl.}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{115}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{512--523}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.1016/J.ESWA.2018.08.009}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://doi.org/10.1016/j.eswa.2018.08.009}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">urldate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2024-07-19}</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Li, Pengfei, and Kezhi Mao. 2019. “Knowledge-Oriented Convolutional Neural Network for Causal Relation Extraction from Natural Language Texts.” <em>Expert Syst. Appl.</em> 115: 512–23. <a href="https://doi.org/10.1016/J.ESWA.2018.08.009">https://doi.org/10.1016/J.ESWA.2018.08.009</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 

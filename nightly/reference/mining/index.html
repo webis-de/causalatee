@@ -1624,6 +1624,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1686,6 +1690,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2444,9 +2504,9 @@ uniformly; a stage backed by a single GPU model (any
 <p><code>identification_model</code> here is a <a class="autorefs autorefs-internal" href="../models/#causalatee.models.PairwiseIdentification"><code>PairwiseIdentification</code></a>;
 each mapped text must already carry candidate-span markers (<code>&lt;e0&gt;</code>, <code>&lt;e1&gt;</code>, ...) for
 this to work directly — see
-<a class="autorefs autorefs-internal" title="identify_candidates(texts, spans_per_text, identification)" href="../models/#causalatee.models.identify_candidates"><code>causalatee.models.identify_candidates</code></a> for
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identify_candidates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;texts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spans_per_text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;identification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="../models/#causalatee.models.identify_candidates"><code>causalatee.models.identify_candidates</code></a> for
 the marking/enumeration/remapping glue, shared with
-<a class="autorefs autorefs-internal" title="compose_extraction(detection, candidate_extraction, identification)" href="../models/#causalatee.models.compose_extraction"><code>compose_extraction</code></a>, that a real
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;compose_extraction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;candidate_extraction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;identification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="../models/#causalatee.models.compose_extraction"><code>compose_extraction</code></a>, that a real
 identification stage function should wrap around the raw model.</p>
 <h2 id="why-not-just-materialize-the-corpus-and-loop">Why not just materialize the corpus and loop?</h2>
 <p>Because a real corpus doesn't fit in memory, and a naive <code>for document in corpus:
@@ -2458,17 +2518,17 @@ own concurrency independently, while guaranteeing a <code>concurrency=1</code> G
 receives more than one call at a time regardless of how concurrent its neighboring
 stages are.</p>
 <h2 id="reducing-into-a-graph">Reducing into a graph</h2>
-<p><a class="autorefs autorefs-internal" title="graph_sink()" href="#causalatee.mining.graph_sink"><code>graph_sink</code></a> is both the <code>Pipeline.reduce</code> sink and
-(after <code>reduce</code> completes) a <a class="autorefs autorefs-internal" title="Graph" href="../graph/#causalatee.graph.Graph"><code>causalatee.graph.Graph</code></a> —
+<p><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;graph_sink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;" href="#causalatee.mining.graph_sink"><code>graph_sink</code></a> is both the <code>Pipeline.reduce</code> sink and
+(after <code>reduce</code> completes) a <a class="autorefs autorefs-internal" title="&lt;code&gt;Graph&lt;/code&gt;" href="../graph/#causalatee.graph.Graph"><code>causalatee.graph.Graph</code></a> —
 <code>await pipeline.reduce(graph_sink())</code> returns something directly usable with
-<a class="autorefs autorefs-internal" title="save_cgf(graph, path, *, include_incoming=True, node_metadata_schema=None, edge_metadata_schema=None)" href="../graph/#causalatee.graph.save_cgf"><code>save_cgf</code></a>. Every relation the pipeline emits is spooled
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;save_cgf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include_incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node_metadata_schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge_metadata_schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="../graph/#causalatee.graph.save_cgf"><code>save_cgf</code></a>. Every relation the pipeline emits is spooled
 to a temp SQLite database as it arrives (bounded memory regardless of corpus size);
 aggregation by <code>(cause, effect)</code> pair happens once, lazily, the first time <code>.nodes</code>/
 <code>.edges</code> is accessed, and populates a
-<a class="autorefs autorefs-internal" title="SQLGraph(connection)" href="../graph/#causalatee.graph.SQLGraph"><code>SQLGraph</code></a> with one <code>add_edge</code> call per aggregated pair
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;SQLGraph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="../graph/#causalatee.graph.SQLGraph"><code>SQLGraph</code></a> with one <code>add_edge</code> call per aggregated pair
 — <code>GraphSink</code> only owns the spooling/aggregation, <code>SQLGraph</code> is the generic,
 reusable storage engine. Close it (or use it as a context manager) once done with the
-resulting graph, the same way <a class="autorefs autorefs-internal" title="load_cgf(path, *, validate=False)" href="../graph/#causalatee.graph.load_cgf"><code>load_cgf</code></a> is used.</p>
+resulting graph, the same way <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;load_cgf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="../graph/#causalatee.graph.load_cgf"><code>load_cgf</code></a> is used.</p>
 <h2 id="example">Example</h2>
 <p>See the <a href="../../examples/mining/">Mining a Causal Graph</a> notebook for a runnable
 walkthrough of the full pipeline -&gt; <code>graph_sink</code> -&gt; <code>save_cgf</code> flow, using a
@@ -2519,7 +2579,7 @@ deterministic stand-in extraction function so it runs without a real model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="SQLGraph(connection) (causalatee.graph.SQLGraph)" href="../graph/#causalatee.graph.SQLGraph">SQLGraph</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;SQLGraph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt; (&lt;code&gt;causalatee.graph.SQLGraph&lt;/code&gt;)" href="../graph/#causalatee.graph.SQLGraph">SQLGraph</a></code></p>
 
 
 
@@ -3267,7 +3327,7 @@ rather than drifting from it.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

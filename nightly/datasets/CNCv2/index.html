@@ -1119,6 +1119,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1745,6 +1756,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1807,6 +1822,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2136,6 +2207,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2169,13 +2251,8 @@
   
 
 
-<!-- TODO(user): add the RECESS bibtex entry to docs/references/datasets.bib
-     (Tan et al., IJCNLP-AACL 2023, https://aclanthology.org/2023.ijcnlp-main.6/),
-     then set bib_key: in the frontmatter above to that entry's key and add
-      to the bottom of this page. -->
-
 <h1 id="causal-news-corpus-v2-recess-cncv2">Causal News Corpus V2 / RECESS (CNCv2)</h1>
-<p><a href="https://huggingface.co/datasets/thagen/CausalNewsCorpusV2"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f917.png" title=":hugging:" /></a></p>
+<p><a href="https://doi.org/10.18653/V1/2023.IJCNLP-MAIN.6"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a> <a href="https://huggingface.co/datasets/thagen/CausalNewsCorpusV2"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f917.svg" title=":hugging:" /></a> <a href="https://github.com/tanfiona/CausalNewsCorpus"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.6 10.59 8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.39-1-1.73V9.41l2.07 2.09c-.07.15-.07.32-.07.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2c-.18 0-.35 0-.5.07L13.93 7.5a1.98 1.98 0 0 0-1.15-2.34c-.43-.16-.88-.2-1.28-.09L9.8 3.38l.79-.78c.78-.79 2.04-.79 2.82 0l7.99 7.99c.79.78.79 2.04 0 2.82l-7.99 7.99c-.78.79-2.04.79-2.82 0L2.6 13.41c-.79-.78-.79-2.04 0-2.82"/></svg></span></a></p>
 <p><span class="pill pill-intra-sentence">Intra-sentence</span> <span class="pill pill-polarity-none">No Polarity Signal</span> <span class="pill pill-strength-none">No Strength Signal</span></p>
 <p>The "V2" release of the Causal News Corpus — published as RECESS — annotates causal event sentences drawn from news, with span-level cause/effect/signal annotations for a much larger share of causal sentences than the original 2022 release.</p>
 <p>This is the actively-maintained release the maintainers themselves recommend using ("For 2023 Shared Task, please use V2"), with far richer span annotations (2257 causal relations) than <a href="../CNC/">CNC</a>, the original 2022 release (183 causal relations) — kept as its own separate dataset for comparison rather than silently overwritten.</p>
@@ -2231,6 +2308,11 @@
 <td style="text-align: right;">—</td>
 <td style="text-align: right;">—</td>
 </tr>
+<tr>
+<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
 </tbody>
 </table>
 <h2 id="data-explorer">Data Explorer</h2>
@@ -2242,6 +2324,22 @@
 
 <h3 id="causality-identification">Causality Identification</h3>
 <iframe src="https://huggingface.co/datasets/thagen/CausalNewsCorpusV2/embed/viewer/causality%20identification/train" frameborder="0" width="100%" height="560px"></iframe>
+
+<h2 id="citation">Citation</h2>
+<div class="highlight"><pre><span></span><code><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">tan:2023</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{{RECESS}}: {{Resource}} for {{Extracting Cause}}, {{Effect}}, and {{Signal Spans}}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">shorttitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{{RECESS}}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Proceedings of the 13th {{International Joint Conference}} on {{Natural Language Processing}} and the 3rd {{Conference}} of the {{Asia-Pacific Chapter}} of the {{Association}} for {{Computational Linguistics}}, {{IJCNLP}} 2023 -{{Volume}} 1: {{Long Papers}}, {{Nusa Dua}}, {{Bali}}, {{November}} 1 - 4, 2023}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Tan, Fiona Anting and Hettiarachchi, Hansi and H{\&quot;u}rriyetoglu, Ali and Oostdijk, Nelleke and Caselli, Tommaso and Nomoto, Tadashi and Uca, Onur and Liza, Farhana Ferdousi and Ng, See-Kiong}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">editor</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Park, Jong C. and Arase, Yuki and Hu, Baotian and Lu, Wei and Wijaya, Derry and Purwarianti, Ayu and Krisnadhi, Adila Alfa}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2023</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{66--82}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Association for Computational Linguistics}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.18653/V1/2023.IJCNLP-MAIN.6}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://doi.org/10.18653/v1/2023.ijcnlp-main.6}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">urldate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2024-09-03}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -2333,7 +2431,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

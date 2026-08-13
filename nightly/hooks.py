@@ -3,6 +3,8 @@
 import shutil
 from pathlib import Path
 
+import yaml
+
 
 def on_pre_build(config):
     """Copy examples/ notebooks into docs/examples/ before MkDocs resolves nav paths."""
@@ -17,12 +19,14 @@ _TASK_NAMES = {
     "causality-detection": "Causality Detection",
     "causal-candidate-extraction": "Causal Event Candidate Extraction",
     "causality-identification": "Causality Identification",
+    "causality-extraction": "Causality Extraction",
 }
 
 _TASK_LINKS = {
     "causality-detection": "../tasks/causality_detection.md",
     "causal-candidate-extraction": "../tasks/causal_event_candidate_detection.md",
     "causality-identification": "../tasks/causality_identification.md",
+    "causality-extraction": "../tasks/causality_extraction.md",
 }
 
 _HF_CONFIGS = {
@@ -68,6 +72,110 @@ _STRENGTH_LABELS = {
 _GRAPH_ORDER = ["causenet", "cgf", "cause_effect_graph", "sql_graph"]
 
 
+def _note_icon(meta):
+    """Info-icon tooltip for a dataset page's frontmatter ``note`` field (default unset/None).
+
+    Use sparingly -- only for something that makes a dataset genuinely stand out, not a routine
+    fact already covered by the pill/badge system (task support, polarity/strength, DOI, ...).
+    Renders as a native browser tooltip (no JS) via ``<abbr title="...">``, so ``note`` must be
+    plain text -- HTML attribute values can't contain markdown links or other markup. Shown only
+    in the dataset *tables* (``all_datasets()``), not on a dataset's own detail page -- the fact
+    itself belongs in that page's body prose instead, where it has room to be written out in full.
+    """
+    note = meta.get("note")
+    if not note:
+        return ""
+    escaped = note.replace("&", "&amp;").replace('"', "&quot;")
+    return f'<abbr title="{escaped}">:material-information-outline:</abbr>'
+
+
+def _find_bib_entry(key, docs_dir):
+    """Return the raw text of docs/references/*.bib's entry for ``key``, or None."""
+    import re
+
+    refs_dir = Path(docs_dir) / "references"
+    for bib_file in refs_dir.glob("*.bib"):
+        text = bib_file.read_text()
+        # Split on entry boundaries and find the one matching our key
+        for candidate in re.split(r"\n(?=@)", text.strip()):
+            m = re.match(r"@\w+\{([^,\s]+)", candidate)
+            if m and m.group(1) == key:
+                return candidate.strip()
+    return None
+
+
+def _paper_link(key, docs_dir):
+    """DOI (preferred, as a doi.org URL) or URL field from ``key``'s own .bib entry, or
+    None if the entry has neither -- so a paper-icon link never needs its own duplicated
+    frontmatter field, just the same bib_key already used for the citation itself."""
+    import re
+
+    entry = _find_bib_entry(key, docs_dir)
+    if not entry:
+        return None
+    doi = re.search(r'doi\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
+    if doi:
+        return f"https://doi.org/{doi.group(1)}"
+    url = re.search(r'url\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
+    return url.group(1) if url else None
+
+
+def _badges_for(fm, docs_dir):
+    """Shared paper/hf/repo icon list for a dataset or model's frontmatter -- used by
+    ``dataset_badges()``, ``model_badges()``, ``all_datasets()``, and ``all_models()``, so all
+    four stay in sync. The paper icon is always derived from the ``bib_key``'s own .bib entry
+    (doi, then url) -- there's no separate ``doi`` frontmatter field to keep in sync with it."""
+    hf_page = fm.get("hf_page")
+    repo = fm.get("repo")
+    bib_key = fm.get("bib_key")
+    parts = []
+    paper_url = _paper_link(bib_key, docs_dir) if bib_key else None
+    if paper_url:
+        parts.append(f"[:page_facing_up:]({paper_url})")
+    if hf_page:
+        parts.append(f"[:hugging:]({hf_page})")
+    if repo:
+        parts.append(f"[:material-git:]({repo})")
+    return parts
+
+
+def _iter_dataset_frontmatter(docs_dir):
+    """Yield ``(md_file, frontmatter_dict)`` for every docs/datasets/*.md page except index.md --
+    the shared source both ``task_datasets()`` and ``all_datasets()`` build their tables from."""
+    datasets_dir = Path(docs_dir) / "datasets"
+    for md_file in sorted(datasets_dir.glob("*.md")):
+        if md_file.name == "index.md":
+            continue
+        text = md_file.read_text()
+        if not text.startswith("---"):
+            continue
+        end = text.index("---", 3)
+        fm = yaml.safe_load(text[3:end]) or {}
+        yield md_file, fm
+
+
+def _iter_model_frontmatter(docs_dir):
+    """Yield ``(md_file, frontmatter_dict)`` for every docs/models/*.md page except index.md --
+    the source ``all_models()`` builds its table from, mirroring ``_iter_dataset_frontmatter``."""
+    models_dir = Path(docs_dir) / "models"
+    for md_file in sorted(models_dir.glob("*.md")):
+        if md_file.name == "index.md":
+            continue
+        text = md_file.read_text()
+        if not text.startswith("---"):
+            continue
+        end = text.index("---", 3)
+        fm = yaml.safe_load(text[3:end]) or {}
+        yield md_file, fm
+
+
+_TASK_CODES = {
+    "causality-detection": "D",
+    "causal-candidate-extraction": "E",
+    "causality-identification": "I",
+}
+
+
 def define_env(env):
     @env.macro
     def dataset_pills():
@@ -89,14 +197,13 @@ def define_env(env):
 
     @env.macro
     def dataset_badges():
-        meta = env.page.meta
-        doi = meta.get("doi")
-        hf_page = meta.get("hf_page")
-        parts = []
-        if doi:
-            parts.append(f"[:page_facing_up:](https://doi.org/{doi})")
-        if hf_page:
-            parts.append(f"[:hugging:]({hf_page})")
+        parts = _badges_for(env.page.meta, env.conf["docs_dir"])
+        return (" ".join(parts) + "\n\n") if parts else ""
+
+    @env.macro
+    def model_badges():
+        """Icon row for a model's own detail page -- the same idea as ``dataset_badges()``."""
+        parts = _badges_for(env.page.meta, env.conf["docs_dir"])
         return (" ".join(parts) + "\n\n") if parts else ""
 
     @env.macro
@@ -180,46 +287,16 @@ def define_env(env):
             )
         return "".join(lines)
 
-    def _find_bib_entry(key):
-        """Return the raw text of docs/references/*.bib's entry for ``key``, or None."""
-        import re
-        from pathlib import Path
-
-        refs_dir = Path(env.conf["docs_dir"]) / "references"
-        for bib_file in refs_dir.glob("*.bib"):
-            text = bib_file.read_text()
-            # Split on entry boundaries and find the one matching our key
-            for candidate in re.split(r"\n(?=@)", text.strip()):
-                m = re.match(r"@\w+\{([^,\s]+)", candidate)
-                if m and m.group(1) == key:
-                    return candidate.strip()
-        return None
-
     @env.macro
     def bibtex_entry(key):
         """Look up ``key`` in docs/references/*.bib and render its raw entry in a ```bibtex fence.
 
         Falls back to a plain ``[@key]`` inline citation if no matching entry is found.
         """
-        entry = _find_bib_entry(key)
+        entry = _find_bib_entry(key, env.conf["docs_dir"])
         if not entry:
             return f"[@{key}]\n"
         return f"```bibtex\n{entry}\n```\n"
-
-    def _paper_link(key):
-        """DOI (preferred, as a doi.org URL) or URL field from ``key``'s own .bib entry, or
-        None if the entry has neither -- so a paper-icon link never needs its own duplicated
-        frontmatter field, just the same bib_key already used for the citation itself."""
-        import re
-
-        entry = _find_bib_entry(key)
-        if not entry:
-            return None
-        doi = re.search(r'doi\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
-        if doi:
-            return f"https://doi.org/{doi.group(1)}"
-        url = re.search(r'url\s*=\s*[{"]([^}"]+)[}"]', entry, re.IGNORECASE)
-        return url.group(1) if url else None
 
     def _resolve_link(target, from_src_path):
         """Resolve ``target`` to a link valid from whatever page is currently being rendered.
@@ -251,7 +328,7 @@ def define_env(env):
         icons = []
         bib_key = meta.get("bib_key")
         if bib_key:
-            paper_url = _paper_link(bib_key)
+            paper_url = _paper_link(bib_key, env.conf["docs_dir"])
             if paper_url:
                 icons.append(f"[:page_facing_up:]({paper_url})")
         website = meta.get("website")
@@ -267,21 +344,16 @@ def define_env(env):
         return _icon_row(env.page.meta, env.page.file.src_path)
 
     @env.macro
-    def dataset_citation():
-        bib_key = env.page.meta.get("bib_key")
-        if not bib_key:
-            return ""
+    def all_datasets(filter_task=None):
+        """Build a dataset reference table from every docs/datasets/*.md page's frontmatter.
 
-        return f"## Citation\n\n{bibtex_entry(bib_key)}"
-
-    @env.macro
-    def task_datasets(task_id):
-        """Build the dataset reference table for a task page from dataset frontmatter."""
-        from pathlib import Path, PurePosixPath
-
-        import yaml
-
-        datasets_dir = Path(env.conf["docs_dir"]) / "datasets"
+        Unfiltered (docs/datasets/index.md): every dataset, with a Tasks column (D/E/I) showing
+        which tasks each one supports. Filtered to one ``filter_task`` (a task page, e.g.
+        ``{{ all_datasets(filter_task="causality-detection") }}``): only datasets supporting that
+        task, with Granularity/Reference columns instead of Tasks -- redundant once every row
+        already supports the same one task.
+        """
+        from pathlib import PurePosixPath
 
         # Relative path from the calling page's directory to docs/datasets/
         page_dir = PurePosixPath(env.page.file.src_path).parent
@@ -289,85 +361,116 @@ def define_env(env):
         link_base = "../" * depth + "datasets"
 
         rows = []
-        for md_file in sorted(datasets_dir.glob("*.md")):
-            if md_file.name == "index.md":
-                continue
-            text = md_file.read_text()
-            if not text.startswith("---"):
-                continue
-            end = text.index("---", 3)
-            fm = yaml.safe_load(text[3:end]) or {}
-
-            if task_id not in (fm.get("supported_tasks") or {}):
+        for md_file, fm in _iter_dataset_frontmatter(env.conf["docs_dir"]):
+            tasks = fm.get("supported_tasks") or {}
+            if filter_task is not None and filter_task not in tasks:
                 continue
 
             title = fm.get("title", md_file.stem)
-            doi = fm.get("doi")
-            hf_page = fm.get("hf_page")
-            bib_key = fm.get("bib_key")
-            granularity = _GRANULARITY_LABELS.get(
-                fm.get("granularity", _DEFAULT_GRANULARITY),
-                fm.get("granularity"),
+            link = f"[{title}]({link_base}/{md_file.stem}.md)"
+            note_icon = _note_icon(fm)
+            if note_icon:
+                link += f" {note_icon}"
+            rows.append(
+                {
+                    "link": link,
+                    "domain": fm.get("domain", "—"),
+                    "year": str(fm.get("year", "—")),
+                    "sentences": fm.get("sentences", "—"),
+                    "granularity": _GRANULARITY_LABELS.get(
+                        fm.get("granularity", _DEFAULT_GRANULARITY), fm.get("granularity")
+                    ),
+                    "ref": f"[@{fm['bib_key']}]" if fm.get("bib_key") else "—",
+                    # causality-extraction is intentionally excluded here, not defaulted to "?":
+                    # it's a derived capability (any dataset with causality-identification data
+                    # already supports the composed end-to-end task via compose_extraction), not a
+                    # separately stored task config, so it would just duplicate the "I" it implies.
+                    "task_codes": "".join(_TASK_CODES[t] for t in tasks if t in _TASK_CODES) or "—",
+                    "badges": " ".join(_badges_for(fm, env.conf["docs_dir"])) or "—",
+                }
             )
 
-            link = f"[{title}]({link_base}/{md_file.stem}.md)"
-            ref = f"[@{bib_key}]" if bib_key else "—"
-            badges = (
-                " ".join(
-                    p
-                    for p in [
-                        f"[:page_facing_up:](https://doi.org/{doi})" if doi else "",
-                        f"[:hugging:]({hf_page})" if hf_page else "",
-                    ]
-                    if p
+        if not rows:
+            return ""
+
+        if filter_task is not None:
+            lines = [
+                "| Corpus | Sentences | Domain | Year | Granularity | Reference | Links |\n",
+                "|--------|----------:|--------|-----:|-------------|-----------|-------|\n",
+            ]
+            for r in rows:
+                lines.append(
+                    f"| {r['link']} | {r['sentences']} | {r['domain']} | {r['year']} | "
+                    f"{r['granularity']} | {r['ref']} | {r['badges']} |\n"
                 )
-                or "—"
-            )
+        else:
+            lines = [
+                "**Task codes**: D = Detection · E = Extraction · I = Identification\n\n",
+                "| Dataset | Domain | Year | Sentences | Tasks | Links |\n",
+                "|---------|--------|------|----------:|-------|-------|\n",
+            ]
+            for r in rows:
+                lines.append(
+                    f"| {r['link']} | {r['domain']} | {r['year']} | {r['sentences']} | "
+                    f"{r['task_codes']} | {r['badges']} |\n"
+                )
+        return "".join(lines)
+
+    @env.macro
+    def all_models():
+        """Build a model reference table from every docs/models/*.md page's frontmatter,
+        mirroring ``all_datasets()``'s unfiltered table (task-code legend, Links badges)."""
+        from pathlib import PurePosixPath
+
+        page_dir = PurePosixPath(env.page.file.src_path).parent
+        depth = len(page_dir.parts)
+        link_base = "../" * depth + "models"
+
+        rows = []
+        for md_file, fm in _iter_model_frontmatter(env.conf["docs_dir"]):
+            title = fm.get("title", md_file.stem)
+            tasks = fm.get("supported_tasks") or {}
             rows.append(
-                (
-                    link,
-                    fm.get("sentences", "—"),
-                    fm.get("domain", "—"),
-                    str(fm.get("year", "—")),
-                    granularity,
-                    ref,
-                    badges,
-                )
+                {
+                    "link": f"[{title}]({link_base}/{md_file.stem}.md)",
+                    "type": fm.get("type", "—"),
+                    "task_codes": "".join(_TASK_CODES[t] for t in tasks if t in _TASK_CODES) or "—",
+                    "ref": f"[@{fm['bib_key']}]" if fm.get("bib_key") else "—",
+                    "badges": " ".join(_badges_for(fm, env.conf["docs_dir"])) or "—",
+                }
             )
 
         if not rows:
             return ""
 
         lines = [
-            "| Corpus | Sentences | Domain | Year | Granularity | Reference | Links |\n",
-            "|--------|----------:|--------|-----:|-------------|-----------|-------|\n",
+            "**Task codes**: D = Detection · E = Extraction · I = Identification\n\n",
+            "| Model | Type | Tasks | Reference | Links |\n",
+            "|-------|------|-------|-----------|-------|\n",
         ]
-        for corpus, sents, domain, year, granularity, ref, badges in rows:
-            lines.append(f"| {corpus} | {sents} | {domain} | {year} | {granularity} | {ref} | {badges} |\n")
+        for r in rows:
+            lines.append(f"| {r['link']} | {r['type']} | {r['task_codes']} | {r['ref']} | {r['badges']} |\n")
         return "".join(lines)
 
     @env.macro
-    def graph_accordions():
-        """Build one collapsible ``??? example`` block per file in docs/graphs/graphs/*.md, each
-        showing that graph backend's description, usage snippet, and (if present) citation.
+    def graph_cards():
+        """Build a ``<div class="grid cards">`` navigation tile per file in
+        docs/graphs/graphs/*.md -- the same grid-cards convention docs/examples/index.md already
+        uses. Each card only teases (icon, title, one-line description) and links out to that
+        graph's own page; it doesn't duplicate the icon row/snippet/citation, since that page
+        already renders all of it from the exact same frontmatter -- two copies of the same
+        content would just be two places to keep in sync.
 
-        Sourced entirely from each file's own frontmatter (``title``/``description``/
-        ``snippet``/``bib_key``), read directly from disk -- the same pattern
-        ``task_datasets`` already uses -- never from the file's rendered BODY. Each of those
-        files is also its own standalone page using the same fields via ``{{ page.meta.* }}``;
-        Jinja's ``page`` context inside a reused snippet resolves against the file being
-        RENDERED (this one), not wherever the content originally came from, so anything meant
-        to be reused across pages has to be a plain frontmatter value, not templated body text.
-        Verified empirically: an embedded ``{{ page.meta... }}``/``{{ bibtex_entry(...) }}``
-        call silently renders as literal, un-evaluated text when read this way, not an error.
+        Sourced entirely from each file's own frontmatter (``title``/``description``/``icon``),
+        read directly from disk -- the same pattern ``_iter_dataset_frontmatter`` already uses --
+        never from the file's rendered BODY.
         """
-        import textwrap
         from pathlib import Path
 
         import yaml
 
         graphs_dir = Path(env.conf["docs_dir"]) / "graphs" / "graphs"
-        blocks = []
+        cards = []
         for slug in _GRAPH_ORDER:
             md_file = graphs_dir / f"{slug}.md"
             if not md_file.exists():
@@ -379,20 +482,16 @@ def define_env(env):
             fm = yaml.safe_load(text[3:end]) or {}
             title = fm.get("title", slug)
             description = (fm.get("description") or "").strip()
-            snippet = (fm.get("snippet") or "").strip()
-            bib_key = fm.get("bib_key")
+            icon = fm.get("icon", "material-graph-outline")
+            link = _resolve_link(f"graphs/graphs/{slug}.md", env.page.file.src_path)
 
-            parts = []
-            icons = _icon_row(fm, env.page.file.src_path, docs_page_target=f"graphs/graphs/{slug}.md")
-            if icons:
-                parts.append(icons)
-            if description:
-                parts.append(description)
-            if snippet:
-                parts.append(f"```python\n{snippet}\n```")
-            if bib_key:
-                parts.append("**Citation:**\n\n" + bibtex_entry(bib_key))
+            cards.append(
+                f"-   :{icon}:{{ .lg .middle }} **{title}**\n\n"
+                "    ---\n\n"
+                f"    {description}\n\n"
+                f"    [View details →]({link})"
+            )
 
-            block = f'??? example "{title}"\n\n' + textwrap.indent("\n\n".join(parts), "    ")
-            blocks.append(block)
-        return "\n\n".join(blocks)
+        if not cards:
+            return ""
+        return '<div class="grid cards" markdown>\n\n' + "\n\n".join(cards) + "\n\n</div>\n"

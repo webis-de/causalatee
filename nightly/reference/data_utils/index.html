@@ -1624,6 +1624,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1686,6 +1690,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2323,16 +2383,16 @@ downstream evaluation harness needs that isn't specific to any one corpus.</p>
 <p>Split into submodules by concern (all re-exported here, so
 <code>from causalatee.data.utils import X</code> keeps working unchanged):</p>
 <ul>
-<li><code>markers</code> -- <a class="autorefs autorefs-internal" title="parse_entity_markers(text)" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a> /
-  <a class="autorefs autorefs-internal" title="insert_entity_markers(text, segments_by_eid)" href="#causalatee.data.utils.insert_entity_markers"><code>insert_entity_markers</code></a>,
+<li><code>markers</code> -- <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;parse_entity_markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a> /
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;insert_entity_markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;segments_by_eid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.insert_entity_markers"><code>insert_entity_markers</code></a>,
   the <code>&lt;eN&gt;...&lt;/eN&gt;</code> marker &lt;-&gt; <code>(clean_text, segments_by_eid)</code> roundtrip
   used by causalatee's identification schema.</li>
-<li><code>splitting</code> -- <a class="autorefs autorefs-internal" title="split_document_by_sentence(sent_ranges, entity_segments, groups)" href="#causalatee.data.utils.split_document_by_sentence"><code>split_document_by_sentence</code></a>
+<li><code>splitting</code> -- <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;split_document_by_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sent_ranges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entity_segments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;groups&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.split_document_by_sentence"><code>split_document_by_sentence</code></a>
   (the generic core: given sentence ranges, entity segments, and "groups" of entity ids that
   must stay together, keep every group wholly inside one sentence, drop and
   COUNT the rest) plus
-  <a class="autorefs autorefs-internal" title="split_identification_to_sentences(text, relations, sent_ranges)" href="#causalatee.data.utils.split_identification_to_sentences"><code>split_identification_to_sentences</code></a> /
-  <a class="autorefs autorefs-internal" title="split_extraction_to_sentences(text, entities, sent_ranges)" href="#causalatee.data.utils.split_extraction_to_sentences"><code>split_extraction_to_sentences</code></a>,
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;split_identification_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sent_ranges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.split_identification_to_sentences"><code>split_identification_to_sentences</code></a> /
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;split_extraction_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entities&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sent_ranges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.split_extraction_to_sentences"><code>split_extraction_to_sentences</code></a>,
   single-example wrappers over it.</li>
 </ul>
 <p>Several source corpora (BioCause, CaTeRS's brat annotations, CREST's own
@@ -2348,15 +2408,15 @@ downstream evaluation harness needs that isn't specific to any one corpus.</p>
   duplicated ad-hoc guard in every converter.
 * <code>batch</code> -- <code>Dataset.map(fn, batched=True, remove_columns=[...])</code>-
   ready adapters over the above:
-  <a class="autorefs autorefs-internal" title="identification_batch_to_sentences(batch, sentence_ranges_fn)" href="#causalatee.data.utils.identification_batch_to_sentences"><code>identification_batch_to_sentences</code></a>,
-  <a class="autorefs autorefs-internal" title="extraction_batch_to_sentences(batch, sentence_ranges_fn)" href="#causalatee.data.utils.extraction_batch_to_sentences"><code>extraction_batch_to_sentences</code></a>,
-  <a class="autorefs autorefs-internal" title="identification_batch_to_detection_sentences(batch, sentence_ranges_fn)" href="#causalatee.data.utils.identification_batch_to_detection_sentences"><code>identification_batch_to_detection_sentences</code></a>
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identification_batch_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence_ranges_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.identification_batch_to_sentences"><code>identification_batch_to_sentences</code></a>,
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;extraction_batch_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence_ranges_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.extraction_batch_to_sentences"><code>extraction_batch_to_sentences</code></a>,
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identification_batch_to_detection_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence_ranges_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.identification_batch_to_detection_sentences"><code>identification_batch_to_detection_sentences</code></a>
   (re-splitting to sentence level), and
-  <a class="autorefs autorefs-internal" title="identification_batch_to_detection(batch)" href="#causalatee.data.utils.identification_batch_to_detection"><code>identification_batch_to_detection</code></a> /
-  <a class="autorefs autorefs-internal" title="identification_batch_to_extraction(batch)" href="#causalatee.data.utils.identification_batch_to_extraction"><code>identification_batch_to_extraction</code></a>
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identification_batch_to_detection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.identification_batch_to_detection"><code>identification_batch_to_detection</code></a> /
+  <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identification_batch_to_extraction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.identification_batch_to_extraction"><code>identification_batch_to_extraction</code></a>
   (same-granularity detection/extraction tables derived from an identification table, for datasets like
   CTB/ESL that only ship identification).
-* <code>validation</code> -- <a class="autorefs autorefs-internal" title="verify_dataset(batch, task)" href="#causalatee.data.utils.verify_dataset"><code>verify_dataset</code></a>, structural sanity checks
+* <code>validation</code> -- <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;verify_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.verify_dataset"><code>verify_dataset</code></a>, structural sanity checks
   (conflicting/duplicate relation pairs, entity ids with no parseable
   marker span) run over a converted split. Every <code>conversion_script.py</code>
   should call this right before writing a split's parquet file and print
@@ -2427,7 +2487,7 @@ that dispatches all three sub-tasks this way.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Batched wrapper around <a class="autorefs autorefs-internal" title="split_extraction_to_sentences(text, entities, sent_ranges)" href="#causalatee.data.utils.split_extraction_to_sentences"><code>split_extraction_to_sentences</code></a>.</p>
+        <p>Batched wrapper around <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;split_extraction_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entities&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sent_ranges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.split_extraction_to_sentences"><code>split_extraction_to_sentences</code></a>.</p>
 
 
             <details class="mkdocstrings-source">
@@ -2482,7 +2542,7 @@ detection since they're about a causal relationship, just negating it). <code>&l
 from <code>text</code>.</p>
 <p>NOT the right choice for BioCause: its own detection convention counts a document as causal if it has ANY marked
 entity, even an unpaired Effect-only one with no Cause and hence no relation -- see
-<a class="autorefs autorefs-internal" title="identification_batch_to_detection_sentences(batch, sentence_ranges_fn)" href="#causalatee.data.utils.identification_batch_to_detection_sentences"><code>identification_batch_to_detection_sentences</code></a>
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;identification_batch_to_detection_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sentence_ranges_fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.identification_batch_to_detection_sentences"><code>identification_batch_to_detection_sentences</code></a>
 for that case.</p>
 
 
@@ -2691,7 +2751,7 @@ extract), so the output can have fewer rows than the input, same as this module'
     <div class="doc doc-contents ">
 
         <p>Batched wrapper around
-<a class="autorefs autorefs-internal" title="split_identification_to_sentences(text, relations, sent_ranges)" href="#causalatee.data.utils.split_identification_to_sentences"><code>split_identification_to_sentences</code></a>.</p>
+<a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;split_identification_to_sentences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sent_ranges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.split_identification_to_sentences"><code>split_identification_to_sentences</code></a>.</p>
 <p><code>sentence_ranges_fn(clean_text) -&gt; [(start, end), ...]</code> supplies sentence boundaries for the marker-stripped
 text (any segmenter -- spaCy, nltk, a regex splitter).</p>
 
@@ -2753,7 +2813,7 @@ text (any segmenter -- spaCy, nltk, a regex splitter).</p>
         <p>Insert <code>&lt;eN&gt;...&lt;/eN&gt;</code> tags around each id's segment(s).</p>
 <p>Left-to-right, stack-based: closes innermost-first and opens outermost (longest span) first at each boundary, so
 nested and disjoint spans come out correctly nested. Output need not be nested when spans cross -- see the
-module docstring. Inverse of <a class="autorefs autorefs-internal" title="parse_entity_markers(text)" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a>.</p>
+module docstring. Inverse of <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;parse_entity_markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a>.</p>
 
 
             <details class="mkdocstrings-source">
@@ -2839,7 +2899,7 @@ module docstring. Inverse of <a class="autorefs autorefs-internal" title="parse_
         <p>Strip <code>&lt;eN&gt;</code>/<code>&lt;/eN&gt;</code> tags; return (clean_text, segments_by_eid).</p>
 <p>An id may open/close more than once -- a discontinuous mention, rendered as repeated <code>&lt;eN&gt;...&lt;/eN&gt;</code> occurrences
 sharing the same id -- every occurrence accumulates onto that id's segment list, in left-to-right order. Inverse
-of <a class="autorefs autorefs-internal" title="insert_entity_markers(text, segments_by_eid)" href="#causalatee.data.utils.insert_entity_markers"><code>insert_entity_markers</code></a>.</p>
+of <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;insert_entity_markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;segments_by_eid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.insert_entity_markers"><code>insert_entity_markers</code></a>.</p>
 <p>NOT an XML parser: matching is per entity id (module docstring has the details), so <code>text</code> does not need to be
 well-nested -- markers for two genuinely crossing spans parse correctly.</p>
 
@@ -3096,7 +3156,7 @@ wholly inside a single sentence.</p>
         <p>Whole-document causality-IDENTIFICATION example -&gt; per-sentence rows.</p>
 <p><code>text</code> carries <code>&lt;eN&gt;...&lt;/eN&gt;</code> entity markers (causalatee's identification schema); <code>relations</code> is the
 matching list of <code>{"relationship", "first": eid, "second": eid}</code> dicts. <code>sent_ranges</code> are character offsets
-into the MARKER-STRIPPED text (i.e. what <a class="autorefs autorefs-internal" title="parse_entity_markers(text)" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a>
+into the MARKER-STRIPPED text (i.e. what <a class="autorefs autorefs-internal" title="&lt;code class=&quot;highlight language-python&quot;&gt;&lt;span class=&quot;n&quot;&gt;parse_entity_markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;" href="#causalatee.data.utils.parse_entity_markers"><code>parse_entity_markers</code></a>
 returns as <code>clean_text</code>), not the raw
 <code>text</code> -- markers shift offsets, so a sentence segmenter should run on the clean text first. Returns <code>(rows,
 num_dropped)</code> where each row is <code>{"text": ..., "relations": [...]}</code>, one per sentence, and <code>num_dropped</code>
@@ -3312,7 +3372,7 @@ before <code>.to_parquet()</code>, with no conversion needed. Returns a flat lis
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>

@@ -1756,6 +1756,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1818,6 +1822,62 @@
     
   
     Biaffine Span-Grid Extraction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/kcnn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-CNN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/scite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SCITE
   
 
     
@@ -2192,7 +2252,7 @@
 
 
 <h1 id="biocause">BioCause</h1>
-<p><a href="https://doi.org/10.1186/1471-2105-14-2"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f4c4.png" title=":page_facing_up:" /></a> <a href="https://huggingface.co/datasets/thagen/BioCause"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/72x72/1f917.png" title=":hugging:" /></a></p>
+<p><a href="https://doi.org/10.1186/1471-2105-14-2"><img alt="📄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4c4.svg" title=":page_facing_up:" /></a> <a href="https://huggingface.co/datasets/thagen/BioCause"><img alt="🤗" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f917.svg" title=":hugging:" /></a></p>
 <p><span class="pill pill-inter-sentence">Inter-sentence (whole document/section)</span> <span class="pill pill-polarity-none">No Polarity Signal</span> <span class="pill pill-strength-none">No Strength Signal</span></p>
 <p>BioCause annotates causal relations in 19 open-access biomedical research articles, providing fine-grained span-level annotations for cause and effect event mentions.</p>
 <p>Unlike most datasets in this toolkit, each row is a whole article <strong>section</strong>, not a single sentence: some cause/effect spans reference an adjacent sentence to their trigger, which a per-sentence schema cannot represent without either dropping or corrupting them. A per-sentence view can still be derived on demand via <code>causalatee.data.utils</code>'s sentence-splitting utilities.</p>
@@ -2245,6 +2305,11 @@
 </tr>
 <tr>
 <td><a href="../../tasks/causality_identification/">Causality Identification</a></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><a href="../../tasks/causality_extraction/">Causality Extraction</a></td>
 <td style="text-align: right;">—</td>
 <td style="text-align: right;">—</td>
 </tr>
@@ -2363,7 +2428,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
