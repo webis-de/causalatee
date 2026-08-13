@@ -1,5 +1,6 @@
 ---
 title: SemEval-2010 Task 8
+repo: https://github.com/tanfiona/UniCausal
 domain: General
 year: 2010
 sentences: "10,690"
@@ -21,6 +22,7 @@ supported_tasks:
     splits:
       train: 7975
       test: 2715
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -35,4 +37,7 @@ causal-candidate-extraction is derived from the identification table above (`cau
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

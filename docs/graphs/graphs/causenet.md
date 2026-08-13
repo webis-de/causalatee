@@ -1,5 +1,6 @@
 ---
 title: CauseNet
+icon: material-web
 description: >-
   CauseNet is a large-scale causality graph extracted from web and Wikipedia text, mapping cause
   concepts to effect concepts with supporting evidence for each relation.

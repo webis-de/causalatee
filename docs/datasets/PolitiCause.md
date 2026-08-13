@@ -1,21 +1,18 @@
 ---
 title: PolitiCause
+repo: https://github.com/pgarco/PolitiCAUSE
 domain: Politics
 year: 2024
 sentences: "17,780"
+bib_key: corral:2024
 polarity: none
 strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
-
-<!-- TODO(user): add the PolitiCause bibtex entry to docs/references/datasets.bib
-     (Garcia Corral et al., LREC-COLING 2024, "PolitiCause: An Annotation Scheme
-     and Corpus for Causality in Political Texts",
-     https://aclanthology.org/2024.lrec-main.1124/), then set bib_key: in the
-     frontmatter above and add {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -29,3 +26,7 @@ Unlike its own paper (which only reports sentence-level classification results),
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

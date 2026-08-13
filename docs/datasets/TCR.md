@@ -1,10 +1,10 @@
 ---
 title: TCR
+repo: https://github.com/CogComp/TCR
 domain: News
 year: 2018
 sentences: "172"
 granularity: inter-sentence
-doi: 10.18653/V1/P18-1212
 bib_key: ning:2018
 hf_repo: thagen/TCR
 hf_page: https://huggingface.co/datasets/thagen/TCR
@@ -14,6 +14,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -30,4 +31,7 @@ TCR shares its 25 source documents with [EventCausality](EventCausality.md), but
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

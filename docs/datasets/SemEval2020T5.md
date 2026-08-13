@@ -1,20 +1,18 @@
 ---
 title: SemEval-2020 Task 5
+repo: https://github.com/arielsho/SemEval-2020-Task-5
 domain: News
 year: 2020
 sentences: "20,000"
+bib_key: yang:2020
 polarity: none
 strength: none
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
-
-<!-- TODO(user): add the SemEval-2020 Task 5 bibtex entry to docs/references/datasets.bib
-     (Yang et al., SemEval-2020, "SemEval-2020 Task 5: Counterfactual Recognition",
-     https://aclanthology.org/2020.semeval-1.40/), then set bib_key: in the
-     frontmatter above and add {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -30,3 +28,7 @@ Every sentence here is counterfactual/irrealis by construction — a distinct mo
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

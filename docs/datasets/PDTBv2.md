@@ -3,16 +3,12 @@ title: Penn Discourse Treebank 2.0 (PDTB-2)
 domain: News / WSJ
 year: 2008
 sentences: "—"
+bib_key: prasad:2008
 granularity: intra-sentence
 polarity: none
 strength: none
 supported_tasks: {}
 ---
-
-<!-- TODO(user): add the PDTB-2 bibtex entry to docs/references/datasets.bib
-     (Prasad et al., LREC 2008, "The Penn Discourse TreeBank 2.0"),
-     then set bib_key: in the frontmatter above and add
-     {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -31,3 +27,7 @@ PDTB-2.0 annotates discourse relations — including causal, temporal, and conti
     `resources/datasets/PDTBv2/conversion_script.py`.
 
 {{ dataset_overview() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

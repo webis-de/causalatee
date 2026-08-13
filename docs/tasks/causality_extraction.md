@@ -74,7 +74,7 @@ A single sentence may yield multiple relation triples when several cause–effec
 
 ## Datasets
 
-{{ task_datasets("causality-detection") }}
+{{ all_datasets(filter_task="causality-extraction") }}
 
 ## Models
 

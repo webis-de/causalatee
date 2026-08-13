@@ -1,9 +1,9 @@
 ---
 title: AltLex
+repo: https://github.com/tanfiona/UniCausal
 domain: Wikipedia
 year: 2016
 sentences: "1,000"
-doi: 10.18653/V1/P16-1135
 bib_key: hidey:2016
 polarity: none
 strength: none
@@ -22,6 +22,7 @@ supported_tasks:
     splits:
       train: 596
       test: 404
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -34,4 +35,7 @@ AltLex is a Wikipedia-based corpus of 1,000 sentences annotated for causal relat
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

@@ -1,20 +1,18 @@
 ---
 title: FinCausal 2023 (FinCausal-23)
+repo: https://github.com/pavanbaswani/Fincausal_SharedTask-2023
 domain: Financial news
 year: 2023
 sentences: "2,630"
+bib_key: moreno-sandoval:2023
 granularity: inter-sentence
 polarity: none
 strength: none
 supported_tasks:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
-
-<!-- TODO(user): add the FinCausal 2023 bibtex entry to docs/references/datasets.bib
-     (Moreno-Sandoval et al., IEEE BigData 2023, "The Financial Document Causality
-     Detection Shared Task", also arXiv:2401.13545), then set bib_key: in the
-     frontmatter above and add {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -28,3 +26,7 @@ Unlike FinCausal 2020, this release's public data is entirely pre-filtered causa
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

@@ -1,9 +1,9 @@
 ---
 title: SCITE
+repo: https://github.com/Das-Boot/scite
 domain: Science
 year: 2021
 sentences: "5,236"
-doi: 10.1016/J.NEUCOM.2020.08.078
 bib_key: li:2021
 hf_repo: thagen/SCITE
 hf_page: https://huggingface.co/datasets/thagen/SCITE
@@ -22,6 +22,7 @@ supported_tasks:
     splits:
       train: 4450
       test: 786
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -34,4 +35,7 @@ SCITE annotates causal relations in scientific texts at the token level, providi
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

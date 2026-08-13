@@ -1,4 +1,14 @@
-# Biaffine Span-Grid Extraction
+---
+title: Biaffine Span-Grid Extraction
+type: Neural read-out layer (`causalatee.nn.BiaffineSpanHead`)
+bib_key: yu:2020
+supported_tasks:
+  causal-candidate-extraction:
+---
+
+# {{ page.meta.title }}
+
+{{ model_badges() }}
 
 The **biaffine span-grid** approach reformulates causal event span extraction as a
 dependency-parsing-style problem: instead of tagging each token with a BIO label, every

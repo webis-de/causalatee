@@ -1,5 +1,6 @@
 ---
 title: Causal News Corpus (CNC)
+repo: https://github.com/tanfiona/CausalNewsCorpus
 domain: News
 year: 2022
 sentences: "3,248"
@@ -12,6 +13,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -26,4 +28,7 @@ This is the original 2022 ("V1") release, converted directly from the source rep
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

@@ -1,10 +1,11 @@
 ---
 title: Countercausal News Corpus (CCNC)
+repo: https://github.com/webis-de/arxiv-countercausality
 domain: News
 year: 2025
 sentences: "3,415"
-doi: 10.48550/ARXIV.2510.08224
 bib_key: hagen:2025a
+note: The first dataset to explicitly distinguish causal, countercausal, and uncausal statements.
 polarity: captured
 strength: none
 supported_tasks:
@@ -12,6 +13,7 @@ supported_tasks:
     tiraurl: https://www.tira.io/api/evaluations/causality-extraction-toucheclef26/task1-ccnc-test-dataset-20260605-test
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -26,4 +28,7 @@ Converted directly from the paper's own repository ([github.com/webis-de/arxiv-c
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

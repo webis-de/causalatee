@@ -31,7 +31,7 @@ Spans can overlap when a phrase participates in multiple causal pairs within the
 
 ## Datasets
 
-{{ task_datasets("causal-candidate-extraction") }}
+{{ all_datasets(filter_task="causal-candidate-extraction") }}
 
 ## Models
 
@@ -40,10 +40,6 @@ A model for this task implements the
 see the [API reference](../reference/models.md) for the full interface.
 
 Models are evaluated using **macro-averaged F₁** over extracted spans.
-
-!!! note
-    Span extraction is substantially harder than sentence classification. The relatively low F₁
-    scores reflect the difficulty of localising exact event boundaries in free text.
 
 ## Example
 

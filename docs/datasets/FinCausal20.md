@@ -1,8 +1,10 @@
 ---
 title: FinCausal 2020 (FinCausal-20)
+repo: https://github.com/yseop/YseopLab
 domain: Finance
 year: 2020
 sentences: "22,058"
+bib_key: mariko:2020
 granularity: inter-sentence
 polarity: none
 strength: none
@@ -10,12 +12,8 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
-
-<!-- TODO(user): add the FinCausal 2020 bibtex entry to docs/references/datasets.bib
-     (Mariko et al., FNP 2020, "The Financial Document Causality Detection Shared
-     Task", https://aclanthology.org/2020.fnp-1.3/), then set bib_key: in the
-     frontmatter above and add {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -29,3 +27,7 @@ Each row is a whole text section (see the granularity pill above), not a single 
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

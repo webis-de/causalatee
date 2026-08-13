@@ -46,7 +46,7 @@ A sentence may contain multiple entity pairs and therefore multiple relation ent
 
 ## Datasets
 
-{{ task_datasets("causality-identification") }}
+{{ all_datasets(filter_task="causality-identification") }}
 
 ## Models
 

@@ -1,5 +1,6 @@
 ---
 title: CGF
+icon: material-lightning-bolt
 description: >-
   CGF (Causal Graph Format) is causalatee's own compact, memory-mappable binary format for
   storing a causal graph on disk and traversing it without materializing it in Python objects.

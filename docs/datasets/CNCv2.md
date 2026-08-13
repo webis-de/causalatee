@@ -1,8 +1,10 @@
 ---
 title: Causal News Corpus V2 / RECESS (CNCv2)
+repo: https://github.com/tanfiona/CausalNewsCorpus
 domain: News
 year: 2023
 sentences: "3,415"
+bib_key: tan:2023
 hf_repo: thagen/CausalNewsCorpusV2
 polarity: none
 strength: none
@@ -11,12 +13,8 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
-
-<!-- TODO(user): add the RECESS bibtex entry to docs/references/datasets.bib
-     (Tan et al., IJCNLP-AACL 2023, https://aclanthology.org/2023.ijcnlp-main.6/),
-     then set bib_key: in the frontmatter above to that entry's key and add
-     {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -30,3 +28,7 @@ This is the actively-maintained release the maintainers themselves recommend usi
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

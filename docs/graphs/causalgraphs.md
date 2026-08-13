@@ -64,17 +64,7 @@ loading a CauseNet sample, saving it as CGF, and loading it back.
 
 ## Supported Causal Graphs
 
-{{ graph_accordions() }}
-
-## Citations
-
-CauseNet:
-
-{{ bibtex_entry("heindorf:2020") }}
-
-Cause Effect Graph (CausalBank):
-
-{{ bibtex_entry("li:2020") }}
+{{ graph_cards() }}
 
 ## API Reference
 

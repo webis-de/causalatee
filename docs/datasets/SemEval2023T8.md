@@ -3,16 +3,11 @@ title: SemEval-2023 Task 8 (RedHOT)
 domain: Social media / Medical
 year: 2023
 sentences: "—"
+bib_key: khetan:2023
 polarity: none
 strength: none
 supported_tasks: {}
 ---
-
-<!-- TODO(user): add the RedHOT/SemEval-2023 Task 8 bibtex entry to
-     docs/references/datasets.bib (Wadhwa et al., arXiv:2210.06331,
-     "Redhot: A Corpus of Annotated Medical Questions, Experiences, and
-     Claims on Social Media"), then set bib_key: in the frontmatter above
-     and add {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -32,3 +27,7 @@ SemEval-2023 Task 8 asks systems to identify causal medical claims in Reddit pos
     `resources/datasets/SemEval2023T8/conversion_script.py` for the full trail of what was checked.
 
 {{ dataset_overview() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

@@ -1,5 +1,6 @@
 ---
 title: EventCausality
+repo: https://github.com/phosseini/CREST
 domain: Web
 year: 2011
 sentences: "583"
@@ -12,6 +13,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -38,4 +40,7 @@ EventCausality provides minimally-supervised annotations of causal relations bet
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

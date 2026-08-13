@@ -56,10 +56,7 @@ Output: ClassLabel.Causal (1)   # countercausal
 
 ## Datasets
 
-{{ task_datasets("causality-detection") }}
-
-**CCNC** [@hagen:2025a] is the first dataset to explicitly distinguish causal,
-countercausal, and uncausal sentences (inter-annotator agreement: Cohen's κ = 0.74).
+{{ all_datasets(filter_task="causality-detection") }}
 
 ## Models
 
@@ -68,10 +65,6 @@ A model for this task implements the
 [API reference](../reference/models.md) for the full interface.
 
 Models are evaluated using **macro-averaged F₁**.
-
-!!! note
-    Models trained without countercausal examples misclassify countercausal sentences as causal
-    more than **10× as often** as models trained on CCNC [@hagen:2025a].
 
 ## Example
 

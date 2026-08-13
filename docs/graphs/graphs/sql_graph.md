@@ -1,5 +1,6 @@
 ---
 title: SQLGraph
+icon: material-database-edit-outline
 description: >-
   SQLGraph is causalatee's generic, mutable, SQLite-backed causal graph, for building a graph
   incrementally rather than loading one from an existing external resource.

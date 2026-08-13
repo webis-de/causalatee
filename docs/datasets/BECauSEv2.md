@@ -1,9 +1,9 @@
 ---
 title: BECauSE 2.0
+repo: https://github.com/tanfiona/UniCausal
 domain: News
 year: 2017
 sentences: "1,803"
-doi: 10.18653/V1/W17-0812
 bib_key: dunietz:2017
 polarity: none
 strength: none
@@ -22,6 +22,7 @@ supported_tasks:
     splits:
       train: 453
       test: 17
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -36,4 +37,7 @@ The original annotation also tags each causal instance's `Degree` as `Facilitate
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

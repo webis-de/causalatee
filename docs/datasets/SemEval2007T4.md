@@ -1,5 +1,6 @@
 ---
 title: SemEval-2007 Task 4
+repo: https://github.com/davidsbatista/Annotated-Semantic-Relationships-Datasets
 domain: Web
 year: 2007
 sentences: "220"
@@ -10,6 +11,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -24,4 +26,7 @@ Sentences already carry `<e1>`/`<e2>` markers in this project's own marker forma
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

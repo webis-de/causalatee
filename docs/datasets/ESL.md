@@ -1,9 +1,9 @@
 ---
 title: EventStoryLine (ESL)
+repo: https://github.com/tommasoc80/EventStoryLine
 domain: News
 year: 2017
 sentences: "2,247"
-doi: 10.18653/V1/W17-2711
 bib_key: caselli:2017
 polarity: documented
 strength: none
@@ -22,6 +22,7 @@ supported_tasks:
     splits:
       train: 2014
       test: 233
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -38,4 +39,7 @@ causal-candidate-extraction is derived from the identification table above (`cau
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

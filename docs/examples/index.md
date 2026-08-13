@@ -6,7 +6,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
 <div class="grid cards" markdown>
 
--   :dart: **Causality Detection**
+-   :material-radar:{ .lg .middle } **Causality Detection**
 
     ---
 
@@ -15,7 +15,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
     [Open notebook →](detection.ipynb)
 
--   :mag: **Causal Candidate Extraction**
+-   :material-magnify:{ .lg .middle } **Causal Candidate Extraction**
 
     ---
 
@@ -23,7 +23,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
     [Open notebook →](candidate_extraction.ipynb)
 
--   :link: **Causality Identification**
+-   :material-link-variant:{ .lg .middle } **Causality Identification**
 
     ---
 
@@ -38,7 +38,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
 <div class="grid cards" markdown>
 
--   :deciduous_tree: **SDP Causality Extraction**
+-   :material-file-tree:{ .lg .middle } **SDP Causality Extraction**
 
     ---
 
@@ -53,7 +53,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
 <div class="grid cards" markdown>
 
--   :spider_web: **CauseNet and CGF**
+-   :material-graph-outline:{ .lg .middle } **CauseNet and CGF**
 
     ---
 
@@ -62,7 +62,7 @@ Runnable notebooks demonstrating `causalatee` end to end, grouped by what they c
 
     [Open notebook →](causenet_cgf.ipynb)
 
--   :pick: **Mining a Causal Graph**
+-   :material-pickaxe:{ .lg .middle } **Mining a Causal Graph**
 
     ---
 

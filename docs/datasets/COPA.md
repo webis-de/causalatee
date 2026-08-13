@@ -1,5 +1,6 @@
 ---
 title: COPA
+repo: https://github.com/drwiner/COPA
 domain: General
 year: 2011
 sentences: "2,000"
@@ -12,6 +13,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -24,4 +26,7 @@ The Choice of Plausible Alternatives corpus evaluates commonsense causal reasoni
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

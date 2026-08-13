@@ -1,14 +1,15 @@
 ---
 title: UniCausal
+repo: https://github.com/tanfiona/UniCausal
 domain: Multiple
 year: 2023
 sentences: "14,903"
-doi: 10.1007/978-3-031-39831-5_23
-bib_key: tan:2023
+bib_key: tan:2023a
 supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -21,4 +22,7 @@ UniCausal is a unified benchmark that harmonises twelve existing causal NLP data
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

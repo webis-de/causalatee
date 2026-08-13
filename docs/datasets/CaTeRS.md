@@ -1,9 +1,9 @@
 ---
 title: CaTeRS
+repo: https://github.com/phosseini/CREST
 domain: Fiction
 year: 2016
 sentences: "488"
-doi: 10.18653/V1/W16-1007
 bib_key: mostafazadeh:2016
 hf_repo: thagen/CaTeRS
 hf_page: https://huggingface.co/datasets/thagen/CaTeRS
@@ -13,6 +13,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -25,4 +26,7 @@ CaTeRS (Causal and Temporal Relation Scheme) annotates five-sentence ROC Stories
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

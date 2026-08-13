@@ -1,4 +1,15 @@
-# SDP Causality Extraction
+---
+title: SDP Causality Extraction
+type: Dependency-based baseline
+bib_key: girju:2003
+supported_tasks:
+  causal-candidate-extraction:
+  causality-identification:
+---
+
+# {{ page.meta.title }}
+
+{{ model_badges() }}
 
 The **Shortest Dependency Path (SDP)** approach is a classical, linguistically motivated baseline
 for causal relation extraction. Given a sentence and two candidate entity spans, it finds the

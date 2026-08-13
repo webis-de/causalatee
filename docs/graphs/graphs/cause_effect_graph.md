@@ -1,5 +1,6 @@
 ---
 title: CauseEffectGraph
+icon: material-graph-outline
 description: >-
   The Lexical Cause-Effect Graph (CEG) is a word-level cause/effect graph mined at CausalBank
   scale, with an occurrence count and two causal-strength scores ("necessity" and

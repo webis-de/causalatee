@@ -1,5 +1,6 @@
 ---
 title: Penn Discourse Treebank 3.0 (PDTB 3.0)
+repo: https://github.com/tanfiona/UniCausal
 domain: News / WSJ
 year: 2019
 sentences: "—"
@@ -12,6 +13,7 @@ supported_tasks:
   causality-detection:
   causal-candidate-extraction:
   causality-identification:
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -35,4 +37,7 @@ The real PDTB-3 sense hierarchy distinguishes `Contingency.Negative-condition` (
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

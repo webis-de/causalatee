@@ -1,18 +1,14 @@
 ---
 title: BECauSE 1.0
+repo: https://github.com/duncanka/BECauSE
 domain: News / Government
 year: 2015
 sentences: "—"
+bib_key: dunietz:2015
 polarity: documented
 strength: none
 supported_tasks: {}
 ---
-
-<!-- TODO(user): add the BECauSE v1 bibtex entry to docs/references/datasets.bib
-     (Dunietz et al., LAW IX 2015, "Annotating Causal Language Using Corpus
-     Lexicography of Constructions", https://aclanthology.org/W15-1622/),
-     then set bib_key: in the frontmatter above and add
-     {{ dataset_citation() }} to the bottom of this page. -->
 
 # {{ page.meta.title }}
 
@@ -32,3 +28,7 @@ Each causal instance carries a `Degree = FACILITATE | INHIBIT` attribute — `IN
     attempted — see `resources/datasets/BECauSEv1/conversion_script.py` for the full trail.
 
 {{ dataset_overview() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}

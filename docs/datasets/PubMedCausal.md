@@ -1,9 +1,9 @@
 ---
 title: PubMedCausal
+repo: https://github.com/josiahpaul07/PubMedCausal_Exp
 domain: Biomedical
 year: 2026
 sentences: "30,000"
-doi: 10.48550/ARXIV.2605.28363
 bib_key: kunle-john:2026
 hf_repo: thagen/PubMedCausal
 hf_page: https://huggingface.co/datasets/thagen/PubMedCausal
@@ -22,6 +22,7 @@ supported_tasks:
     splits:
       train: 1529
       test: 1528
+  causality-extraction:
 ---
 
 # {{ page.meta.title }}
@@ -36,4 +37,7 @@ Each pair's `causality` field (`Explicit`/`Implicit`) is already present in the 
 {{ dataset_overview() }}
 {{ dataset_viewer() }}
 {{ tira_leaderboard() }}
-{{ dataset_citation() }}
+
+## Citation
+
+{{ bibtex_entry(page.meta.bib_key) }}
