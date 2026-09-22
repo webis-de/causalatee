@@ -22,6 +22,6 @@ class CausalityIdentificationPipeline(Pipeline):
         probs = model_outputs.logits[0].softmax(-1)
         label_id = probs.argmax().item()
         return {
-            "relation": self.model.config.id2label[label_id],
+            "relationship": self.model.config.id2label[label_id],
             "score": probs[label_id].item(),
         }

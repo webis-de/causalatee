@@ -10,7 +10,9 @@ from contextlib import contextmanager
 from pathlib import Path
 from types import SimpleNamespace
 
-from causalatee.graph import Edge, Graph, Node, load_causenet, load_cgf, save_cgf
+import pytest
+
+from causalatee.graph import Edge, Graph, Node, infer_avro_schema, load_causenet, load_cgf, save_cgf
 
 
 class ExampleNode(Node["ExampleNode", "ExampleEdge"]):
@@ -326,3 +328,80 @@ def test_streamed_writer_handles_empty_graph(tmp_path: Path) -> None:
         with load_cgf(output, validate=True) as mapped:
             assert len(mapped.nodes) == 0
             assert len(mapped.edges) == 0
+
+
+class TestInferAvroSchema:
+    """infer_avro_schema builds an Avro record schema from one example metadata object -- exercised here against
+    the REAL fastavro (not the fake_fastavro() stub used above for CGF's own structural tests), since a
+    round-trip through an actual Avro implementation is the only meaningful way to confirm a schema is valid."""
+
+    def test_infers_primitive_field_types(self):
+        schema = infer_avro_schema("Example", {"count": 3, "score": 0.5, "label": "x", "flag": True})
+        fields = {f["name"]: f["type"] for f in schema["fields"]}
+        assert fields == {"count": "long", "score": "double", "label": "string", "flag": "boolean"}
+
+    def test_bool_is_not_mistaken_for_int(self):
+        # bool is an int subclass in Python -- a naive isinstance(value, int) check first would misclassify it.
+        schema = infer_avro_schema("Example", {"flag": True})
+        assert schema["fields"][0]["type"] == "boolean"
+
+    def test_nested_mapping_becomes_a_named_record(self):
+        schema = infer_avro_schema("Example", {"source": {"id": "doc1", "url": "https://example.com"}})
+        source_field = schema["fields"][0]
+        assert source_field["name"] == "source"
+        assert source_field["type"]["type"] == "record"
+        assert {f["name"] for f in source_field["type"]["fields"]} == {"id", "url"}
+
+    def test_list_of_records_becomes_an_array_of_a_named_item_record(self):
+        schema = infer_avro_schema("Example", {"evidence": [{"sentence": "A causes B.", "index": 7}]})
+        evidence_field = schema["fields"][0]
+        assert evidence_field["type"]["type"] == "array"
+        item_schema = evidence_field["type"]["items"]
+        assert item_schema["type"] == "record"
+        assert {f["name"] for f in item_schema["fields"]} == {"sentence", "index"}
+
+    def test_same_field_name_at_different_nesting_depths_gets_distinct_names(self):
+        # "source" appears both at the top level and nested inside each evidence entry -- Avro requires globally
+        # unique named-type names within one schema, so these must not collide.
+        schema = infer_avro_schema(
+            "Example",
+            {
+                "source": {"id": "doc1"},
+                "evidence": [{"source": {"id": "doc1"}, "sentence": "..."}],
+            },
+        )
+        top_level_source = schema["fields"][0]["type"]
+        nested_source = schema["fields"][1]["type"]["items"]["fields"][0]["type"]
+        assert top_level_source["name"] == nested_source["name"] == "Source"
+        assert top_level_source["namespace"] != nested_source["namespace"]
+
+    def test_empty_list_falls_back_to_a_permissive_item_type(self):
+        schema = infer_avro_schema("Example", {"evidence": []})
+        assert schema["fields"][0]["type"] == {"type": "array", "items": ["null", "string"]}
+
+    def test_unsupported_value_type_raises(self):
+        with pytest.raises(TypeError):
+            infer_avro_schema("Example", {"weird": object()})
+
+    def test_round_trips_a_realistic_edge_metadata_example_through_real_fastavro(self):
+        fastavro = pytest.importorskip("fastavro")
+        example = {
+            "support": 152,
+            "support_by": {"sentences": 103, "documents": 37},
+            "causal_count": 140,
+            "countercausal_count": 12,
+            "avg_score": 0.83,
+            "evidence": [
+                {
+                    "source": {"url": "https://a.example", "warc_id": "x1"},
+                    "sentence": "A causes B.",
+                    "sentence_index": 7,
+                }
+            ],
+        }
+        schema = infer_avro_schema("MinedEdgeMetadata", example)
+        parsed = fastavro.parse_schema(schema)
+        buffer = io.BytesIO()
+        fastavro.schemaless_writer(buffer, parsed, example)
+        buffer.seek(0)
+        assert fastavro.schemaless_reader(buffer, parsed) == example

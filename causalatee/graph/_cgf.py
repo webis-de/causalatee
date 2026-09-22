@@ -8,6 +8,7 @@ import io
 import json
 import mmap
 import os
+import re
 import sqlite3
 import struct
 import tempfile
@@ -847,6 +848,117 @@ def _require_fastavro() -> Any:
     except ImportError as exc:
         raise RuntimeError("Avro metadata requires the optional 'fastavro' package") from exc
     return fastavro
+
+
+def infer_avro_schema(name: str, example: Mapping[str, object], *, namespace: str = "causalatee.inferred") -> dict:
+    """Infer an Avro record schema from one example ``node.metadata``/``edge.metadata`` object.
+
+    Only handles "plain data" values -- ``str``, ``bool``, ``int``, ``float``, ``None``, ``list``/``tuple``, and
+    nested ``Mapping`` -- exactly the shapes JSON-like metadata is built from. Raises :class:`TypeError` for
+    anything else (a custom class instance, a set, ...), since there's no principled way to guess an Avro type for
+    it from a single example.
+
+    Field order in ``example`` becomes field order in the returned schema (Python dicts preserve insertion order,
+    and so does Avro's own ``fields`` list) -- deterministic for a given example. Nested records (dicts, and dicts
+    nested inside list items) get their own generated, path-qualified name (e.g. ``"EdgeMetadata.Evidence.Item"``)
+    so two structurally different fields that happen to share a key name (e.g. a top-level ``"source"`` and a
+    ``"source"`` nested inside each ``"evidence"`` entry) never collide under Avro's global name-uniqueness rule.
+
+    LIMITATION, stated plainly rather than hidden: this infers from exactly ONE example. A field that is sometimes
+    a different type across the real population, or a list that happens to be empty in this particular example
+    (inferred as a permissive nullable-string array, since there's nothing to inspect), won't be caught here --
+    this assumes every value that will actually be encoded against the returned schema shares this one example's
+    shape, which holds for one caller using one consistent metadata shape (e.g. one ``graph_sink()`` run over one
+    corpus), not a general-purpose schema-drift detector across a heterogeneous population.
+    """
+
+    return {
+        "type": "record",
+        "name": name,
+        "namespace": namespace,
+        "fields": [
+            {"name": key, "type": _infer_avro_type(key, value, path=f"{namespace}.{name}")}
+            for key, value in example.items()
+        ],
+    }
+
+
+def _infer_avro_type(field_name: str, value: object, *, path: str) -> object:
+    if value is None:
+        return ["null", "string"]  # a null example alone can't tell us the real type
+    if isinstance(value, bool):  # must check before int -- bool is an int subclass
+        return "boolean"
+    if isinstance(value, int):
+        return "long"
+    if isinstance(value, float):
+        return "double"
+    if isinstance(value, str):
+        return "string"
+    if isinstance(value, Mapping):
+        nested_name = _avro_type_name(field_name)
+        return {
+            "type": "record",
+            "name": nested_name,
+            "namespace": path,
+            "fields": [
+                {"name": k, "type": _infer_avro_type(k, v, path=f"{path}.{nested_name}")} for k, v in value.items()
+            ],
+        }
+    if isinstance(value, (list, tuple)):
+        if not value:
+            return {"type": "array", "items": ["null", "string"]}
+        return {"type": "array", "items": _infer_avro_type(field_name, value[0], path=path)}
+    raise TypeError(
+        f"cannot infer an Avro type for {field_name!r}: {type(value).__name__} is not a "
+        "primitive/list/mapping -- infer_avro_schema only supports plain data values"
+    )
+
+
+def _avro_type_name(field_name: str) -> str:
+    # Avro record names must be valid identifiers -- CamelCase the field's own key so e.g. "sentence_index"
+    # or "warc-id" both produce a legal, readable nested record name.
+    parts = re.findall(r"[0-9a-zA-Z]+", field_name)
+    return "".join(part.capitalize() for part in parts) or "Record"
+
+
+def diff_avro_schema(expected: object, actual: object, *, path: str = "$") -> list[str]:
+    """Recursively compare two Avro (sub-)schemas -- e.g. two [`infer_avro_schema`][causalatee.graph.infer_avro_schema]
+    results, or two field ``type`` values nested within them -- and return every structural difference found
+    (missing fields, unexpected extra fields, type mismatches) as a human-readable string. An empty list means
+    the two schemas describe the same shape.
+
+    Only ``type``/``fields``/``items`` are compared -- a record's own ``name``/``namespace`` are deterministic
+    byproducts of field path (see ``infer_avro_schema``), not part of its shape, so two schemas naming the same
+    nested record differently are NOT reported as different here. Field order doesn't matter either, only
+    presence and type.
+
+    ``path`` accumulates a location for each reported difference (e.g. ``$.evidence[].topic``) so a caller can
+    point at exactly where two metadata shapes disagree, rather than just reporting "they differ".
+    """
+
+    expected_kind = expected.get("type") if isinstance(expected, Mapping) else expected
+    actual_kind = actual.get("type") if isinstance(actual, Mapping) else actual
+
+    if expected_kind != actual_kind:
+        return [f"{path}: expected type {expected_kind!r}, got {actual_kind!r}"]
+
+    if expected_kind == "record":
+        assert isinstance(expected, Mapping) and isinstance(actual, Mapping)  # guaranteed by the type check above
+        expected_fields = {field["name"]: field["type"] for field in expected.get("fields", [])}
+        actual_fields = {field["name"]: field["type"] for field in actual.get("fields", [])}
+        missing = sorted(expected_fields.keys() - actual_fields.keys())
+        extra = sorted(actual_fields.keys() - expected_fields.keys())
+        diffs = [f"{path}.{name}: missing" for name in missing]
+        diffs += [f"{path}.{name}: unexpected extra field" for name in extra]
+        for name in sorted(expected_fields.keys() & actual_fields.keys()):
+            diffs.extend(diff_avro_schema(expected_fields[name], actual_fields[name], path=f"{path}.{name}"))
+        return diffs
+
+    if expected_kind == "array":
+        assert isinstance(expected, Mapping) and isinstance(actual, Mapping)  # guaranteed by the type check above
+        return diff_avro_schema(expected.get("items"), actual.get("items"), path=f"{path}[]")
+
+    return []
 
 
 def _normalize_avro_schema(

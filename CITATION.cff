@@ -1,0 +1,22 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Causalatee
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Tim
+    family-names: Hagen
+    affiliation: 'University of Kassel, hessian.AI'
+    orcid: 'https://orcid.org/0009-0000-4854-7249'
+  - given-names: Martin
+    family-names: Potthast
+    affiliation: 'University of Kassel, hessian.AI, ScaDS.AI'
+repository-code: 'https://github.com/webis-de/causalatee'
+url: 'https://causalatee.webis.de'
+keywords:
+  - causalaty
+license: MIT

@@ -50,6 +50,8 @@ A sentence may contain multiple entity pairs and therefore multiple relation ent
 
 ## Models
 
+{{ all_models(filter_task="causality-identification") }}
+
 A model classifying exactly the two spans marked in `text` implements
 [`causalatee.models.PairwiseIdentification`][causalatee.models.PairwiseIdentification] —
 what nearly every trained relation classifier in the literature implements, and what

@@ -34,13 +34,14 @@ Sentences classified as `Uncausal` at step 1 are discarded.
 
 ### Output
 
-A fully extracted relation is a triple:
+A fully extracted relationship (see the [glossary](../glossary.md): one classified pair, not the
+relation itself) is a triple:
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `cause` | `str` | The causing event span |
 | `effect` | `str` | The caused event span |
-| `relation` | `Relation` | `Causal` or `Countercausal` |
+| `relationship` | `Relation` | `Causal` or `Countercausal` |
 
 ### Example
 
@@ -48,21 +49,21 @@ A fully extracted relation is a triple:
 Input:  "The storm caused significant flooding."
 
 Output: {
-    cause:    "The storm",
-    effect:   "significant flooding",
-    relation: Relation.Causal
+    cause:        "The storm",
+    effect:       "significant flooding",
+    relationship: Relation.Causal
 }
 
 Input:  "Sugar does not cause hyperactivity."
 
 Output: {
-    cause:    "Sugar",
-    effect:   "hyperactivity",
-    relation: Relation.Countercausal
+    cause:        "Sugar",
+    effect:       "hyperactivity",
+    relationship: Relation.Countercausal
 }
 ```
 
-A single sentence may yield multiple relation triples when several cause–effect pairs are present.
+A single sentence may yield multiple relationships when several cause–effect pairs are present.
 
 ## Subtasks
 
@@ -77,6 +78,8 @@ A single sentence may yield multiple relation triples when several cause–effec
 {{ all_datasets(filter_task="causality-extraction") }}
 
 ## Models
+
+{{ all_models(filter_task="causality-extraction") }}
 
 A model for this end-to-end task implements
 [`causalatee.models.Extraction`][causalatee.models.Extraction] — see the

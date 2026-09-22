@@ -55,11 +55,18 @@ class CandidateSpan(TypedDict):
 
 
 class PairwiseRelation(TypedDict):
-    relation: str
+    """One relationship -- a single pair's classification, not the relation itself (see the
+    [glossary](../glossary.md))."""
+
+    relationship: str
     score: float
 
 
 class IdentifiedRelation(TypedDict):
+    """One relationship among an arbitrary number of marked spans (see the
+    [glossary](../glossary.md)) -- ``relationship`` names which relation TYPE this ``first``/``second`` pair
+    was classified into."""
+
     relationship: Relation
     first: str
     second: str
@@ -67,9 +74,12 @@ class IdentifiedRelation(TypedDict):
 
 
 class ExtractedRelation(TypedDict):
+    """One relationship extracted from raw, unmarked text (see the [glossary](../glossary.md)) --
+    ``relationship`` names which relation TYPE this ``e1``/``e2`` pair was classified into."""
+
     e1: str
     e2: str
-    relation: str
+    relationship: str
     score: float
 
 
@@ -209,7 +219,7 @@ class _LiftedPairwiseIdentification:
             for first, second in pairs:
                 result = flat_results[cursor]
                 cursor += 1
-                relationship = _relation_from_label(result["relation"])
+                relationship = _relation_from_label(result["relationship"])
                 if relationship == Relation.NoRelation:
                     continue
                 relations.append(
@@ -278,7 +288,7 @@ def identify_candidates(
                 {
                     "e1": text[first_span["start"] : first_span["end"]],
                     "e2": text[second_span["start"] : second_span["end"]],
-                    "relation": rel["relationship"].name,
+                    "relationship": rel["relationship"].name,
                     "score": rel["score"],
                 }
             )

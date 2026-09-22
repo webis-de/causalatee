@@ -10,7 +10,7 @@ import time
 
 import pytest
 
-from causalatee.mining import Pipeline, causal_predicate
+from causalatee.mining import Document, Pipeline, causal_predicate
 
 
 class ConcurrencyTracker:
@@ -228,3 +228,209 @@ class TestReduce:
             return sink_calls
 
         assert run(go()) == [0, 1, 2]
+
+
+class TestMetadataPropagation:
+    """map/filter/flat_map stay metadata-blind: fn only ever sees .value, and metadata is preserved (or, for
+    flat_map, inherited) automatically without the model needing to know PipelineItem exists."""
+
+    def test_bare_pipeline_items_start_with_empty_metadata(self):
+        async def go():
+            items = []
+            await Pipeline(_source(2)).reduce_items(lambda item: items.append(item))
+            return items
+
+        items = run(go())
+        assert [i.metadata for i in items] == [{}, {}]
+
+    def test_map_preserves_metadata_unchanged(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(1))
+                .map_metadata(lambda m: {"tag": "seed"})
+                .map(lambda x: x * 10)
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        (item,) = run(go())
+        assert item.value == 0
+        assert item.metadata == {"tag": "seed"}
+
+    def test_filter_preserves_metadata_on_kept_items(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(4))
+                .map_metadata(lambda m: {"seen": True})
+                .filter(lambda x: x % 2 == 0)
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == [0, 2]
+        assert all(i.metadata == {"seen": True} for i in items)
+
+    def test_flat_map_inherits_parent_metadata(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(2))
+                .map_metadata(lambda m: {"parent": True})
+                .flat_map(lambda x: [x, x + 100])
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == [0, 100, 1, 101]
+        assert all(i.metadata == {"parent": True} for i in items)
+
+    def test_batched_map_preserves_metadata_per_position(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(3))
+                .map_metadata(lambda m: {})
+                .annotate("doubled_of", lambda x: x)
+                .map(lambda xs: [x * 2 for x in xs], batch_size=2)
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == [0, 2, 4]
+        assert [i.metadata["doubled_of"] for i in items] == [0, 1, 2]
+
+    def test_batched_map_mismatched_result_count_raises(self):
+        def drops_one(xs):
+            return [x * 2 for x in xs][:-1]  # returns one fewer result than inputs
+
+        async def go():
+            await Pipeline(_source(4)).map(drops_one, batch_size=2).reduce(lambda x: None)
+
+        with pytest.raises(ValueError):
+            run(go())
+
+
+class TestAnnotate:
+    def test_computes_from_value_and_leaves_value_unchanged(self):
+        async def go():
+            items = []
+            await Pipeline(_source(3)).annotate("squared", lambda x: x * x).reduce_items(
+                lambda item: items.append(item)
+            )
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == [0, 1, 2]
+        assert [i.metadata["squared"] for i in items] == [0, 1, 4]
+
+    def test_chained_annotate_calls_accumulate(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(1))
+                .annotate("a", lambda x: 1)
+                .annotate("b", lambda x: 2)
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        (item,) = run(go())
+        assert item.metadata == {"a": 1, "b": 2}
+
+
+class TestAnnotateWithMetadata:
+    def test_fn_receives_both_value_and_current_metadata(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(1))
+                .annotate("base", lambda x: 100)
+                .annotate_with_metadata("total", lambda x, metadata: x + metadata["base"])
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        (item,) = run(go())
+        assert item.metadata == {"base": 100, "total": 100}
+
+
+class TestMapMetadata:
+    def test_replaces_metadata_entirely(self):
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(1))
+                .annotate("a", lambda x: 1)
+                .annotate("b", lambda x: 2)
+                .map_metadata(lambda m: {"only": m["a"]})
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        (item,) = run(go())
+        assert item.metadata == {"only": 1}  # "b" was dropped -- a full replace, not a merge
+
+
+class TestFlatMapAnnotateKwarg:
+    def test_annotate_kwarg_merges_on_top_of_inherited_metadata(self):
+        def split_into_two(x):
+            return [f"{x}-a", f"{x}-b"]
+
+        async def go():
+            items = []
+            await (
+                Pipeline(_source(1))
+                .annotate("doc_id", lambda x: "doc0")
+                .flat_map(split_into_two, annotate=lambda value, index: {"index": index})
+                .reduce_items(lambda item: items.append(item))
+            )
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == ["0-a", "0-b"]
+        assert [i.metadata for i in items] == [
+            {"doc_id": "doc0", "index": 0},
+            {"doc_id": "doc0", "index": 1},
+        ]
+
+
+class TestReduceItems:
+    def test_reduce_hands_sink_bare_values(self):
+        async def go():
+            values = []
+            await Pipeline(_source(3)).annotate("x", lambda x: 1).reduce(lambda v: values.append(v))
+            return values
+
+        assert run(go()) == [0, 1, 2]
+
+    def test_reduce_items_hands_sink_full_pipeline_items(self):
+        async def go():
+            items = []
+            await Pipeline(_source(2)).annotate("x", lambda x: 1).reduce_items(lambda item: items.append(item))
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == [0, 1]
+        assert [i.metadata for i in items] == [{"x": 1}, {"x": 1}]
+
+
+class TestDocuments:
+    def test_documents_adapts_id_and_metadata_into_a_source_key(self):
+        async def source():
+            yield Document(id="doc-1", text="hello", metadata={"url": "https://example.com"})
+            yield Document(id="doc-2", text="world", metadata={"url": "https://example.org"})
+
+        async def go():
+            items = []
+            await Pipeline.documents(source()).reduce_items(lambda item: items.append(item))
+            return items
+
+        items = run(go())
+        assert [i.value for i in items] == ["hello", "world"]
+        assert items[0].metadata == {"source": {"id": "doc-1", "url": "https://example.com"}}
+        assert items[1].metadata == {"source": {"id": "doc-2", "url": "https://example.org"}}

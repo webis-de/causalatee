@@ -36,23 +36,23 @@ class FakePairwiseIdentificationPipeline:
     batched call rather than N single ones.
 
     Default behavior: "Countercausal" for any pair marking "Sugar" as <e1>, else "NoRelation" -- override via
-    ``relation`` to make every pair unconditionally classify as ``relation`` instead (useful for tests that don't
-    care about which specific direction/pair is picked out, only that all of them are)."""
+    ``relationship`` to make every pair unconditionally classify as ``relationship`` instead (useful for tests that
+    don't care about which specific direction/pair is picked out, only that all of them are)."""
 
-    def __init__(self, relation: str | None = None):
-        self._relation = relation
+    def __init__(self, relationship: str | None = None):
+        self._relationship = relationship
         self.calls: list[list[str]] = []
 
     def __call__(self, text):
         batch = [text] if isinstance(text, str) else text
         self.calls.append(list(batch))
-        if self._relation is not None:
-            results = [{"relation": self._relation, "score": 0.9} for _ in batch]
+        if self._relationship is not None:
+            results = [{"relationship": self._relationship, "score": 0.9} for _ in batch]
         else:
             results = [
-                {"relation": "Countercausal", "score": 0.9}
+                {"relationship": "Countercausal", "score": 0.9}
                 if "<e1>Sugar</e1>" in t
-                else {"relation": "NoRelation", "score": 0.8}
+                else {"relationship": "NoRelation", "score": 0.8}
                 for t in batch
             ]
         return results[0] if isinstance(text, str) else results
@@ -60,7 +60,7 @@ class FakePairwiseIdentificationPipeline:
 
 class FakeExtractionPipeline:
     def __call__(self, text):
-        one = [{"e1": "a", "e2": "b", "relation": "Causal", "score": 0.5}]
+        one = [{"e1": "a", "e2": "b", "relationship": "Causal", "score": 0.5}]
         if isinstance(text, list):
             return [one for _ in text]
         return one
@@ -148,7 +148,7 @@ class TestIdentifyCandidates:
         assert len(model.calls[0]) == 2  # only the second text's 2 ordered pairs
 
     def test_remaps_entity_ids_back_to_span_text(self):
-        model = FakePairwiseIdentificationPipeline(relation="Causal")
+        model = FakePairwiseIdentificationPipeline(relationship="Causal")
         identification = lift_pairwise_identification(model)
 
         text = "The storm caused flooding."
@@ -159,4 +159,4 @@ class TestIdentifyCandidates:
         assert len(results) == 1
         assert {r["e1"] for r in results[0]} <= {"storm", "flooding"}
         assert {r["e2"] for r in results[0]} <= {"storm", "flooding"}
-        assert all(r["relation"] == "Causal" for r in results[0])
+        assert all(r["relationship"] == "Causal" for r in results[0])

@@ -3,7 +3,6 @@ title: SDP Causality Extraction
 type: Dependency-based baseline
 bib_key: girju:2003
 supported_tasks:
-  causal-candidate-extraction:
   causality-identification:
 ---
 
@@ -18,9 +17,12 @@ path as the feature representation for a downstream classifier.
 
 The approach was introduced for general relation extraction by [@bunescu:2005] and later applied
 specifically to causal relations by [@girju:2003] and others. It remains a strong, interpretable
-baseline for the [Causal Event Candidate Detection](../tasks/causal_event_candidate_detection.md)
-and [Causality Identification](../tasks/causality_identification.md) steps of the extraction
-pipeline.
+baseline for the [Causality Identification](../tasks/causality_identification.md) step of the
+extraction pipeline — it takes two already-known entity spans as input (see Algorithm below), so
+it has nothing to say about [Causal Event Candidate Detection](../tasks/causal_event_candidate_detection.md)
+itself. For Causality *Detection* on an unmarked sentence, see the separate
+[Causal Connective Lexicon](causal_connective_lexicon.md) baseline instead — the same underlying
+lexicon, used as a standalone rule rather than as one feature on a dependency path.
 
 ## Motivation
 
@@ -156,6 +158,32 @@ print(format_sdp(path))
 ```
 
 Requires the `baselines` extra (`pip install 'causalatee[baselines]'`) for `spacy` and `networkx`.
+
+## Ready-to-use Baseline
+
+`shortest_dependency_path` is a *representation*, not a classifier — turning the path into a
+relation label is left to the caller. `causalatee.nlp.SDPIdentifier` is that classifier: a
+[`causalatee.models.PairwiseIdentification`][causalatee.models.PairwiseIdentification]-conforming
+wrapper implementing exactly the "connective on the path" decision rule described above, including
+the negation handling from the [Causal Lexicon](#causal-lexicon) section — a **negated** connective
+on the path predicts `Relation.Countercausal` instead of `Relation.Causal`, matching how CCNC
+itself defines that label ("did *not* cause" is still a claim *about* causality, just denying it):
+
+```python
+from causalatee.nlp import SDPIdentifier
+
+identifier = SDPIdentifier()  # loads en_core_web_sm lazily; pass nlp=... to reuse one
+identifier("<e1>The storm</e1> caused <e2>significant flooding</e2>.")
+# {'relationship': 'Causal', 'score': 1.0}
+identifier("<e1>The vaccine</e1> did not cause <e2>autism</e2>.")
+# {'relationship': 'Countercausal', 'score': 1.0}
+identifier("<e1>The cat</e1> sat on <e2>the mat</e2>.")
+# {'relationship': 'NoRelation', 'score': 1.0}
+```
+
+`score` is always `1.0` — this is a deterministic rule, not a calibrated probability. Only the
+first segment of each marked span is used, so discontinuous entity mentions aren't representable
+here (there's no single syntactic head token for a multi-segment span).
 
 ## References
 

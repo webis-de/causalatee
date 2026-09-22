@@ -6,6 +6,7 @@ import math
 
 import pytest
 
+import causalatee.evaluation._spans as _spans_module
 from causalatee.evaluation._spans import (
     bio_to_spans,
     dataset_span_scores,
@@ -16,6 +17,13 @@ from causalatee.evaluation._spans import (
     span_recall,
     span_scores,
 )
+
+
+@pytest.fixture(autouse=True)
+def _reset_empty_truths_warning_flag():
+    _spans_module._warned_empty_truths = False
+    yield
+    _spans_module._warned_empty_truths = False
 
 
 class TestOverlap:
@@ -113,9 +121,28 @@ class TestSpanScores:
 
     def test_empty_both(self):
         scores = span_scores([], [])
-        assert scores["f1"] == pytest.approx(0.0)
-        assert scores["precision"] == pytest.approx(0.0)
-        assert scores["recall"] == pytest.approx(0.0)
+        assert all(v == pytest.approx(0.0) for v in scores.values())
+
+    def test_empty_truths_only(self):
+        scores = span_scores([], [(0, 5)])
+        assert all(v == pytest.approx(0.0) for v in scores.values())
+
+    def test_empty_predictions_only(self):
+        scores = span_scores([(0, 5)], [])
+        assert all(v == pytest.approx(0.0) for v in scores.values())
+
+    def test_empty_truths_warns_once(self, caplog):
+        with caplog.at_level("WARNING", logger="causalatee.evaluation._spans"):
+            span_scores([], [(0, 5)])
+            span_scores([], [(0, 5)])
+            span_scores([], [])
+        warnings = [r for r in caplog.records if "empty gold spans" in r.message]
+        assert len(warnings) == 1
+
+    def test_empty_predictions_does_not_warn(self, caplog):
+        with caplog.at_level("WARNING", logger="causalatee.evaluation._spans"):
+            span_scores([(0, 5)], [])
+        assert not any("empty gold spans" in r.message for r in caplog.records)
 
 
 class TestDatasetSpanScores:

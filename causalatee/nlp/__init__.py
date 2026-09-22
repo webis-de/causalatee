@@ -5,6 +5,7 @@ except ImportError as e:
         "causalatee.nlp requires spacy and networkx.\nInstall them with: pip install 'causalatee[baselines]'"
     ) from e
 
+from ._baselines import LexiconDetector, SDPIdentifier
 from ._connectives import CAUSAL_CONNECTIVES, ConnectiveMatch, find_causal_connectives
 from ._sdp import SDPStep, format_sdp, shortest_dependency_path, span_head_token
 
@@ -12,6 +13,8 @@ __all__ = [
     "CAUSAL_CONNECTIVES",
     "ConnectiveMatch",
     "find_causal_connectives",
+    "LexiconDetector",
+    "SDPIdentifier",
     "SDPStep",
     "format_sdp",
     "shortest_dependency_path",

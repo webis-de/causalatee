@@ -55,13 +55,23 @@ plugins:
             show_root_full_path: false
             docstring_style: google
             merge_init_into_class: true
+            show_signature_annotations: true
+            separate_signature: true
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_category_heading: true
 
 markdown_extensions:
+  - abbr
   - attr_list
   - md_in_html
   - footnotes
   - admonition
   - pymdownx.details
+  - pymdownx.snippets:
+      auto_append:
+        - docs/includes/abbreviations.md
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.emoji:
@@ -92,6 +102,7 @@ extra:
 
 extra_css:
   - css/pills.css
+  - css/api.css
 
 extra_javascript:
   - js/dataset-page.js
@@ -100,6 +111,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Glossary: glossary.md
   - Tasks:
       - Causality Detection: tasks/causality_detection.md
       - Causality Extraction: tasks/causality_extraction.md

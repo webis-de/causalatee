@@ -1,5 +1,9 @@
 /tmp/
 
+# Paper-specific scripts/notebooks and result artifacts (benchmarks, audits, portability-experiment harnesses); not part
+# of the causalatee resource itself, deliberately not checked into the repo. See notes.txt.
+/for_the_paper/
+
 # mkdocs documentation
 /site
 /docs/examples/*

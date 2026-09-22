@@ -1,7 +1,23 @@
 from __future__ import annotations
 
+import logging
 import math
 from collections.abc import Sequence
+
+logger = logging.getLogger(__name__)
+
+_warned_empty_truths = False
+
+
+def _warn_empty_truths_once() -> None:
+    global _warned_empty_truths
+    if _warned_empty_truths:
+        return
+    _warned_empty_truths = True
+    logger.warning(
+        "span_scores() called with empty gold spans — precision/recall/f1 for this "
+        "instance will be 0.0. Further warnings of this kind will not be shown."
+    )
 
 
 def _mean(values: list[float], default: float = 0.0) -> float:
@@ -56,6 +72,9 @@ def span_scores(
     Returns precision, recall, f1, granularity, f1_gran (granularity-penalised F1),
     and intersection_over_union — matching the Touché evaluator output.
     """
+    if not truths:
+        _warn_empty_truths_once()
+
     p = span_precision(truths, predictions)
     r = span_recall(truths, predictions)
     g = span_granularity(truths, predictions)

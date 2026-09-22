@@ -60,6 +60,8 @@ Output: ClassLabel.Causal (1)   # countercausal
 
 ## Models
 
+{{ all_models(filter_task="causality-detection") }}
+
 A model for this task implements the
 [`causalatee.models.Detection`][causalatee.models.Detection] protocol — see the
 [API reference](../reference/models.md) for the full interface.

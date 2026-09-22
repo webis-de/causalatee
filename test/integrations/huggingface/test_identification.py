@@ -99,7 +99,7 @@ class TestCausalityIdentificationPipeline:
         outputs = MagicMock()
         outputs.logits = _make_logits([0.9, 0.1])
         result = pipe.postprocess(outputs)
-        assert result["relation"] == "CAUSAL"
+        assert result["relationship"] == "CAUSAL"
         assert abs(result["score"] - 0.9) < 1e-6
 
     def test_postprocess_no_rel(self):
@@ -107,7 +107,7 @@ class TestCausalityIdentificationPipeline:
         outputs = MagicMock()
         outputs.logits = _make_logits([0.2, 0.8])
         result = pipe.postprocess(outputs)
-        assert result["relation"] == "NO-REL"
+        assert result["relationship"] == "NO-REL"
         assert abs(result["score"] - 0.8) < 1e-6
 
     def test_preprocess_calls_tokenizer(self):

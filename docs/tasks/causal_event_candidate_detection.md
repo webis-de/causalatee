@@ -35,6 +35,8 @@ Spans can overlap when a phrase participates in multiple causal pairs within the
 
 ## Models
 
+{{ all_models(filter_task="causal-candidate-extraction") }}
+
 A model for this task implements the
 [`causalatee.models.CandidateExtraction`][causalatee.models.CandidateExtraction] protocol —
 see the [API reference](../reference/models.md) for the full interface.

@@ -29,13 +29,13 @@ class FakeCandidateExtraction:
 
 
 class FakePairwiseIdentification:
-    """Returns ``relation`` unconditionally, unless ``causal_direction`` is given, in which case only the pair text
-    matching it is classified as ``relation`` and every other direction is classified ``NoRelation`` -- lets tests
-    distinguish "both orderings get tried" (permutations, not just one direction per pair) from "the correct
-    direction is picked out"."""
+    """Returns ``relationship`` unconditionally, unless ``causal_direction`` is given, in which case only the pair
+    text matching it is classified as ``relationship`` and every other direction is classified ``NoRelation`` --
+    lets tests distinguish "both orderings get tried" (permutations, not just one direction per pair) from "the
+    correct direction is picked out"."""
 
-    def __init__(self, relation: str = "Causal", score: float = 0.95, causal_direction: str | None = None):
-        self._relation = relation
+    def __init__(self, relationship: str = "Causal", score: float = 0.95, causal_direction: str | None = None):
+        self._relationship = relationship
         self._score = score
         self._causal_direction = causal_direction
         self.calls: list[list[str]] = []
@@ -44,9 +44,9 @@ class FakePairwiseIdentification:
         batch = [text] if isinstance(text, str) else text
         self.calls.append(list(batch))
         results = [
-            {"relation": self._relation, "score": self._score}
+            {"relationship": self._relationship, "score": self._score}
             if self._causal_direction is None or self._causal_direction in t
-            else {"relation": "NoRelation", "score": self._score}
+            else {"relationship": "NoRelation", "score": self._score}
             for t in batch
         ]
         return results[0] if isinstance(text, str) else results
@@ -84,7 +84,7 @@ class TestComposeExtraction:
         extractor = compose_extraction(
             FakeDetection(),
             FakeCandidateExtraction({text: [{"start": 4, "end": 9}, {"start": 17, "end": 25}]}),
-            FakePairwiseIdentification(relation="NoRelation"),
+            FakePairwiseIdentification(relationship="NoRelation"),
         )
         assert extractor(text) == []
 
@@ -95,13 +95,13 @@ class TestComposeExtraction:
         extractor = compose_extraction(
             FakeDetection(),
             FakeCandidateExtraction({text: [{"start": 4, "end": 9}, {"start": 17, "end": 25}]}),
-            FakePairwiseIdentification(relation="Causal", score=0.95, causal_direction="<e1>storm"),
+            FakePairwiseIdentification(relationship="Causal", score=0.95, causal_direction="<e1>storm"),
         )
         result = extractor(text)
         assert len(result) == 1
         assert result[0]["e1"] == text[4:9]
         assert result[0]["e2"] == text[17:25]
-        assert result[0]["relation"] == "Causal"
+        assert result[0]["relationship"] == "Causal"
         assert abs(result[0]["score"] - 0.95) < 1e-6
 
     def test_produces_all_ordered_pairs_from_n_spans(self):
@@ -110,7 +110,7 @@ class TestComposeExtraction:
         extractor = compose_extraction(
             FakeDetection(),
             FakeCandidateExtraction({text: spans}),
-            FakePairwiseIdentification(relation="Causal"),
+            FakePairwiseIdentification(relationship="Causal"),
         )
         result = extractor(text)
         assert len(result) == 6  # 3 spans -> 3*2 ordered pairs, all "Causal"
