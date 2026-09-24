@@ -119,9 +119,7 @@ class SDPIdentifier:
         connectives = find_causal_connectives(doc)
         # Empty path (steps == []) means both spans share one head token -- there is nothing to
         # take the union of, so fall back to that single shared token instead.
-        path_tokens = {t for step in steps for t in (step.from_token, step.to_token)} or {
-            span_head_token(doc, e1_span)
-        }
+        path_tokens = {t for step in steps for t in (step.from_token, step.to_token)} or {span_head_token(doc, e1_span)}
 
         matched = negated = False
         for token in path_tokens:

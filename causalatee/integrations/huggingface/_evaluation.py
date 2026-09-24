@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING
 
-from causalatee.evaluation._spans import bio_to_spans, dataset_span_scores
+from causalatee.evaluation.spans import bio_to_spans, dataset_granularity_discounted_span_scores
 
 if TYPE_CHECKING:
     from transformers import EvalPrediction
@@ -59,6 +59,6 @@ def span_compute_metrics(
         n = len(predictions)
         all_preds = [bio_to_spans(predictions[i].tolist(), offsets[i], id2label) for i in range(n)]
         all_truths = [bio_to_spans(label_ids[i].tolist(), offsets[i], id2label) for i in range(n)]
-        return dataset_span_scores(all_truths, all_preds)
+        return dataset_granularity_discounted_span_scores(all_truths, all_preds)
 
     return _compute_metrics

@@ -319,8 +319,8 @@ class TestAnnotate:
     def test_computes_from_value_and_leaves_value_unchanged(self):
         async def go():
             items = []
-            await Pipeline(_source(3)).annotate("squared", lambda x: x * x).reduce_items(
-                lambda item: items.append(item)
+            await (
+                Pipeline(_source(3)).annotate("squared", lambda x: x * x).reduce_items(lambda item: items.append(item))
             )
             return items
 

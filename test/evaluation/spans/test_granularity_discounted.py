@@ -1,4 +1,4 @@
-"""Tests for causalatee.evaluation._spans — pure span metric functions."""
+"""Tests for causalatee.evaluation.spans._granularity_discounted (Potthast et al. 2014)."""
 
 from __future__ import annotations
 
@@ -6,24 +6,25 @@ import math
 
 import pytest
 
-import causalatee.evaluation._spans as _spans_module
-from causalatee.evaluation._spans import (
-    bio_to_spans,
-    dataset_span_scores,
+import causalatee.evaluation.spans._granularity_discounted as _gd_module
+from causalatee.evaluation.spans import (
+    dataset_granularity_discounted_span_scores,
+    granularity_discounted_span_scores,
+)
+from causalatee.evaluation.spans._granularity_discounted import (
     overlap,
     span_granularity,
     span_iou,
     span_precision,
     span_recall,
-    span_scores,
 )
 
 
 @pytest.fixture(autouse=True)
 def _reset_empty_truths_warning_flag():
-    _spans_module._warned_empty_truths = False
+    _gd_module._warned_empty_truths = False
     yield
-    _spans_module._warned_empty_truths = False
+    _gd_module._warned_empty_truths = False
 
 
 class TestOverlap:
@@ -101,56 +102,56 @@ class TestIoU:
         assert span_iou([(0, 5)], [(2, 7)]) == pytest.approx(3 / 7)
 
 
-class TestSpanScores:
+class TestGranularityDiscountedSpanScores:
     def test_f1_gran_equals_f1_when_granularity_zero(self):
         # No predictions match the truth → granularity = 0 → f1_gran = f1
-        scores = span_scores([(0, 5)], [(20, 25)])
+        scores = granularity_discounted_span_scores([(0, 5)], [(20, 25)])
         assert scores["f1_gran"] == pytest.approx(scores["f1"])
 
     def test_f1_gran_penalised_when_granularity_gt_one(self):
         # Two fragments match one truth span → f1_gran < f1
-        scores = span_scores([(0, 10)], [(0, 5), (5, 10)])
+        scores = granularity_discounted_span_scores([(0, 10)], [(0, 5), (5, 10)])
         assert scores["granularity"] > 1.0
         assert scores["f1_gran"] < scores["f1"]
 
     def test_f1_gran_formula(self):
         # With g > 0: f1_gran = f1 / log2(1 + g)
-        scores = span_scores([(0, 10)], [(0, 5), (5, 10)])
+        scores = granularity_discounted_span_scores([(0, 10)], [(0, 5), (5, 10)])
         g = scores["granularity"]
         assert scores["f1_gran"] == pytest.approx(scores["f1"] / math.log2(1 + g))
 
     def test_empty_both(self):
-        scores = span_scores([], [])
+        scores = granularity_discounted_span_scores([], [])
         assert all(v == pytest.approx(0.0) for v in scores.values())
 
     def test_empty_truths_only(self):
-        scores = span_scores([], [(0, 5)])
+        scores = granularity_discounted_span_scores([], [(0, 5)])
         assert all(v == pytest.approx(0.0) for v in scores.values())
 
     def test_empty_predictions_only(self):
-        scores = span_scores([(0, 5)], [])
+        scores = granularity_discounted_span_scores([(0, 5)], [])
         assert all(v == pytest.approx(0.0) for v in scores.values())
 
     def test_empty_truths_warns_once(self, caplog):
-        with caplog.at_level("WARNING", logger="causalatee.evaluation._spans"):
-            span_scores([], [(0, 5)])
-            span_scores([], [(0, 5)])
-            span_scores([], [])
+        with caplog.at_level("WARNING", logger="causalatee.evaluation.spans._granularity_discounted"):
+            granularity_discounted_span_scores([], [(0, 5)])
+            granularity_discounted_span_scores([], [(0, 5)])
+            granularity_discounted_span_scores([], [])
         warnings = [r for r in caplog.records if "empty gold spans" in r.message]
         assert len(warnings) == 1
 
     def test_empty_predictions_does_not_warn(self, caplog):
-        with caplog.at_level("WARNING", logger="causalatee.evaluation._spans"):
-            span_scores([(0, 5)], [])
+        with caplog.at_level("WARNING", logger="causalatee.evaluation.spans._granularity_discounted"):
+            granularity_discounted_span_scores([(0, 5)], [])
         assert not any("empty gold spans" in r.message for r in caplog.records)
 
 
-class TestDatasetSpanScores:
+class TestDatasetGranularityDiscountedSpanScores:
     def test_macro_average(self):
         # Instance 0: perfect match → all 1.0
         # Instance 1: no match → all 0.0
         # Macro avg → all 0.5
-        result = dataset_span_scores(
+        result = dataset_granularity_discounted_span_scores(
             [[(0, 5)], [(0, 5)]],
             [[(0, 5)], [(10, 15)]],
         )
@@ -158,42 +159,5 @@ class TestDatasetSpanScores:
         assert result["precision"] == pytest.approx(0.5)
 
     def test_empty_dataset(self):
-        result = dataset_span_scores([], [])
+        result = dataset_granularity_discounted_span_scores([], [])
         assert all(v == 0.0 for v in result.values())
-
-
-class TestBioToSpans:
-    _id2label = {0: "O", 1: "B-CAUSE", 2: "I-CAUSE", 3: "B-EFFECT", 4: "I-EFFECT"}
-
-    def test_single_span(self):
-        label_ids = [-100, 1, 2, 0, -100]
-        offsets = [(0, 0), (0, 5), (6, 10), (11, 15), (0, 0)]
-        spans = bio_to_spans(label_ids, offsets, self._id2label)
-        assert spans == [(0, 10)]
-
-    def test_two_spans(self):
-        label_ids = [-100, 1, 0, 3, 4, -100]
-        offsets = [(0, 0), (0, 4), (5, 8), (9, 13), (14, 20), (0, 0)]
-        spans = bio_to_spans(label_ids, offsets, self._id2label)
-        assert (0, 4) in spans
-        assert (9, 20) in spans
-
-    def test_all_o(self):
-        label_ids = [-100, 0, 0, -100]
-        offsets = [(0, 0), (0, 3), (4, 7), (0, 0)]
-        assert bio_to_spans(label_ids, offsets, self._id2label) == []
-
-    def test_b_without_i(self):
-        label_ids = [-100, 1, 3, -100]
-        offsets = [(0, 0), (0, 4), (5, 9), (0, 0)]
-        spans = bio_to_spans(label_ids, offsets, self._id2label)
-        assert (0, 4) in spans
-        assert (5, 9) in spans
-
-    def test_ignored_id_acts_as_boundary(self):
-        label_ids = [1, -100, 2]
-        offsets = [(0, 3), (3, 5), (5, 8)]
-        spans = bio_to_spans(label_ids, offsets, self._id2label)
-        # -100 in the middle breaks the span
-        assert (0, 3) in spans
-        assert len(spans) == 1  # I- without preceding B- is dropped

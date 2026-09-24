@@ -9,7 +9,7 @@ except ImportError:
         "Install them with: pip install 'causalatee[lightning]'"
     ) from None
 
-from causalatee.evaluation._spans import bio_to_spans, span_scores
+from causalatee.evaluation.spans import bio_to_spans, granularity_discounted_span_scores
 
 
 class SpanMetric(torchmetrics.Metric):
@@ -99,7 +99,7 @@ class SpanMetric(torchmetrics.Metric):
             Gold character spans per example in the same format.
         """
         for pred_spans, gold_spans in zip(predictions, targets):
-            scores = span_scores(gold_spans, pred_spans)
+            scores = granularity_discounted_span_scores(gold_spans, pred_spans)
             self.precision += scores["precision"]
             self.recall += scores["recall"]
             self.f1 += scores["f1"]
