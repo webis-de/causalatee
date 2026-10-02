@@ -417,9 +417,15 @@ def define_env(env):
         return "".join(lines)
 
     @env.macro
-    def all_models():
-        """Build a model reference table from every docs/models/*.md page's frontmatter,
-        mirroring ``all_datasets()``'s unfiltered table (task-code legend, Links badges)."""
+    def all_models(filter_task=None):
+        """Build a model reference table from every docs/models/*.md page's frontmatter.
+
+        Unfiltered (docs/models/index.md): every model, with a Tasks column (D/E/I) showing
+        which tasks each one supports. Filtered to one ``filter_task`` (a task page, e.g.
+        ``{{ all_models(filter_task="causality-detection") }}``): only models supporting that
+        task, with the now-redundant Tasks column dropped — mirrors ``all_datasets()``'s
+        ``filter_task`` behavior exactly.
+        """
         from pathlib import PurePosixPath
 
         page_dir = PurePosixPath(env.page.file.src_path).parent
@@ -428,8 +434,11 @@ def define_env(env):
 
         rows = []
         for md_file, fm in _iter_model_frontmatter(env.conf["docs_dir"]):
-            title = fm.get("title", md_file.stem)
             tasks = fm.get("supported_tasks") or {}
+            if filter_task is not None and filter_task not in tasks:
+                continue
+
+            title = fm.get("title", md_file.stem)
             rows.append(
                 {
                     "link": f"[{title}]({link_base}/{md_file.stem}.md)",
@@ -443,13 +452,21 @@ def define_env(env):
         if not rows:
             return ""
 
-        lines = [
-            "**Task codes**: D = Detection · E = Extraction · I = Identification\n\n",
-            "| Model | Type | Tasks | Reference | Links |\n",
-            "|-------|------|-------|-----------|-------|\n",
-        ]
-        for r in rows:
-            lines.append(f"| {r['link']} | {r['type']} | {r['task_codes']} | {r['ref']} | {r['badges']} |\n")
+        if filter_task is not None:
+            lines = [
+                "| Model | Type | Reference | Links |\n",
+                "|-------|------|-----------|-------|\n",
+            ]
+            for r in rows:
+                lines.append(f"| {r['link']} | {r['type']} | {r['ref']} | {r['badges']} |\n")
+        else:
+            lines = [
+                "**Task codes**: D = Detection · E = Extraction · I = Identification\n\n",
+                "| Model | Type | Tasks | Reference | Links |\n",
+                "|-------|------|-------|-----------|-------|\n",
+            ]
+            for r in rows:
+                lines.append(f"| {r['link']} | {r['type']} | {r['task_codes']} | {r['ref']} | {r['badges']} |\n")
         return "".join(lines)
 
     @env.macro

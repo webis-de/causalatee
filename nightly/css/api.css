@@ -1,0 +1,18 @@
+/* Styling for mkdocstrings-generated API reference pages -- mkdocstrings ships almost no CSS
+   of its own (just semantic doc-object/doc-contents wrappers) and expects the consuming site to
+   style it; this is mkdocstrings-python's own recommended companion stylesheet, extended with a
+   sibling divider. See https://mkdocstrings.github.io/python/usage/customization/. */
+
+/* Indent a class's own members (methods, attributes) under it, so nesting is visible. */
+div.doc-contents:not(.first) {
+  padding-left: 25px;
+  border-left: 0.05rem solid var(--md-typeset-table-color);
+}
+
+/* Divider between sibling doc objects (classes/functions/attributes at the same level), so it's
+   clear where one member's documentation ends and the next begins. */
+div.doc-object + div.doc-object {
+  margin-top: 2em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
